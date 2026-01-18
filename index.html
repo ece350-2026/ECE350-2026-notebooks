@@ -88,6 +88,26 @@
             font-size: 0.85rem;
             color: #64ffda;
         }
+        .supplementary {
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+        }
+        .supplementary .notebook-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid #48c9b0;
+            padding: 1rem 1.25rem;
+        }
+        .supplementary .notebook-title {
+            font-size: 1rem;
+            color: #c0c0c0;
+        }
+        .supplementary .notebook-title::before {
+            content: "↳ ";
+            color: #48c9b0;
+        }
+        .supplementary .notebook-desc {
+            font-size: 0.9rem;
+        }
         footer {
             margin-top: 3rem;
             text-align: center;
@@ -117,6 +137,13 @@
                 <div class="notebook-desc">Bloch's theorem, Kronig-Penney model, and E-k diagrams with interactive visualizations</div>
                 <div class="notebook-lectures">Lectures 6-7</div>
             </a>
+            
+            <div class="supplementary">
+                <a href="crystalpotential/" class="notebook-card">
+                    <div class="notebook-title">Crystal Potential Visualizations</div>
+                    <div class="notebook-desc">Interactive 2D/3D visualizations of periodic Coulomb-like potentials in hexagonal lattices</div>
+                </a>
+            </div>
         </div>
         
         <footer>

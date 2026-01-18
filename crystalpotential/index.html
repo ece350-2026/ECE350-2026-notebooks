@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>potential energy</title>
+    <script type="module" crossorigin src="./assets/index-Cq_ZnpmP.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-BW0IMuFq.js">
+    <link rel="modulepreload" crossorigin href="./assets/hotkeys-uKX61F1_.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-BLUna9fQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-Cl9k9ZmS.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-DzliDDTm.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-C8wT63Va.js">
+    <link rel="modulepreload" crossorigin href="./assets/_Uint8Array-BGESiCQL.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-CrRUCOBw.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-D0MtrJOx.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-C1rgT0yh.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-BGmjiNul.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-DeeZ7FnK.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-DN_bIXfG.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-DAnNhy3O.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-COkmyg1v.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-B8cGZzP5.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-C9fstfnp.js">
+    <link rel="modulepreload" crossorigin href="./assets/Combination-D1TsGrBC.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-9PZrU2e0.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CBrDuocE.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-CW2xpJ57.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-CrAQug3q.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-D9lTzMzP.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-CvjcEpZC.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-Bzf3rpev.js">
+    <link rel="modulepreload" crossorigin href="./assets/_getTag-BWqNuuwU.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseIsEqual-Cz9Tt_-E.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-DlWF5OMa.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-C6yE60hi.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFor-Duhs3RiJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-BBX6ug-N.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-Cg4WLWh2.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-pfqq9IdB.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-Bkp4R3bQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-DzyBMRsy.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-D6nhy4FA.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-ClFZlR7U.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-B3BENoUa.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-C0HaHO6a.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BGkTcW3U.js">
+    <link rel="modulepreload" crossorigin href="./assets/toString-DlRqgfqz.js">
+    <link rel="modulepreload" crossorigin href="./assets/_hasUnicode-zBEpxwYe.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-CmDXEyIC.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-EAuSVK-5.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-CNj0G_ol.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-CTiSlR1m.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-BmAOeMOK.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-DDa-hVe3.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CAcX026F.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DKNOF5xd.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CI6_zMIl.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BVf1IY4_.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Cq_4nPfh.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CVj-_Iiz.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-HGZzCB0y.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-RKnr9SNh.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BuhT82Xx.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-0ac7Aukl.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-5JckKRQn.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-Bj40p_Np.js">
+    <link rel="modulepreload" crossorigin href="./assets/_arrayReduce-bZBYsK-u.js">
+    <link rel="modulepreload" crossorigin href="./assets/type-BdyvjzTI.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseProperty-DuoFhI7N.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-6sUe0ZdD.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-BbFlGgjv.js">
+    <link rel="modulepreload" crossorigin href="./assets/toInteger-CDcO32Gx.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-CaVvnK_o.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-CwSdzVhm.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-CpvLRFsM.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-C7JBxSzd.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-Czc5z_04.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-RldLPyJs.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-jcHA5geR.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-CF5DtF1E.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-em3gna-v.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-C9_R_vlY.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-DD7JA3RM.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-DHfVoQfl.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-FoXhpyAb.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-DTwIUo40.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-B80Yt1uu.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-DVhvP4lH.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-Dz1jd8Ir.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-CQd4MZr5.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-BEdExd6A.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-CqEd11Di.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-BP4_BZLr.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-DNmjkr65.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-Bm5VLYk2.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-CJMywDNY.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-By2cOynM.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-DRhpWiOq.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-gBVL4NN-.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-jWsqdLn1.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-C1czjtp7.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-Biy2OCfF.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-DmVMvj8M.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-Cp2punaU.js">
+    <link rel="modulepreload" crossorigin href="./assets/katex-AwOI3EvM.js">
+    <link rel="modulepreload" crossorigin href="./assets/marked.esm-CHnOtnr3.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-OGVTOU66-CjNLT2C3.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-ueIadUZx.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Dg7UO_Vw.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-CiJW14cR.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-DtnzNVk-.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-Cm_P3BT1.js">
+    <link rel="modulepreload" crossorigin href="./assets/mode-wovPGH9p.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-N-2faAGj.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-B8p715zK.js">
+    <link rel="modulepreload" crossorigin href="./assets/table--_20dwBZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/tabs-Ctk4D03n.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-BJJJOr9W.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-CU-WWxnz.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-DvT0IGDZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-B9CrBoaO.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-DhMN8sxe.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-DhzaK-Y1.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-CdsE1R40.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-CcAOzx6T.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-s2pQkyf5.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-B9D0JO9U.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-lG8j6oqk.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-DsANziQR.js">
+    <link rel="modulepreload" crossorigin href="./assets/range-sshwVRcP.js">
+    <link rel="modulepreload" crossorigin href="./assets/capitalize-DQeWKRGx.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-BLx7B_us.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-aB5dKsM0.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-BnFXtaZZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/play-BJDBXApx.js">
+    <link rel="modulepreload" crossorigin href="./assets/chat-components-ZPMBgudd.js">
+    <link rel="modulepreload" crossorigin href="./assets/isEmpty-DIxUV1UR.js">
+    <link rel="modulepreload" crossorigin href="./assets/circle-check-big-OIMTUpe6.js">
+    <link rel="modulepreload" crossorigin href="./assets/chat-display-Bru4OSNG.js">
+    <link rel="modulepreload" crossorigin href="./assets/ai-model-dropdown-BmUQTAgw.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-eU5Hsfml.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeleteCell-DMZ3UAH-.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-D4lB4En9.js">
+    <link rel="modulepreload" crossorigin href="./assets/process-output-BbPyu6EM.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-Dg_vNTSs.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-CboCOq4o.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-B3JckBtM.js">
+    <link rel="modulepreload" crossorigin href="./assets/add-cell-with-ai-DIVGdu6r.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-D42sFB6d.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-DxXFdbn8.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-qp_XZeSS.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-DtmhBN9V.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-D8i8UxCP.js">
+    <link rel="modulepreload" crossorigin href="./assets/toggle-G1t0cQyf.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-h0vQaXwS.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-CXQVxivL.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-DN0TMY36.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-CyLJYAfP.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-6FYvpjrm.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-BqxQegSf.js">
+    <link rel="modulepreload" crossorigin href="./assets/utilities.esm-DvUjESxl.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-DBJNk57_.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-Cc3-yOhX.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-D9zAYqG9.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-CHesBJpY.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-CoXhoNRa.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-video-camera-CZUg-nFA.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-DJ8nLAfz.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-CNZLffHW.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-DfnWQ2d8.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-DbW1_PHb.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-C-lF7BNB.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-BlH9lWzg.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-Clr_fqUr.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-B_S7yTZz.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-gzLRYatP.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-B42u_5hF.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-C638SUfx.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-FiXEquL2.js">
+    <link rel="modulepreload" crossorigin href="./assets/VisuallyHidden-B9t3FhTP.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-DydgU7lx.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFlatten-CLPh0yMf.js">
+    <link rel="modulepreload" crossorigin href="./assets/flatten-Buk63LQO.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-DeQioq0G.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-MBUyxNtK.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-DobaYJPt.js">
+    <link rel="modulepreload" crossorigin href="./assets/house-CncUa_LL.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-Din9uFKE.js">
+    <link rel="modulepreload" crossorigin href="./assets/settings-MTlHVxz3.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-leQTJTJJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-CbD0f2J6.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-B0Sy2M4C.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DDc_1b-N.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.19.4%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Aasync%20def%20_()%3A%0A%20%20%20%20%23%20Install%20plotly%20in%20WASM%20environment%20(Pyodide)%0A%20%20%20%20import%20sys%0A%20%20%20%20if%20%22pyodide%22%20in%20sys.modules%3A%0A%20%20%20%20%20%20%20%20import%20micropip%0A%20%20%20%20%20%20%20%20await%20micropip.install(%22plotly%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20matplotlib.pyplot%20as%20plt%0A%20%20%20%20from%20matplotlib.patches%20import%20Rectangle%0A%20%20%20%20import%20plotly.graph_objects%20as%20go%0A%20%20%20%20from%20plotly.subplots%20import%20make_subplots%0A%20%20%20%20return%20go%2C%20mo%2C%20np%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%20Potential%20Energy%20Visualizations%20in%202D%20and%203D%0A%0A%20%20%20%20Assuming%20a%20potential%20of%20a%20Coulombic%20form%20%24U(r)%20%5Cpropto%20-%20%5Cfrac%7B1%7D%7Br%7D%24%2C%20the%20potential%20energy%20for%20the%20electrons%20is%20lowest%20near%20the%20nuclei.%0A%0A%20%20%20%20In%20practice%2C%20the%20potential%20energy%20is%20lowest%20at%20the%20atomic%20radius%20%24r_0%24.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%202D%20Periodic%20Potential%0A%0A%20%20%20%20For%20a%202D%20lattice%2C%20the%20potential%20profile%2C%20%24U(x%2Cy)%24%2C%20looks%20like%20hills%20and%20valleys.%0A%0A%20%20%20%20Below%20is%20an%20example%20potential%20for%20a%20hexagonal%20lattice.%20The%20red%20spheres%20show%20the%20positions%20of%20the%20atoms.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(go%2C%20np)%3A%0A%20%20%20%20%23%20Parameters%0A%20%20%20%20_a_hex%20%3D%201.0%20%20%23%20lattice%20spacing%0A%20%20%20%20_U0_hex%20%3D%202.0%20%20%23%20potential%20depth%20scale%0A%20%20%20%20_min_distance%20%3D%200.05%20%23%20offset%20to%20avoid%20singularity%0A%0A%20%20%20%20%23%20Number%20of%20unit%20cells%20to%20calculate%20(extended%20for%20periodic%20boundary%20effects)%0A%20%20%20%20_n_cells_total%20%3D%2015%20%20%0A%0A%20%20%20%20%23%20Number%20of%20unit%20cells%20to%20display%20(smaller%20to%20avoid%20edge%20effects)%0A%20%20%20%20_n_cells_display%20%3D%2015%20%20%23%20Only%20show%204x4%20region%0A%0A%20%20%20%20%23%20Create%20hexagonal%20lattice%20points%0A%20%20%20%20%23%20Hexagonal%20lattice%20basis%20vectors%0A%20%20%20%20_a1_hex%20%3D%20np.array(%5B_a_hex%2C%200%5D)%0A%20%20%20%20_a2_hex%20%3D%20np.array(%5B_a_hex%2F2%2C%20_a_hex*np.sqrt(3)%2F2%5D)%0A%0A%20%20%20%20%23%20Generate%20ALL%20lattice%20sites%20(15x15)%20for%20potential%20calculation%0A%20%20%20%20_lattice_sites_all%20%3D%20%5B%5D%0A%20%20%20%20for%20_i%20in%20range(_n_cells_total)%3A%0A%20%20%20%20%20%20%20%20for%20_j%20in%20range(_n_cells_total)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_site%20%3D%20_i%20*%20_a1_hex%20%2B%20_j%20*%20_a2_hex%0A%20%20%20%20%20%20%20%20%20%20%20%20_lattice_sites_all.append(_site)%0A%0A%20%20%20%20_lattice_sites_all%20%3D%20np.array(_lattice_sites_all)%0A%0A%20%20%20%20%23%20Generate%20VISIBLE%20lattice%20sites%20for%20display%20(filtered%20by%20display%20range)%0A%20%20%20%20_x_min_display%20%3D%208%0A%20%20%20%20_x_max_display%20%3D%2012%0A%20%20%20%20_y_min_display%20%3D%203%0A%20%20%20%20_y_max_display%20%3D%207%0A%0A%20%20%20%20_lattice_sites_visible%20%3D%20%5B%5D%0A%20%20%20%20for%20_i%20in%20range(_n_cells_total)%3A%0A%20%20%20%20%20%20%20%20for%20_j%20in%20range(_n_cells_total)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_site%20%3D%20_i%20*%20_a1_hex%20%2B%20_j%20*%20_a2_hex%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Only%20include%20sites%20within%20the%20visible%20region%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20(_x_min_display%20%3C%3D%20_site%5B0%5D%20%3C%3D%20_x_max_display%20and%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_y_min_display%20%3C%3D%20_site%5B1%5D%20%3C%3D%20_y_max_display)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_lattice_sites_visible.append(_site)%0A%0A%20%20%20%20_lattice_sites_visible%20%3D%20np.array(_lattice_sites_visible)%0A%0A%20%20%20%20%23%20Create%20mesh%20grid%20for%20potential%20calculation%20-%20only%20for%20visible%20region%0A%20%20%20%20_x_range_hex%20%3D%20np.linspace(_x_min_display%2C%20_x_max_display%2C%20200)%0A%20%20%20%20_y_range_hex%20%3D%20np.linspace(_y_min_display%2C%20_y_max_display%2C%20200)%0A%20%20%20%20_X_hex%2C%20_Y_hex%20%3D%20np.meshgrid(_x_range_hex%2C%20_y_range_hex)%0A%0A%20%20%20%20%23%20Calculate%20potential%20at%20each%20point%20using%20NEAREST%20NEIGHBOR%20only%0A%20%20%20%20%23%20First%2C%20compute%20distances%20to%20all%20lattice%20sites%20and%20find%20minimum%0A%20%20%20%20_distances_all%20%3D%20np.zeros((_X_hex.shape%5B0%5D%2C%20_X_hex.shape%5B1%5D%2C%20len(_lattice_sites_all)))%0A%20%20%20%20for%20_idx%2C%20_site%20in%20enumerate(_lattice_sites_all)%3A%0A%20%20%20%20%20%20%20%20_distances_all%5B%3A%2C%20%3A%2C%20_idx%5D%20%3D%20np.sqrt((_X_hex%20-%20_site%5B0%5D)**2%20%2B%20(_Y_hex%20-%20_site%5B1%5D)**2)%0A%0A%20%20%20%20%23%20Find%20the%20minimum%20distance%20to%20any%20lattice%20site%20(nearest%20neighbor)%0A%20%20%20%20_min_dist_to_atom%20%3D%20np.min(_distances_all%2C%20axis%3D2)%0A%0A%20%20%20%20%23%20Avoid%20singularity%0A%20%20%20%20_min_dist_to_atom%20%3D%20np.maximum(_min_dist_to_atom%2C%20_min_distance)%0A%0A%20%20%20%20%23%20Calculate%20potential%20using%20only%20nearest%20neighbor%20contribution%0A%20%20%20%20_U_hex%20%3D%20-_U0_hex*0.25%20%2F%20_min_dist_to_atom%0A%0A%20%20%20%20%23%20Clip%20potential%20to%20the%20range%20%5B-100%2C%20-30%5D%0A%20%20%20%20_clip_min%20%3D%20-10%0A%20%20%20%20_clip_max%20%3D%200%0A%20%20%20%20_U_clipped%20%3D%20np.clip(_U_hex%2C%20_clip_min%2C%20_clip_max)%0A%0A%20%20%20%20%23%20Create%20interactive%203D%20plot%20with%20Plotly%0A%20%20%20%20_fig_hex%20%3D%20go.Figure()%0A%0A%20%20%20%20%23%20Plot%20surface%0A%20%20%20%20_fig_hex.add_trace(go.Surface(%0A%20%20%20%20%20%20%20%20x%3D_X_hex%2C%0A%20%20%20%20%20%20%20%20y%3D_Y_hex%2C%0A%20%20%20%20%20%20%20%20z%3D_U_clipped%2C%0A%20%20%20%20%20%20%20%20colorscale%3D'Viridis_r'%2C%0A%20%20%20%20%20%20%20%20cmin%3D_clip_min%2C%0A%20%20%20%20%20%20%20%20cmax%3D_clip_max%2C%0A%20%20%20%20%20%20%20%20opacity%3D0.9%2C%0A%20%20%20%20%20%20%20%20showscale%3DTrue%2C%0A%20%20%20%20%20%20%20%20colorbar%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20title%3Ddict(text%3D'Potential%20Energy%20U(x%2Cy)'%2C%20font%3Ddict(size%3D14))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20tickfont%3Ddict(size%3D12)%0A%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20name%3D'Potential'%0A%20%20%20%20))%0A%0A%20%20%20%20%23%20Mark%20ONLY%20visible%20lattice%20sites%20-%20RED%20CIRCLES%0A%20%20%20%20_atom_z%20%3D%200%20%23%20Place%20atoms%20at%20U%20%3D%20-10%0A%20%20%20%20if%20len(_lattice_sites_visible)%20%3E%200%3A%0A%20%20%20%20%20%20%20%20_fig_hex.add_trace(go.Scatter3d(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D_lattice_sites_visible%5B%3A%2C%200%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D_lattice_sites_visible%5B%3A%2C%201%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20z%3D%5B_atom_z%5D%20*%20len(_lattice_sites_visible)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'markers'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20marker%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20size%3D8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3D'red'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'darkred'%2C%20width%3D2)%0A%20%20%20%20%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3D'Atoms'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20showlegend%3DFalse%0A%20%20%20%20%20%20%20%20))%0A%0A%20%20%20%20%20%20%20%20%23%20Draw%20vertical%20lines%20from%20atoms%20down%20to%20bottom%0A%20%20%20%20%20%20%20%20for%20_site%20in%20_lattice_sites_visible%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_fig_hex.add_trace(go.Scatter3d(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20x%3D%5B_site%5B0%5D%2C%20_site%5B0%5D%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20y%3D%5B_site%5B1%5D%2C%20_site%5B1%5D%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20z%3D%5B_atom_z%2C%20_clip_min%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'lines'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'red'%2C%20width%3D3%2C%20dash%3D'dash')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20showlegend%3DFalse%0A%20%20%20%20%20%20%20%20%20%20%20%20))%0A%0A%0A%20%20%20%20%23%20Update%20layout%0A%20%20%20%20_fig_hex.update_layout(%0A%20%20%20%20%20%20%20%20title%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3D'2D%20Hexagonal%20Lattice%20with%20a%20Coulombic%20potential'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20font%3Ddict(size%3D20)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D0.5%0A%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20scene%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20xaxis%3Ddict(title%3D'x%20%5Ba%5D'%2C%20range%3D%5B_x_min_display%2C%20_x_max_display%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20yaxis%3Ddict(title%3D'y%20%5Ba%5D'%2C%20range%3D%5B_y_min_display%2C%20_y_max_display%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20zaxis%3Ddict(title%3D'Potential%20U(x%2Cy)'%2C%20range%3D%5B_clip_min%2C%20_clip_max%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20camera%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20eye%3Ddict(x%3D1.5%2C%20y%3D1.5%2C%20z%3D1.0)%0A%20%20%20%20%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20aspectmode%3D'manual'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20aspectratio%3Ddict(x%3D1%2C%20y%3D1%2C%20z%3D0.8)%0A%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20width%3D900%2C%0A%20%20%20%20%20%20%20%20height%3D700%0A%20%20%20%20)%0A%0A%20%20%20%20_fig_hex%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%203D%20Potential%20Visualization%0A%0A%20%20%20%20In%203D%2C%20each%20point%20in%20space%20would%20have%20an%20associated%20value%20of%20potential%20energy.%0A%0A%20%20%20%20In%20the%20plot%20below%2C%20we%20visualize%20the%20equipotential%20surfaces%20of%20a%20FCC%20lattice.%20Use%20the%20slider%20below%20to%20set%20the%20value%20of%20the%20potential%20energy%20to%20be%20displayed%20in%20the%20unit%20cell.%20The%20red%20spheres%20are%20atoms.%20The%20regions%20with%20the%20same%20potential%20are%20surfaces.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20%23%20Create%20slider%20for%20equipotential%20value%0A%20%20%20%20potential_slider%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20start%3D-20.0%2C%0A%20%20%20%20%20%20%20%20stop%3D-3%2C%0A%20%20%20%20%20%20%20%20step%3D0.1%2C%0A%20%20%20%20%20%20%20%20value%3D-10.0%2C%0A%20%20%20%20%20%20%20%20label%3D%22Equipotential%20Value%20U%20(arb.%20units)%22%2C%0A%20%20%20%20%20%20%20%20show_value%3DTrue%0A%20%20%20%20)%0A%20%20%20%20potential_slider%0A%20%20%20%20return%20(potential_slider%2C)%0A%0A%0A%40app.cell%0Adef%20_(go%2C%20np%2C%20potential_slider)%3A%0A%20%20%20%20%23%20FCC%20Lattice%20Parameters%0A%20%20%20%20_a_fcc%20%3D%201.0%20%20%23%20lattice%20constant%0A%20%20%20%20_U0_fcc%20%3D%201.0%20%20%23%20potential%20depth%20scale%0A%20%20%20%20_min_distance%20%3D%200.05%20%20%23%20offset%20to%20avoid%20singularity%0A%0A%20%20%20%20%23%20Number%20of%20unit%20cells%20in%20each%20direction%20for%20display%0A%20%20%20%20_n_cells%20%3D%201%0A%0A%20%20%20%20%23%20Generate%20FCC%20lattice%20sites%20for%20the%20displayed%20unit%20cell%0A%20%20%20%20%23%20FCC%20has%204%20atoms%20per%20conventional%20unit%20cell%3A%0A%20%20%20%20%23%20(0%2C0%2C0)%2C%20(a%2F2%2Ca%2F2%2C0)%2C%20(a%2F2%2C0%2Ca%2F2)%2C%20(0%2Ca%2F2%2Ca%2F2)%0A%20%20%20%20_fcc_basis%20%3D%20np.array(%5B%0A%20%20%20%20%20%20%20%20%5B0%2C%200%2C%200%5D%2C%0A%20%20%20%20%20%20%20%20%5B0.5%2C%200.5%2C%200%5D%2C%0A%20%20%20%20%20%20%20%20%5B0.5%2C%200%2C%200.5%5D%2C%0A%20%20%20%20%20%20%20%20%5B0%2C%200.5%2C%200.5%5D%0A%20%20%20%20%5D)%20*%20_a_fcc%0A%0A%20%20%20%20%23%20Generate%20lattice%20sites%20for%20display%20-%20include%20all%20visible%20atoms%0A%20%20%20%20%23%20This%20includes%20corner%20atoms%20and%20face-center%20atoms%20that%20complete%20the%20unit%20cell%20visually%0A%20%20%20%20_lattice_sites_display%20%3D%20%5B%5D%0A%0A%20%20%20%20%23%20Add%20all%20atoms%20from%20neighboring%20cells%20that%20are%20on%20the%20boundary%20of%20our%20display%20region%0A%20%20%20%20for%20_i%20in%20range(-1%2C%20_n_cells%20%2B%202)%3A%0A%20%20%20%20%20%20%20%20for%20_j%20in%20range(-1%2C%20_n_cells%20%2B%202)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20for%20_k%20in%20range(-1%2C%20_n_cells%20%2B%202)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_origin%20%3D%20np.array(%5B_i%2C%20_j%2C%20_k%5D)%20*%20_a_fcc%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20for%20_basis_atom%20in%20_fcc_basis%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_site%20%3D%20_origin%20%2B%20_basis_atom%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20Include%20atoms%20that%20are%20within%20or%20on%20the%20boundary%20of%20the%20unit%20cell%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(0%20%3C%3D%20_site%5B0%5D%20%3C%3D%20_n_cells%20*%20_a_fcc%20and%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%200%20%3C%3D%20_site%5B1%5D%20%3C%3D%20_n_cells%20*%20_a_fcc%20and%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%200%20%3C%3D%20_site%5B2%5D%20%3C%3D%20_n_cells%20*%20_a_fcc)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20Check%20if%20this%20site%20is%20already%20added%20(avoid%20duplicates)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20is_duplicate%20%3D%20False%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20for%20_existing%20in%20_lattice_sites_display%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20np.allclose(_site%2C%20_existing%2C%20atol%3D1e-6)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20is_duplicate%20%3D%20True%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20break%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20not%20is_duplicate%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_lattice_sites_display.append(_site)%0A%0A%20%20%20%20_lattice_sites_display%20%3D%20np.array(_lattice_sites_display)%0A%0A%20%20%20%20%23%20Generate%20extended%20lattice%20sites%20(including%20neighbors)%20for%20potential%20calculation%0A%20%20%20%20%23%20Include%20MORE%20neighboring%20unit%20cells%20to%20ensure%20all%20equivalent%20sites%20see%20the%20same%20environment%0A%20%20%20%20_n_extend%20%3D%202%20%20%23%20increased%20from%202%20to%205%20to%20ensure%20proper%20symmetry%0A%20%20%20%20_lattice_sites_extended%20%3D%20%5B%5D%0A%20%20%20%20for%20_i%20in%20range(-_n_extend%2C%20_n_cells%20%2B%20_n_extend)%3A%0A%20%20%20%20%20%20%20%20for%20_j%20in%20range(-_n_extend%2C%20_n_cells%20%2B%20_n_extend)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20for%20_k%20in%20range(-_n_extend%2C%20_n_cells%20%2B%20_n_extend)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_origin%20%3D%20np.array(%5B_i%2C%20_j%2C%20_k%5D)%20*%20_a_fcc%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20for%20_basis_atom%20in%20_fcc_basis%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_site%20%3D%20_origin%20%2B%20_basis_atom%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_lattice_sites_extended.append(_site)%0A%0A%20%20%20%20_lattice_sites_extended%20%3D%20np.array(_lattice_sites_extended)%0A%0A%20%20%20%20%23%20Create%203D%20grid%20for%20potential%20calculation%0A%20%20%20%20_n_points%20%3D%2050%20%20%23%20grid%20resolution%20(increased%20for%20better%20surface%20quality)%0A%20%20%20%20_x_range_fcc%20%3D%20np.linspace(0%2C%20_n_cells%20*%20_a_fcc%2C%20_n_points)%0A%20%20%20%20_y_range_fcc%20%3D%20np.linspace(0%2C%20_n_cells%20*%20_a_fcc%2C%20_n_points)%0A%20%20%20%20_z_range_fcc%20%3D%20np.linspace(0%2C%20_n_cells%20*%20_a_fcc%2C%20_n_points)%0A%0A%20%20%20%20_X_fcc%2C%20_Y_fcc%2C%20_Z_fcc%20%3D%20np.meshgrid(_x_range_fcc%2C%20_y_range_fcc%2C%20_z_range_fcc%2C%20indexing%3D'ij')%0A%0A%20%20%20%20%23%20Flatten%20grid%20points%20for%20vectorized%20distance%20calculation%0A%20%20%20%20_grid_points%20%3D%20np.stack(%5B_X_fcc.flatten()%2C%20_Y_fcc.flatten()%2C%20_Z_fcc.flatten()%5D%2C%20axis%3D1)%0A%0A%20%20%20%20%23%20Calculate%20potential%20using%20NEAREST%20NEIGHBOR%20only%0A%20%20%20%20%23%20Compute%20distances%20to%20all%20extended%20lattice%20sites%20and%20find%20minimum%20for%20each%20grid%20point%0A%20%20%20%20_distances_all%20%3D%20np.zeros((len(_grid_points)%2C%20len(_lattice_sites_extended)))%0A%20%20%20%20for%20_idx%2C%20_site%20in%20enumerate(_lattice_sites_extended)%3A%0A%20%20%20%20%20%20%20%20_distances_all%5B%3A%2C%20_idx%5D%20%3D%20np.sqrt(np.sum((_grid_points%20-%20_site)**2%2C%20axis%3D1))%0A%0A%20%20%20%20%23%20Find%20the%20minimum%20distance%20to%20any%20lattice%20site%20(nearest%20neighbor)%0A%20%20%20%20_min_dist_to_atom%20%3D%20np.min(_distances_all%2C%20axis%3D1)%0A%0A%20%20%20%20%23%20Avoid%20singularity%0A%20%20%20%20_min_dist_to_atom%20%3D%20np.maximum(_min_dist_to_atom%2C%20_min_distance)%0A%0A%20%20%20%20%23%20Calculate%20potential%20using%20only%20nearest%20neighbor%20contribution%0A%20%20%20%20_U_fcc%20%3D%20(-_U0_fcc%20%2F%20_min_dist_to_atom).reshape(_X_fcc.shape)%0A%0A%20%20%20%20%23%20Get%20equipotential%20value%20from%20slider%0A%20%20%20%20_iso_value%20%3D%20potential_slider.value%0A%0A%20%20%20%20%23%20Create%20figure%0A%20%20%20%20_fig_fcc%20%3D%20go.Figure()%0A%0A%20%20%20%20%23%20Add%20isosurface%20for%20equipotential%20using%20Volume%20trace%20with%20isosurface%0A%20%20%20%20_fig_fcc.add_trace(go.Isosurface(%0A%20%20%20%20%20%20%20%20x%3D_X_fcc.flatten()%2C%0A%20%20%20%20%20%20%20%20y%3D_Y_fcc.flatten()%2C%0A%20%20%20%20%20%20%20%20z%3D_Z_fcc.flatten()%2C%0A%20%20%20%20%20%20%20%20value%3D_U_fcc.flatten()%2C%0A%20%20%20%20%20%20%20%20isomin%3D_iso_value%2C%0A%20%20%20%20%20%20%20%20isomax%3D_iso_value%2C%0A%20%20%20%20%20%20%20%20surface_count%3D1%2C%0A%20%20%20%20%20%20%20%20caps%3Ddict(x_show%3DFalse%2C%20y_show%3DFalse%2C%20z_show%3DFalse)%2C%0A%20%20%20%20%20%20%20%20colorscale%3D%5B%5B0%2C%20'rgba(100%2C%20150%2C%20255%2C%200.7)'%5D%2C%20%5B1%2C%20'rgba(100%2C%20150%2C%20255%2C%200.7)'%5D%5D%2C%0A%20%20%20%20%20%20%20%20opacity%3D0.7%2C%0A%20%20%20%20%20%20%20%20showscale%3DFalse%2C%0A%20%20%20%20%20%20%20%20name%3Df'U%20%3D%20%7B_iso_value%3A.1f%7D'%0A%20%20%20%20))%0A%0A%0A%20%20%20%20%23%20Add%20lattice%20sites%20as%20red%20spheres%20(all%20visible%20atoms%20in%20the%20unit%20cell)%0A%20%20%20%20_fig_fcc.add_trace(go.Scatter3d(%0A%20%20%20%20%20%20%20%20x%3D_lattice_sites_display%5B%3A%2C%200%5D%2C%0A%20%20%20%20%20%20%20%20y%3D_lattice_sites_display%5B%3A%2C%201%5D%2C%0A%20%20%20%20%20%20%20%20z%3D_lattice_sites_display%5B%3A%2C%202%5D%2C%0A%20%20%20%20%20%20%20%20mode%3D'markers'%2C%0A%20%20%20%20%20%20%20%20marker%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20size%3D8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20color%3D'red'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'darkred'%2C%20width%3D2)%0A%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20name%3D'Atoms'%2C%0A%20%20%20%20%20%20%20%20showlegend%3D%20False%0A%20%20%20%20))%0A%0A%20%20%20%20%23%20Draw%20unit%20cell%20edges%20for%20reference%0A%20%20%20%20%23%20Unit%20cell%20corners%0A%20%20%20%20_corners%20%3D%20np.array(%5B%0A%20%20%20%20%20%20%20%20%5B0%2C%200%2C%200%5D%2C%20%5B1%2C%200%2C%200%5D%2C%20%5B1%2C%201%2C%200%5D%2C%20%5B0%2C%201%2C%200%5D%2C%0A%20%20%20%20%20%20%20%20%5B0%2C%200%2C%201%5D%2C%20%5B1%2C%200%2C%201%5D%2C%20%5B1%2C%201%2C%201%5D%2C%20%5B0%2C%201%2C%201%5D%0A%20%20%20%20%5D)%20*%20_a_fcc%0A%0A%20%20%20%20%23%20Edges%20of%20the%20unit%20cell%0A%20%20%20%20_edges%20%3D%20%5B%0A%20%20%20%20%20%20%20%20(0%2C%201)%2C%20(1%2C%202)%2C%20(2%2C%203)%2C%20(3%2C%200)%2C%20%20%23%20bottom%20face%0A%20%20%20%20%20%20%20%20(4%2C%205)%2C%20(5%2C%206)%2C%20(6%2C%207)%2C%20(7%2C%204)%2C%20%20%23%20top%20face%0A%20%20%20%20%20%20%20%20(0%2C%204)%2C%20(1%2C%205)%2C%20(2%2C%206)%2C%20(3%2C%207)%20%20%20%23%20vertical%20edges%0A%20%20%20%20%5D%0A%0A%20%20%20%20for%20_edge%20in%20_edges%3A%0A%20%20%20%20%20%20%20%20_fig_fcc.add_trace(go.Scatter3d(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D%5B_corners%5B_edge%5B0%5D%2C%200%5D%2C%20_corners%5B_edge%5B1%5D%2C%200%5D%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D%5B_corners%5B_edge%5B0%5D%2C%201%5D%2C%20_corners%5B_edge%5B1%5D%2C%201%5D%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20z%3D%5B_corners%5B_edge%5B0%5D%2C%202%5D%2C%20_corners%5B_edge%5B1%5D%2C%202%5D%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'lines'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'gray'%2C%20width%3D2%2C%20dash%3D'dash')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20showlegend%3DFalse%0A%20%20%20%20%20%20%20%20))%0A%0A%20%20%20%20%23%20Update%20layout%0A%20%20%20%20_fig_fcc.update_layout(%0A%20%20%20%20%20%20%20%20title%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3Df'FCC%20Lattice%20with%20Equipotential%20Surface%20(U%20%3D%20%7B_iso_value%3A.2f%7D)'%2C%0A%20%20%20%20%23%20%20%20%20%20%20%20%20text%3Df'FCC%20Lattice%20Equipotential%20Surface%20(U%20%3D%20%7B_iso_value%3A.2f%7D)%20-%20Nearest%20Neighbor%20Only%3Cbr%3E%3Csup%3EPotential%20range%20in%20grid%3A%20%5B%7B_U_fcc.min()%3A.1f%7D%2C%20%7B_U_fcc.max()%3A.1f%7D%5D%20%7C%20%7Blen(_lattice_sites_display)%7D%20atoms%20displayed%3C%2Fsup%3E'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20font%3Ddict(size%3D20)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D0.5%0A%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20scene%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20xaxis%3Ddict(title%3D'x%20%5Ba%5D'%2C%20range%3D%5B0%2C%20_n_cells%20*%20_a_fcc%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20yaxis%3Ddict(title%3D'y%20%5Ba%5D'%2C%20range%3D%5B0%2C%20_n_cells%20*%20_a_fcc%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20zaxis%3Ddict(title%3D'z%20%5Ba%5D'%2C%20range%3D%5B0%2C%20_n_cells%20*%20_a_fcc%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20camera%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20eye%3Ddict(x%3D1.5%2C%20y%3D1.5%2C%20z%3D1.2)%0A%20%20%20%20%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20aspectmode%3D'cube'%0A%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20width%3D900%2C%0A%20%20%20%20%20%20%20%20height%3D750%2C%0A%20%20%20%20%20%20%20%20legend%3Ddict(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D0.02%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D0.98%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20bgcolor%3D'rgba(255%2C255%2C255%2C0.8)'%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%0A%20%20%20%20_fig_fcc%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "mode": "read",
+            "version": "0.19.4",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": false, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  </body>
+</html>

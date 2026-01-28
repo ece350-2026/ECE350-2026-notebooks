@@ -8,8 +8,9 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 - **Energy Bands** - Bloch's theorem, Kronig-Penney model, and E-k diagrams (Lectures 6-7)
 - **Crystal Potential Visualizations** - Interactive 2D/3D visualizations of periodic potentials
 - **Effective Mass** - Effective mass concept and band diagrams (Lectures 8-9)
-- **Carriers at Thermal Equilibrium** - Density of states and Fermi-Dirac distribution (Lectures 9-10)
-- **Carrier Drift** - Drift velocity, mobility, and scattering mechanisms (Lectures 11-12)
+- **Carriers at Thermal Equilibrium** - Density of states and Fermi-Dirac distribution (Lectures 9-11)
+- **Carrier Drift** - Drift velocity, mobility, and scattering mechanisms (Lectures 12)
+- To be updated as the course progresses
 
 ## Viewing the Documentation
 
@@ -21,8 +22,8 @@ This docs folder can be maintained as a separate repository to facilitate sharin
 
 ### Repository Structure
 
-- **Main Repository**: `joyce-poon/ECE350` - Contains all course materials including docs
-- **Docs Repository**: A separate repository containing only this docs folder
+- **Main Repository**: `joyce-poon/ECE350` - Contains all course materials including docs (Private)
+- **Docs Repository**: A separate repository containing only this docs folder (for sharing)
 
 ### Syncing Changes
 
@@ -34,4 +35,4 @@ See [DOCS_REPO_SETUP.md](../DOCS_REPO_SETUP.md) in the root of the main reposito
 
 ## License
 
-University of Toronto - Department of Electrical & Computer Engineering
+Joyce Poon, University of Toronto - Department of Electrical & Computer Engineering

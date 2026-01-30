@@ -10,7 +10,10 @@
 import marimo
 
 __generated_with = "0.19.6"
-app = marimo.App(width="medium")
+app = marimo.App(
+    width="medium",
+    layout_file="layouts/band_bending.slides.json",
+)
 
 
 @app.cell
@@ -100,7 +103,7 @@ def _(mo):
             - $\epsilon_0 = 8.85 \times 10^{-12} F/m$ is the permittivity of free space
             - $\epsilon_r$ is the relative permittivity of the material ($\approx 12$ for silicon)
 
-    In a semiconductor, the charge density is 
+    In a semiconductor, the charge density is
     $$\rho = q(p - n + N_D^+ - N_A^-)$$
 
     ### 2. Electric Field → Potential
@@ -192,7 +195,7 @@ def _(ASSET_DIR, mo, np, plt, voltage_slider):
     E_field_max = V_max / L_mm  # Max E-field magnitude
 
     # Create figure with 3 subplots
-    fig, (ax_V, ax_band, ax_field) = plt.subplots(3, 1, figsize=(10, 12))
+    fig, (ax_V, ax_band, ax_field) = plt.subplots(3, 1, figsize=(10, 8))
 
     # Plot 1: Electrostatic Potential V(x)
     ax_V.plot(x_mm, V, 'k-', linewidth=2)
@@ -253,7 +256,7 @@ def _(ASSET_DIR, mo, np, plt, voltage_slider):
         mo.hstack([mo.image(src=str(ASSET_DIR / "voltage_bandbend.png"), width=300)], justify="center"),
         voltage_slider,
         mo.md(f"**Device length:** $L = {L_mm}$ mm  |  **Bandgap:** $E_g = {E_g}$ eV"),
-        plt.gca(),
+        mo.hstack([plt.gca()], justify="center"),
         mo.md(r'$$\because \frac{d\mathcal{E}}{dx} = \frac{\rho}{\epsilon_s}\text{, } \rho = 0$$')
     ])
     return

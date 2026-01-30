@@ -319,7 +319,7 @@ def _(ASSET_DIR, mo):
 
     $$\vec{F} = q(\vec{v} \times \vec{B})$$
 
-    $$F_y = qv_xB_z$$
+    $$F_y = -qv_xB_z$$
 
     For a positive charge with a positive $v_x$ and positive $B_z$, the force is in the negative $y$-direction.
 

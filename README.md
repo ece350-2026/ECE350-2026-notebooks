@@ -9,7 +9,8 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 - **Crystal Potential Visualizations** - Interactive 2D/3D visualizations of periodic potentials
 - **Effective Mass** - Effective mass concept and band diagrams (Lectures 8-9)
 - **Carriers at Thermal Equilibrium** - Density of states and Fermi-Dirac distribution (Lectures 9-11)
-- **Carrier Drift** - Drift velocity, mobility, and scattering mechanisms (Lectures 12)
+- **Carrier Drift** - Drift velocity, mobility, and scattering mechanisms (Lecture 12)
+- **Band Bending** - Electrostatics and energy diagrams (Lecture 12)
 - To be updated as the course progresses
 
 ## Viewing the Documentation

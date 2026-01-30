@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>band bending</title>
+    <script type="module" crossorigin src="./assets/index-BI2D29sc.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-BW0IMuFq.js">
+    <link rel="modulepreload" crossorigin href="./assets/hotkeys-uKX61F1_.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-BLUna9fQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-Cl9k9ZmS.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-DzliDDTm.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-C8wT63Va.js">
+    <link rel="modulepreload" crossorigin href="./assets/_Uint8Array-BGESiCQL.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-CrRUCOBw.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-D0MtrJOx.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-C1rgT0yh.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-BGmjiNul.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-DeeZ7FnK.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-DN_bIXfG.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-DAnNhy3O.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-COkmyg1v.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-B8cGZzP5.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-C9fstfnp.js">
+    <link rel="modulepreload" crossorigin href="./assets/Combination-D1TsGrBC.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-9PZrU2e0.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CBrDuocE.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-CW2xpJ57.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-CrAQug3q.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-D9lTzMzP.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-CvjcEpZC.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-Bzf3rpev.js">
+    <link rel="modulepreload" crossorigin href="./assets/_getTag-BWqNuuwU.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseIsEqual-Cz9Tt_-E.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-DlWF5OMa.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-C6yE60hi.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFor-Duhs3RiJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-BBX6ug-N.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-Cg4WLWh2.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-Czt8B2GX.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-Bkp4R3bQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-DzyBMRsy.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-CENq_7Pd.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-ClFZlR7U.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-B3BENoUa.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-C0HaHO6a.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BGkTcW3U.js">
+    <link rel="modulepreload" crossorigin href="./assets/toString-DlRqgfqz.js">
+    <link rel="modulepreload" crossorigin href="./assets/_hasUnicode-zBEpxwYe.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-CmDXEyIC.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-EAuSVK-5.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-BSVRc0kJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-CTiSlR1m.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-BmAOeMOK.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-DDa-hVe3.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CAcX026F.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DKNOF5xd.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CI6_zMIl.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BVf1IY4_.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Cq_4nPfh.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CVj-_Iiz.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-HGZzCB0y.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-RKnr9SNh.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BuhT82Xx.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-0ac7Aukl.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-5JckKRQn.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-Bj40p_Np.js">
+    <link rel="modulepreload" crossorigin href="./assets/_arrayReduce-bZBYsK-u.js">
+    <link rel="modulepreload" crossorigin href="./assets/type-BdyvjzTI.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseProperty-DuoFhI7N.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-6sUe0ZdD.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-BbFlGgjv.js">
+    <link rel="modulepreload" crossorigin href="./assets/toInteger-CDcO32Gx.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-CaVvnK_o.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-CwSdzVhm.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-CmJW_FeD.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-C7JBxSzd.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-Czc5z_04.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-RldLPyJs.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-jcHA5geR.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-CF5DtF1E.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-em3gna-v.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-C9_R_vlY.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-DD7JA3RM.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-BAYdLMF_.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-D8ks3oPN.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-C2LPFxyv.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-Bkl2Yfmh.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-BZvZlZQZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-D7bPw7Fz.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-CQd4MZr5.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-BEdExd6A.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-CqEd11Di.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-BP4_BZLr.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-DNmjkr65.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-CCq9qyVG.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-B8vBQnkH.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-DAK6volb.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-DRhpWiOq.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-gBVL4NN-.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-jWsqdLn1.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-C1czjtp7.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-BJsT6vfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-KGgBDCvb.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-Dr2G5gxJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/katex-dFZM4X_7.js">
+    <link rel="modulepreload" crossorigin href="./assets/marked.esm-BZNXs5FA.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-OGVTOU66-DQphfHw1.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-DjqhqmES.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-D0NgYwYf.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-B1zRJT1a.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-DtnzNVk-.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-DNnhJ0Gs.js">
+    <link rel="modulepreload" crossorigin href="./assets/mode-CXc0VeQq.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-N-2faAGj.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-B4Nb8r0D.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-BatLo2vd.js">
+    <link rel="modulepreload" crossorigin href="./assets/tabs-CHiEPtZV.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-Dj1oqsrZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-CU-WWxnz.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-z7WpYca5.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-Cq4Yn1WZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-DtJ_484s.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-DhMN8sxe.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-DhzaK-Y1.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-CdsE1R40.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-C_slsU-7.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-s2pQkyf5.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-B9D0JO9U.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-lG8j6oqk.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-CV0QXb5P.js">
+    <link rel="modulepreload" crossorigin href="./assets/range-sshwVRcP.js">
+    <link rel="modulepreload" crossorigin href="./assets/capitalize-DQeWKRGx.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-BLx7B_us.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-DlwRx3jE.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-BnFXtaZZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/play-BJDBXApx.js">
+    <link rel="modulepreload" crossorigin href="./assets/chat-components-BQ_d4LQG.js">
+    <link rel="modulepreload" crossorigin href="./assets/isEmpty-DIxUV1UR.js">
+    <link rel="modulepreload" crossorigin href="./assets/circle-check-big-OIMTUpe6.js">
+    <link rel="modulepreload" crossorigin href="./assets/chat-display-ZS_L6G-P.js">
+    <link rel="modulepreload" crossorigin href="./assets/ai-model-dropdown-C-5PlP5A.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-BzTDKVab.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeleteCell-D-55qWAK.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-9QU2Dup7.js">
+    <link rel="modulepreload" crossorigin href="./assets/process-output-DN66BQYe.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-DtJQFQyD.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-CboCOq4o.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-D2_Kx6xF.js">
+    <link rel="modulepreload" crossorigin href="./assets/add-cell-with-ai-DEdol3w0.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-D42sFB6d.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-DxXFdbn8.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-qp_XZeSS.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-DZ--KOk1.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-C5jvDmuG.js">
+    <link rel="modulepreload" crossorigin href="./assets/toggle-D-5M3JI_.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-DPW2B3A9.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-CXQVxivL.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-DN0TMY36.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-CyLJYAfP.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-6FYvpjrm.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-B7ZqbY8M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utilities.esm-CqQATX3k.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-DqdzWKrn.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-DveVmvs9.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-D9zAYqG9.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-CHesBJpY.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-Dr5fAkba.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-video-camera-CZUg-nFA.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-D5CL190S.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-CqyOmxjL.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-DzIuH-E_.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-DbW1_PHb.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-C-lF7BNB.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-DyJ8-Zz6.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-86WoveRM.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-GvygmcM1.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-81gQouTn.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-B42u_5hF.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-C638SUfx.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-FiXEquL2.js">
+    <link rel="modulepreload" crossorigin href="./assets/VisuallyHidden-B0mBEsSm.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-DydgU7lx.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFlatten-CLPh0yMf.js">
+    <link rel="modulepreload" crossorigin href="./assets/flatten-Buk63LQO.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-DeQioq0G.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-MBUyxNtK.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-DobaYJPt.js">
+    <link rel="modulepreload" crossorigin href="./assets/house-CncUa_LL.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-Din9uFKE.js">
+    <link rel="modulepreload" crossorigin href="./assets/settings-MTlHVxz3.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-leQTJTJJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-CbD0f2J6.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-dxSncdJD.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-BI9O54ok.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">%23%20%2F%2F%2F%20script%0A%23%20requires-python%20%3D%20%22%3E%3D3.11%22%0A%23%20dependencies%20%3D%20%5B%0A%23%20%20%20%20%20%22marimo%22%2C%0A%23%20%20%20%20%20%22numpy%3D%3D2.4.1%22%2C%0A%23%20%20%20%20%20%22matplotlib%3D%3D3.10.8%22%2C%0A%23%20%5D%0A%23%20%2F%2F%2F%0A%0Aimport%20marimo%0A%0A__generated_with%20%3D%20%220.19.6%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Aasync%20def%20_()%3A%0A%20%20%20%20%23%20Install%20plotly%20in%20WASM%20environment%20(Pyodide)%0A%20%20%20%20import%20sys%0A%20%20%20%20if%20%22pyodide%22%20in%20sys.modules%3A%0A%20%20%20%20%20%20%20%20import%20micropip%0A%20%20%20%20%20%20%20%20await%20micropip.install(%22plotly%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20matplotlib.pyplot%20as%20plt%0A%20%20%20%20from%20pathlib%20import%20Path%0A%0A%20%20%20%20q%20%3D%201.6e-19%20%20%23%20C%0A%20%20%20%20ASSET_DIR%20%3D%20Path(__file__).parent%0A%0A%20%20%20%20mo.md(%0A%20%20%20%20%20%20%20%20r%22%22%22%0A%20%20%20%20%20%20%20%20%23%20Band%20Bending%20and%20Electrostatics%0A%0A%20%20%20%20%20%20%20%20This%20interactive%20notebook%20covers%20the%20concept%20spatial%20energy%20band%20diagrams%20in%20semiconductors%2C%20including%3A%0A%0A%20%20%20%20%20%20%20%201.%20Poisson's%20equation%20and%20electrostatics%0A%20%20%20%20%20%20%20%202.%20Relationship%20to%20energy%20bands%0A%20%20%20%20%20%20%20%203.%20Band%20bending%20%0A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20)%0A%20%20%20%20return%20ASSET_DIR%2C%20mo%2C%20np%2C%20plt%0A%0A%0A%40app.cell%0Adef%20_(ASSET_DIR%2C%20mo)%3A%0A%20%20%20%20_md1%20%3D%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Energy%20Bands%20and%20the%20Electric%20Field%0A%0A%20%20%20%20-%20The%20parabolic%20band%20approximation%20gives%3A%20%0A%0A%20%20%20%20%24%24E%20%20%3D%20E_c%20%2B%20%5Cfrac%7B%5Chbar%5E2%20k%5E2%7D%7B2m_n%5E*%7D%20%5Cquad%20%5Ctext%7Bfor%20electrons%7D%24%24%0A%0A%20%20%20%20%24%24E%20%3D%20E_v%20-%20%5Cfrac%7B%5Chbar%5E2%20k%5E2%7D%7B2m_p%5E*%7D%20%5Cquad%20%5Ctext%7Bfor%20holes%7D%24%24%0A%0A%20%20%20%20-%20So%20we%20can%20view%20%24E_c%24%20and%20%24E_v%24%20as%20the%20potential%20energy%20of%20the%20electrons%20and%20holes%2C%20respectively%2C%20and%20%24%5Cfrac%7B%5Chbar%5E2%20k%5E2%7D%7B2m_n%5E*%7D%24%20and%20%24%5Cfrac%7B%5Chbar%5E2%20k%5E2%7D%7B2m_p%5E*%7D%24%20as%20the%20kinetic%20energy.%20%0A%20%20%20%20%20%20%20%20-%20At%20%24E_c%24%20and%20%24E_v%24%2C%20the%20group%20velocity%20for%20the%20carriers%20is%20zero%2C%20so%20one%20can%20think%20of%20the%20carriers%20as%20having%20zero%20(net)%20kinetic%20energy.%0A%20%20%20%20%20%20%20%20-%20**Electrons**%20tend%20to%20fall%20in%20the%20energy%20diagram%20(toward%20lower%20%24E_c%24)%0A%20%20%20%20%20%20%20%20-%20**Holes**%20%22bubble%22%20up%20(toward%20higher%20%24E_v%24)%0A%0A%20%20%20%20-%20Notice%20that%20the%20energy%20is%20defined%20in%20a%20positive%20sense%20for%20**electrons**%20(negative%20charge)%20%0A%20%20%20%20%20%20%20%20-%20For%20electrons%2C%20%24E_c%24%20is%20the%20minimum%20energy%20and%20more%20energetic%20electrons%20have%20higher%20energies.%20%0A%20%20%20%20%20%20%20%20%20%20%20%20-%20Consider%20the%20lowest%20energy%20to%20be%20%24E_c%20-%20E_%7Bref%7D%24%2C%20where%20%24E_%7Bref%7D%24%20is%20the%20reference%20energy.%20%0A%20%20%20%20%20%20%20%20-%20For%20holes%20(positive%20charge)%2C%20%24E_v%24%20is%20the%20minimum%20energy%20and%20more%20energetic%20holes%20have%20lower%20energies.%20%0A%20%20%20%20%20%20%20%20%20%20%20%20-%20Consider%20the%20lowest%20energy%20to%20be%20%24E_%7Bref%7D%20-%20E_v%24%2C%20where%20%24E_%7Bref%7D%24%20is%20the%20reference%20energy.%20%0A%0A%20%20%20%20%22%22%22)%0A%0A%20%20%20%20_img1%20%3D%20mo.hstack(%5Bmo.image(src%3Dstr(ASSET_DIR%20%2F%20%22electron-hole-energy.png%22)%2C%20width%3D300%2C%20caption%3D%22Electrons%20fall%20toward%20E%3Csub%3Ec%3C%2Fsub%3E%2C%20holes%20bubble%20up%20toward%20%20E%3Csub%3Ev%3C%2Fsub%3E.%22)%5D%2C%20justify%3D%22center%22)%0A%0A%20%20%20%20_md2%20%3D%20mo.md(r%22%22%22%0A%20%20%20%20-%20If%20there%20is%20a%20voltage%20(potential%20difference)%20between%20two%20points%20in%20the%20semiconductor%2C%20the%20potential%20energy%20for%20the%20carriers%20is%20no%20longer%20spatially%20uniform.%20This%20means%20%24E_c(x)%24%20and%20%24E_v(x)%24%20vary%20with%20position%20%24x%24.%0A%20%20%20%20-%20This%20is%20called%20**band%20bending**.%0A%20%20%20%20%22%22%22)%0A%0A%20%20%20%20mo.vstack(%5B_md1%2C%20_img1%2C%20_md2%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Electrostatics%20Review%0A%0A%20%20%20%20The%20chain%20of%20relationships%3A%20**Charge%20%E2%86%92%20Electric%20Field%20%E2%86%92%20Potential**%0A%0A%20%20%20%20%23%23%23%201.%20Charge%20%E2%86%92%20Electric%20Field%20(Poisson's%20Equation)%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cnabla%20%5Ccdot%20%5Cvec%7B%5Cmathcal%7BE%7D%7D%20%3D%20%5Cfrac%7B%5Crho%7D%7B%5Cepsilon_s%7D%7D%24%24%0A%0A%20%20%20%20-%20%24%5Crho%24%20is%20the%20charge%20density%0A%20%20%20%20-%20%24%5Cepsilon_s%24%20is%20the%20permittivity%20of%20the%20material%0A%20%20%20%20%20%20%20%20-%20%24%5Cepsilon_s%20%3D%20%5Cepsilon_0%20%5Cepsilon_r%24%0A%20%20%20%20%20%20%20%20%20%20%20%20-%20%24%5Cepsilon_0%20%3D%208.85%20%5Ctimes%2010%5E%7B-12%7D%20F%2Fm%24%20is%20the%20permittivity%20of%20free%20space%0A%20%20%20%20%20%20%20%20%20%20%20%20-%20%24%5Cepsilon_r%24%20is%20the%20relative%20permittivity%20of%20the%20material%20(%24%5Capprox%2012%24%20for%20silicon)%0A%0A%20%20%20%20In%20a%20semiconductor%2C%20the%20charge%20density%20is%0A%20%20%20%20%24%24%5Crho%20%3D%20q(p%20-%20n%20%2B%20N_D%5E%2B%20-%20N_A%5E-)%24%24%0A%0A%20%20%20%20%23%23%23%202.%20Electric%20Field%20%E2%86%92%20Potential%0A%0A%20%20%20%20For%20a%20**positive%20charge**%2C%20the%20electric%20field%20is%20related%20to%20the%20electrostatic%20potential%2C%20%24%5CPhi%24%2C%20and%20the%20voltage%2C%20%24V%24%2C%20by%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cvec%7B%5Cmathcal%7BE%7D%7D%20%3D%20-%5Cfrac%7B1%7D%7Bq%7D%20%5Cnabla%20%5CPhi%20%3D%20-%5Cnabla%20V%7D%20%5Cquad%20%5Ctext%7Bin%201D%3A%20%7D%20%5Cmathcal%7BE%7D%20%3D%20-%5Cfrac%7BdV%7D%7Bdx%7D%24%24%0A%0A%20%20%20%20%24%5Cboxed%7B%5CPhi%20%3D%20qV%7D%24%20is%20the%20potential%20energy%20of%20a%20positive%20charge.%0A%0A%20%20%20%20Combining%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cnabla%5E2%20V%20%3D%20-%5Cfrac%7B%5Crho%7D%7B%5Cepsilon_s%7D%7D%20%5Cquad%20%5Ctext%7Bin%201D%3A%20%7D%20%5Cfrac%7Bd%5E2V%7D%7Bdx%5E2%7D%20%3D%20-%5Cfrac%7B%5Crho%7D%7B%5Cepsilon_s%7D%24%24%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(ASSET_DIR%2C%20mo)%3A%0A%20%20%20%20_md%20%3D%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Connection%20to%20Energy%20Bands%20%0A%0A%20%20%20%20Since%20%24E_c(x)%24%20and%20%24E_v(x)%24%20represent%20the%20potential%20energy%20of%20the%20electrons%20and%20holes%2C%20respectively%2C%20when%20we%20relate%20to%20the%20electrostatic%20potential%2C%20we%20get%3A%0A%0A%20%20%20%20%24%24E_%7Bref%7D%20-%20E_v(x)%20%3D%20%5CPhi(x)%20%3D%20qV(x)%20%20%5Cquad%20%5Ctext%7Bfor%20holes%7D%24%24%0A%0A%20%20%20%20%24%24E_c(x)%20-%20E_%7Bref%7D%20%3D%20-%5CPhi(x)%20%3D-qV(x)%20%20%5Cquad%20%5Ctext%7Bfor%20electrons%7D%24%24%0A%0A%20%20%20%20%24%24%5Ctherefore%20%5Cboxed%7B%5Cmathcal%7BE%7D%20%3D%20-%5Cfrac%7BdV%7D%7Bdx%7D%20%3D%20%5Cfrac%7B1%7D%7Bq%7D%20%5Cfrac%7BdE_v%7D%7Bdx%7D%20%3D%20%5Cfrac%7B1%7D%7Bq%7D%20%5Cfrac%7BdE_c%7D%7Bdx%7D%20%7D%24%24%0A%0A%20%20%20%20-%20The%20bandgap%20%24E_g%20%3D%20E_c%20-%20E_v%24%20remains%20constant%0A%0A%20%20%20%20%22%22%22)%0A%0A%20%20%20%20_img%20%3D%20mo.hstack(%5Bmo.image(src%3Dstr(ASSET_DIR%20%2F%20%22bandbend_roll.png%22)%2C%20width%3D300%2C%20caption%3D%22Energy%20bands%20under%20an%20applied%20electric%20field.%20Electrons%20roll%20down%20the%20hill%2C%20holes%20roll%20up%20the%20hill.%22)%5D%2C%20justify%3D%22center%22)%0A%0A%20%20%20%20mo.vstack(%5B_md%2C%20_img%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20%23%20Slider%20for%20applied%20voltage%20(created%20in%20separate%20cell)%0A%20%20%20%20mo.md(%22%23%23%20Band%20Diagram%20Visualization%22)%0A%0A%20%20%20%20voltage_slider%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20start%3D-1.0%2C%0A%20%20%20%20%20%20%20%20stop%3D1.0%2C%0A%20%20%20%20%20%20%20%20step%3D0.05%2C%0A%20%20%20%20%20%20%20%20value%3D0.7%2C%0A%20%20%20%20%20%20%20%20label%3D%22**Applied%20Voltage**%20%24V_a%24%20(V)%20at%20%24x%20%3D%200%24%3A%22%0A%20%20%20%20)%0A%20%20%20%20return%20(voltage_slider%2C)%0A%0A%0A%40app.cell%0Adef%20_(ASSET_DIR%2C%20mo%2C%20np%2C%20plt%2C%20voltage_slider)%3A%0A%20%20%20%20%23%20Parameters%0A%20%20%20%20E_g%20%3D%201.0%20%20%23%20Bandgap%20in%20eV%0A%20%20%20%20L_mm%20%3D%201.0%20%20%23%20Device%20length%20in%20mm%0A%20%20%20%20L%20%3D%20L_mm%20*%201e-3%20%20%23%20Convert%20to%20meters%20for%20calculations%0A%20%20%20%20V_a%20%3D%20voltage_slider.value%20%20%23%20Applied%20voltage%20from%20slider%0A%0A%20%20%20%20%23%20Position%20array%20(in%20mm%20for%20display)%0A%20%20%20%20x_mm%20%3D%20np.linspace(0%2C%20L_mm%2C%20200)%0A%20%20%20%20x%20%3D%20x_mm%20*%201e-3%20%20%23%20in%20meters%0A%0A%20%20%20%20%23%20Linear%20voltage%20drop%3A%20V(0)%20%3D%20V_a%2C%20V(L)%20%3D%200%0A%20%20%20%20V%20%3D%20V_a%20*%20(1%20-%20x_mm%20%2F%20L_mm)%0A%0A%20%20%20%20%23%20Electric%20field%3A%20E%20%3D%20-dV%2Fdx%20(in%20V%2Fm%2C%20then%20convert%20to%20V%2Fmm%20for%20display)%0A%20%20%20%20E_field_V_per_m%20%3D%20-np.gradient(V%2C%20x%5B1%5D%20-%20x%5B0%5D)%0A%20%20%20%20E_field_V_per_mm%20%3D%20E_field_V_per_m%20*%201e-3%20%20%23%20V%2Fmm%0A%0A%20%20%20%20%23%20Energy%20bands%3A%20E_c(x)%20%3D%20E_c%2Cref%20-%20V(x)%2C%20E_v(x)%20%3D%20E_c(x)%20-%20E_g%0A%20%20%20%20E_c_ref%20%3D%20E_g%20%2F%202%20%20%23%20Reference%20so%20bands%20centered%20at%20x%3DL%0A%20%20%20%20E_c%20%3D%20E_c_ref%20-%20V%0A%20%20%20%20E_v%20%3D%20E_c%20-%20E_g%0A%0A%20%20%20%20%23%20Intrinsic%20Fermi%20level%20at%20mid-gap%0A%20%20%20%20E_Fi%20%3D%20(E_c%20%2B%20E_v)%20%2F%202%0A%0A%20%20%20%20%23%20Fixed%20axis%20limits%20based%20on%20slider%20range%20(-1V%20to%201V)%0A%20%20%20%20V_min%2C%20V_max%20%3D%20-1.0%2C%201.0%20%20%23%20Slider%20range%0A%20%20%20%20E_c_max%20%3D%20E_c_ref%20-%20V_min%20%20%23%20E_c%20when%20V%20is%20at%20minimum%0A%20%20%20%20E_c_min%20%3D%20E_c_ref%20-%20V_max%20%20%23%20E_c%20when%20V%20is%20at%20maximum%0A%20%20%20%20E_v_max%20%3D%20E_c_max%20-%20E_g%0A%20%20%20%20E_v_min%20%3D%20E_c_min%20-%20E_g%0A%20%20%20%20E_field_max%20%3D%20V_max%20%2F%20L_mm%20%20%23%20Max%20E-field%20magnitude%0A%0A%20%20%20%20%23%20Create%20figure%20with%203%20subplots%0A%20%20%20%20fig%2C%20(ax_V%2C%20ax_band%2C%20ax_field)%20%3D%20plt.subplots(3%2C%201%2C%20figsize%3D(10%2C%2012))%0A%0A%20%20%20%20%23%20Plot%201%3A%20Electrostatic%20Potential%20V(x)%0A%20%20%20%20ax_V.plot(x_mm%2C%20V%2C%20'k-'%2C%20linewidth%3D2)%0A%20%20%20%20ax_V.axhline(0%2C%20color%3D'gray'%2C%20linestyle%3D'--'%2C%20alpha%3D0.5)%0A%20%20%20%20ax_V.set_ylabel('V%20(V)'%2C%20fontsize%3D16)%0A%20%20%20%20ax_V.set_title(f'Voltage%3A%20%20%24V(0)%20%3D%20V_a%20%3D%20%7BV_a%3A.2f%7D%24%20V%2C%20%20%24V(L)%20%3D%200%24'%2C%20fontsize%3D16%2C%20fontweight%3D'bold')%0A%20%20%20%20ax_V.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20ax_V.set_xlim(%5B0%2C%20L_mm%5D)%0A%20%20%20%20ax_V.set_ylim(%5BV_min%20-%200.1%2C%20V_max%20%2B%200.1%5D)%20%20%23%20Fixed%20y-axis%0A%20%20%20%20ax_V.set_xticklabels(%5B%5D)%0A%20%20%20%20ax_V.tick_params(axis%3D'both'%2C%20labelsize%3D14)%0A%20%20%20%20%23%20Add%20equation%0A%20%20%20%20ax_V.text(0.98%2C%200.95%2C%20r'%24V(x)%20%3D%20V_a%20%5Cleft(1%20-%20%5Cfrac%7Bx%7D%7BL%7D%5Cright)%24'%2C%20transform%3Dax_V.transAxes%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20fontsize%3D16%2C%20verticalalignment%3D'top'%2C%20horizontalalignment%3D'right'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20bbox%3Ddict(boxstyle%3D'round'%2C%20facecolor%3D'wheat'%2C%20alpha%3D0.5))%0A%0A%20%20%20%20%23%20Plot%202%3A%20Energy%20Bands%0A%20%20%20%20ax_band.plot(x_mm%2C%20E_c%2C%20'b-'%2C%20linewidth%3D2%2C%20label%3D'%24E_c%24')%0A%20%20%20%20ax_band.plot(x_mm%2C%20E_v%2C%20'r-'%2C%20linewidth%3D2%2C%20label%3D'%24E_v%24')%0A%20%20%20%20ax_band.plot(x_mm%2C%20E_Fi%2C%20'k%3A'%2C%20linewidth%3D1.5%2C%20label%3D'%24E_%7BFi%7D%24')%0A%20%20%20%20ax_band.fill_between(x_mm%2C%20E_c%2C%20E_c_max%20%2B%200.2%2C%20alpha%3D0.1%2C%20color%3D'blue')%0A%20%20%20%20ax_band.fill_between(x_mm%2C%20E_v%2C%20E_v_min%20-%200.2%2C%20alpha%3D0.1%2C%20color%3D'red')%0A%20%20%20%20ax_band.set_ylabel('Energy%20(eV)'%2C%20fontsize%3D16)%0A%20%20%20%20ax_band.set_title(f'Energy%20Band%20Diagram%20%20(%24E_g%20%3D%20%7BE_g%7D%24%20eV)'%2C%20fontsize%3D16%2C%20fontweight%3D'bold')%0A%20%20%20%20ax_band.legend(loc%3D'best'%2C%20fontsize%3D14)%0A%20%20%20%20ax_band.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20ax_band.set_xlim(%5B0%2C%20L_mm%5D)%0A%20%20%20%20ax_band.set_ylim(%5BE_v_min%20-%200.3%2C%20E_c_max%20%2B%200.3%5D)%20%20%23%20Fixed%20y-axis%0A%20%20%20%20ax_band.set_xticklabels(%5B%5D)%0A%20%20%20%20ax_band.tick_params(axis%3D'both'%2C%20labelsize%3D14)%0A%20%20%20%20%23%20Add%20equation%0A%20%20%20%20ax_band.text(0.98%2C%200.05%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20r'%24E_c(x)%20%3D%20-%20qV(x)%20%2B%20%5Ctext%7Bconstant%7D%24'%20%2B%20'%5Cn'%20%2B%20r'%24E_v(x)%20%3D%20E_c(x)%20-%20E_g%24'%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20transform%3Dax_band.transAxes%2C%20fontsize%3D16%2C%20verticalalignment%3D'bottom'%2C%20horizontalalignment%3D'right'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bbox%3Ddict(boxstyle%3D'round'%2C%20facecolor%3D'wheat'%2C%20alpha%3D0.5))%0A%0A%20%20%20%20%23%20Plot%203%3A%20Electric%20Field%0A%20%20%20%20ax_field.plot(x_mm%2C%20E_field_V_per_mm%2C%20'purple'%2C%20linewidth%3D2)%0A%20%20%20%20ax_field.axhline(0%2C%20color%3D'gray'%2C%20linestyle%3D'--'%2C%20alpha%3D0.5)%0A%20%20%20%20ax_field.set_xlabel(r'Position%20%24x%24%20(mm)'%2C%20fontsize%3D16)%0A%20%20%20%20ax_field.set_ylabel(r'%24%5Cmathcal%7BE%7D%24%20(V%2Fmm)'%2C%20fontsize%3D16)%0A%20%20%20%20E_field_avg%20%3D%20V_a%20%2F%20L_mm%20if%20L_mm%20!%3D%200%20else%200%0A%20%20%20%20ax_field.set_title(f'Electric%20Field%3A%20%20%24%5C%5Cmathcal%7B%7BE%7D%7D%20%3D%20%7BE_field_avg%3A.2f%7D%24%20V%2Fmm'%2C%20fontsize%3D16%2C%20fontweight%3D'bold')%0A%20%20%20%20ax_field.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20ax_field.set_xlim(%5B0%2C%20L_mm%5D)%0A%20%20%20%20ax_field.set_ylim(%5B-E_field_max%20-%200.1%2C%20E_field_max%20%2B%200.1%5D)%20%20%23%20Fixed%20y-axis%0A%20%20%20%20ax_field.tick_params(axis%3D'both'%2C%20labelsize%3D14)%0A%20%20%20%20%23%20Add%20equation%0A%20%20%20%20ax_field.text(0.98%2C%200.95%2C%20r'%24%5Cmathcal%7BE%7D%20%3D%20-%5Cfrac%7BdV%7D%7Bdx%7D%20%3D%20%5Cfrac%7BV_a%7D%7BL%7D%24'%2C%20transform%3Dax_field.transAxes%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fontsize%3D16%2C%20verticalalignment%3D'top'%2C%20horizontalalignment%3D'right'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bbox%3Ddict(boxstyle%3D'round'%2C%20facecolor%3D'wheat'%2C%20alpha%3D0.5))%0A%0A%20%20%20%20plt.tight_layout()%0A%0A%20%20%20%20%23%20Display%20device%20length%20and%20plot%0A%20%20%20%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.md(%22%23%23%20Band%20Diagram%20Visualization%22)%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5Bmo.image(src%3Dstr(ASSET_DIR%20%2F%20%22voltage_bandbend.png%22)%2C%20width%3D300)%5D%2C%20justify%3D%22center%22)%2C%0A%20%20%20%20%20%20%20%20voltage_slider%2C%0A%20%20%20%20%20%20%20%20mo.md(f%22**Device%20length%3A**%20%24L%20%3D%20%7BL_mm%7D%24%20mm%20%20%7C%20%20**Bandgap%3A**%20%24E_g%20%3D%20%7BE_g%7D%24%20eV%22)%2C%0A%20%20%20%20%20%20%20%20plt.gca()%2C%0A%20%20%20%20%20%20%20%20mo.md(r'%24%24%5Cbecause%20%5Cfrac%7Bd%5Cmathcal%7BE%7D%7D%7Bdx%7D%20%3D%20%5Cfrac%7B%5Crho%7D%7B%5Cepsilon_s%7D%5Ctext%7B%2C%20%7D%20%5Crho%20%3D%200%24%24')%0A%20%20%20%20%5D)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "mode": "read",
+            "version": "0.19.6",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": false, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  </body>
+</html>

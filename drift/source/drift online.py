@@ -226,6 +226,10 @@ def _(ASSET_DIR, mo):
     The **resistivity** is $\boxed{\rho = 1/\sigma}$ (units: Ω·cm). 
 
     The resistance is $\boxed{R = \rho \frac{L}{A}}$, where $L$ is the length and $A$ is the cross-sectional area.
+        
+    **Derivation:**
+
+    $$J = \frac{I}{A} = \frac{1}{\rho} \mathcal{E} = \frac{1}{\rho} \frac{V}{L} \implies R = \rho \frac{L}{A} \text{ from Ohm's Law}$$
 
     Because the mobility and carrier concentration are temperature-dependent, the resistance is also strongly temperature-dependent.
     """)

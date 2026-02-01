@@ -55,7 +55,7 @@ def _():
 
 @app.cell
 def _(ASSET_DIR, mo):
-    mo.vstack([
+    return mo.vstack([
         mo.md(r"""
         ## Carrier Diffusion
 
@@ -65,12 +65,11 @@ def _(ASSET_DIR, mo):
         """),
         mo.hstack([mo.image(src=ASSET_DIR / "diffusion.png", width=500, caption="Diffusion of particles from high to low concentration regions. Hu, Fig. 2.9")], justify="center")
     ])
-    return
 
 
 @app.cell
 def _(ASSET_DIR, mo):
-    mo.vstack([
+    return mo.vstack([
         mo.md(r"""
         ### Diffusion Equation
 
@@ -90,7 +89,6 @@ def _(ASSET_DIR, mo):
         """),
         mo.hstack([mo.image(src=ASSET_DIR / "diffusion_current_direction.png", width=500, caption="Diffusion current direction. Hu, Fig. 2.10")], justify="center")
     ])
-    return
 
 
 @app.cell

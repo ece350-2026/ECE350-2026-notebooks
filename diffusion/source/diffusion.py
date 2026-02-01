@@ -17,8 +17,8 @@ app = marimo.App(width="medium")
 @app.cell
 async def _():
     # Install plotly in WASM environment (Pyodide)
-    import sys
-    if "pyodide" in sys.modules:
+    import sys as _sys
+    if "pyodide" in _sys.modules:
         import micropip
         await micropip.install("plotly")
     return
@@ -281,7 +281,7 @@ def _(gradient_slider, mo, np, plt):
     # Plot 1: Doping profile
     ax1.semilogy(x, N_D, 'b-', linewidth=2)
     ax1.set_ylabel(r'$N_D$ (cm$^{-3}$)', fontsize=14)
-    ax1.set_title(f'Doping Profile $N_D = 10^{{16}} \exp(-{g2} \cdot {g} \cdot x)$', fontsize=14, fontweight='bold')
+    ax1.set_title(fr'Doping Profile $N_D = 10^{{16}} \exp(-{g2} \cdot {g} \cdot x)$', fontsize=14, fontweight='bold')
     ax1.grid(True, alpha=0.3)
     ax1.set_ylim([N_D0*1e-2, N_D0*1e2])
 

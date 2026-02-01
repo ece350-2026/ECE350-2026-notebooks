@@ -20,7 +20,7 @@ async def _():
     import sys as _sys
     if "pyodide" in _sys.modules:
         import micropip
-        await micropip.install("plotly")
+        _ = await micropip.install("plotly")
     return
 
 

@@ -31,9 +31,14 @@ def _():
     import matplotlib.pyplot as plt
     from pathlib import Path
     import scipy.constants as const
+    import sys
 
     q = 1.6e-19  # C
-    ASSET_DIR = Path(__file__).parent
+    # WASM-compatible ASSET_DIR
+    if "pyodide" in sys.modules:
+        ASSET_DIR = Path(".")  # WASM: images in same directory
+    else:
+        ASSET_DIR = Path(__file__).parent  # Local: images in script directory
 
     mo.md(
         r"""
@@ -55,22 +60,21 @@ def _():
 
 @app.cell
 def _(ASSET_DIR, mo):
-    return mo.vstack([
-        mo.md(r"""
+    _md = mo.md(r"""
         ## Carrier Diffusion
 
         ### Physical Concept
 
         **Diffusion** is carrier motion due to concentration gradients. Particles move from high to low concentration regions (increasing the entropy of the system).
-        """),
-        mo.hstack([mo.image(src=ASSET_DIR / "diffusion.png", width=500, caption="Diffusion of particles from high to low concentration regions. Hu, Fig. 2.9")], justify="center")
-    ])
+        """)
+    _img = mo.hstack([mo.image(src=str(ASSET_DIR / "diffusion.png"), width=500, caption="Diffusion of particles from high to low concentration regions. Hu, Fig. 2.9")], justify="center")
+    mo.vstack([_md, _img])
+    return
 
 
 @app.cell
 def _(ASSET_DIR, mo):
-    return mo.vstack([
-        mo.md(r"""
+    _md = mo.md(r"""
         ### Diffusion Equation
 
         The diffusion current density is proportional to the **concentration gradient**, with $qD$ as the constant of proportionality:
@@ -86,9 +90,10 @@ def _(ASSET_DIR, mo):
         **Notice the Sign!!:**
         - Electrons diffusing in the -x direction (dn/dx > 0) create current in the +x direction
         - Holes diffusing in the -x direction (dp/dx > 0) create current in the -x direction
-        """),
-        mo.hstack([mo.image(src=ASSET_DIR / "diffusion_current_direction.png", width=500, caption="Diffusion current direction. Hu, Fig. 2.10")], justify="center")
-    ])
+        """)
+    _img = mo.hstack([mo.image(src=str(ASSET_DIR / "diffusion_current_direction.png"), width=500, caption="Diffusion current direction. Hu, Fig. 2.10")], justify="center")
+    mo.vstack([_md, _img])
+    return
 
 
 @app.cell

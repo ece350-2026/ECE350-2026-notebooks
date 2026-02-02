@@ -276,7 +276,7 @@ def _(generation_slider, mo, np, plt, tau_qf_slider):
     |:---------|:---------|:---------------:|
     | Equilibrium electrons | $n_0 = N_D$ (n-type) | {n_0_qf:.1e} cm⁻³ |
     | Equilibrium holes | $p_0 = n_i^2 / N_D$ | {p_0_qf:.1e} cm⁻³ |
-    | Excess carriers | $ n' = p' = G \\cdot \\tau$ | {delta_n_qf:.1e} cm⁻³ |
+    | Excess carriers | $n' =p' = G \\tau$ | {delta_n_qf:.1e} cm⁻³ |
     | Total electrons | $n = n_0 + n'$ | {n_total_qf:.1e} cm⁻³ |
     | Total holes | $p = p_0 + p'$ | {p_total_qf:.1e} cm⁻³ |
     | Electron quasi-Fermi | $E_{{Fn}} - E_{{Fi}} = k_BT \\ln(n/n_i)$ | {E_Fn_minus_Ei*1000:.0f} meV |

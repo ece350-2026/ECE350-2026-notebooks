@@ -10,7 +10,9 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 - **Effective Mass** - Effective mass concept and band diagrams (Lectures 8-9)
 - **Carriers at Thermal Equilibrium** - Density of states and Fermi-Dirac distribution (Lectures 9-11)
 - **Carrier Drift** - Drift velocity, mobility, and scattering mechanisms (Lecture 12)
-- **Band Bending** - Electrostatics and energy diagrams (Lecture 12)
+- **Band Bending** - Electrostatics and energy diagrams (Lecture 13)
+- **Diffusion** - Diffusion, built-in field, Einstein's relation (Lecture 13)
+- **Generation and Recombination** - G-R, excess carriers, quasi-Fermi level (Lectures 13-14)
 - To be updated as the course progresses
 
 ## Viewing the Documentation

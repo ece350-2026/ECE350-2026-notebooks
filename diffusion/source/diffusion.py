@@ -99,6 +99,24 @@ def _(ASSET_DIR, mo):
 @app.cell
 def _(mo):
     mo.md(r"""
+    ### Total Current (Drift + Diffusion)
+
+    The total current density for electrons and holes is the sum of drift and diffusion components:
+
+    $$J_n = J_{n,drift} + J_{n,diff} = qn\mu_n\mathcal{E} + qD_n\frac{dn}{dx}$$
+
+    $$J_p = J_{p,drift} + J_{p,diff} = qp\mu_p\mathcal{E} - qD_p\frac{dp}{dx}$$
+
+    The **total current density** is:
+
+    $$\boxed{J_{tot} = J_n + J_p}$$
+    """)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""
     ## Built-in Electric Field in a Non-Uniformly Doped Semiconductor
 
     Consider a **non-uniformly doped semiconductor** where the impurity concentration varies with position.

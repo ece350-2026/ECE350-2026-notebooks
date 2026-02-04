@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>continuity</title>
+    <script type="module" crossorigin src="./assets/index-DGasP9Lh.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-DItdS47A.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-D8GwTfvk.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-BKtXLv3a.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-BGmjiNul.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-DeeZ7FnK.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-ZmTK25f3.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-Ce8wRjuQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/hotkeys-BHHWjLlp.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-DIUKKfEy.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-YC1gW_kJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-C9fstfnp.js">
+    <link rel="modulepreload" crossorigin href="./assets/Combination-CMPwuAmi.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-CJhvWPOk.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-uzvC4uAK.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-CnW3RofX.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-DdfN0k2d.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-V5IdpNiR.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-CEc2ajau.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-rmUWldD_.js">
+    <link rel="modulepreload" crossorigin href="./assets/_Uint8Array-BGESiCQL.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseIsEqual-B9N9Mw_N.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-DO6uJBas.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-CAG_dYON.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFor-Duhs3RiJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-BBX6ug-N.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-Cg4WLWh2.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-DXvhzCGS.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-B6Cb__3x.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-CrO5-0RA.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-CIrPQIbt.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-DercMavo.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-CO2AyNfd.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-BsVD4CdD.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BGkTcW3U.js">
+    <link rel="modulepreload" crossorigin href="./assets/toString-DlRqgfqz.js">
+    <link rel="modulepreload" crossorigin href="./assets/_hasUnicode-CWqKLxBC.js">
+    <link rel="modulepreload" crossorigin href="./assets/assertNever-CBU83Y6o.js">
+    <link rel="modulepreload" crossorigin href="./assets/_arrayReduce-TT0iOGKY.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-D35CBukS.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-_Aax6sXd.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-DUdVAZI8.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-Bul8mtFs.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-MM7JYRxj.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-Dnna-AUO.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DBwNzi3C.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-ChS0Dc_R.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CtsanegT.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BIKFl48f.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-B0VqT_4z.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-TiFCI16_.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Cayq-K1c.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BYyu59D8.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Gqv0jSNr.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-CtmkcLz7.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-CgbKQM5E.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-CH5Rj0g8.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseProperty-NKyJO2oh.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-6sUe0ZdD.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-B3mjKxHe.js">
+    <link rel="modulepreload" crossorigin href="./assets/toInteger-CDcO32Gx.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-B9y7063w.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-U5Goe76G.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-BpZ7g6ok.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-DaIKav-i.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-DwagBitu.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-B-6unW-7.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-C3JY7O_u.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-DEwfrKeS.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-C8GlnP-4.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-BrGyZf9c.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-DwQffb13.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-CxGKN4C_.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CdxIjAOP.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-Be1daUcS.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-D5NcotGm.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-DBO30D7K.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-iQunIAXf.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-CEHRCdjA.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-JwD-oSsl.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-c6GXymzg.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-Bup4EGrp.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-pAun1m1X.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-DHZUhGz-.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-Gz-GJzym.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-8sn_4qbh.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-C8uQmBAN.js">
+    <link rel="modulepreload" crossorigin href="./assets/mode-DX8pdI-l.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-C4XRy1BE.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-2SszdW9t.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-DUzsIXtq.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-Bv2DBpIS.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-BCOZVFBt.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-6uJrSKbw.js">
+    <link rel="modulepreload" crossorigin href="./assets/capitalize-CmNnkG9y.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-CQ15EONK.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-BD5o34_i.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-CQd-1kjx.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-CyqGun26.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-B65rDESJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/ai-model-dropdown-71lgLrLy.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-D_rSvXvJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-BMPhtTJQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-C92Rrpmf.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-CRZ52CKf.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-BGrCWNss.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-ChCiwl15.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-Bdnnp5fe.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-CUbWEBci.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-Bw5bzt4a.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-B0OJBphG.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-BfXVTTtD.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-5rudBbo3.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-BhONVREY.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-DjukyIj4.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-D51fcwZX.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-yzHjsVJt.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-CVUXBqX6.js">
+    <link rel="modulepreload" crossorigin href="./assets/katex-Dc8yG8NU.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-DhMlG2dP.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-DhzFN2CJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-BhCZMKuQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-24p6hn99.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-DNVQZNFu.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-CQZqVk1Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-DuIDx9mD.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-W1SWxSE3.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-pRRbZZHE.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-DcYggVWP.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-Dhn1r-h6.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-t9yNKYA8.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-B2LJnKU3.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-DD4AwVTU.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-CS4kbWl2.js">
+    <link rel="modulepreload" crossorigin href="./assets/range-D2UKkEg-.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-DZR6ewbN.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-CknFTI_u.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-Cs1JbsV6.js">
+    <link rel="modulepreload" crossorigin href="./assets/play-BPIh-ZEU.js">
+    <link rel="modulepreload" crossorigin href="./assets/chat-components-CGlO4yUw.js">
+    <link rel="modulepreload" crossorigin href="./assets/isEmpty-CgX_-6Mt.js">
+    <link rel="modulepreload" crossorigin href="./assets/chat-display-B4mGvJ0X.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeleteCell-5uYlTcQZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-BhEXrzsb.js">
+    <link rel="modulepreload" crossorigin href="./assets/process-output-CagdHMzs.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-CuXvdYPX.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-DaPAPabU.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-DpMp6qko.js">
+    <link rel="modulepreload" crossorigin href="./assets/add-cell-with-ai-pVFp5LZG.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-W42b2ZIs.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-CqXXKtIq.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-D1kBp3jX.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-CxMrs0B_.js">
+    <link rel="modulepreload" crossorigin href="./assets/toggle-jWKnIArU.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-DKH14XH0.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-CbPtIlnM.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-5Rdwpmr3.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-Ctj_10o2.js">
+    <link rel="modulepreload" crossorigin href="./assets/utilities.esm-CIPARd6-.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-DcxjrFFt.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-BmeZUK02.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-BhExYOph.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-DyP9LVLc.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-video-camera-DW3v07j2.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-DuQOSW7G.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-DLEiQDS3.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-DUA_Rz_a.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-BEg1eC0P.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-B1Xeh6vA.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-ZPd9PxYl.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-CS34eOZi.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-BiQYf0aU.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-D8BOePqo.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-CycJImp8.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFlatten-CUZNxU8H.js">
+    <link rel="modulepreload" crossorigin href="./assets/flatten-D-7VEN0q.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-B_6Qi5aM.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-XLwHyDBr.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-B9SUL40m.js">
+    <link rel="modulepreload" crossorigin href="./assets/house-DhFkiXz7.js">
+    <link rel="modulepreload" crossorigin href="./assets/settings-DOXWMfVd.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-C8Tw_XXG.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-2AjO7UK5.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-CikhHYAB.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">%23%20%2F%2F%2F%20script%0A%23%20requires-python%20%3D%20%22%3E%3D3.11%22%0A%23%20dependencies%20%3D%20%5B%0A%23%20%20%20%20%20%22marimo%22%2C%0A%23%20%20%20%20%20%22numpy%3D%3D2.4.1%22%2C%0A%23%20%20%20%20%20%22matplotlib%3D%3D3.10.8%22%2C%0A%23%20%20%20%20%20%22scipy%3D%3D1.17.0%22%2C%0A%23%20%5D%0A%23%20%2F%2F%2F%0A%0Aimport%20marimo%0A%0A__generated_with%20%3D%20%220.19.7%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Aasync%20def%20_()%3A%0A%20%20%20%20%23%20Install%20plotly%20in%20WASM%20environment%20(Pyodide)%0A%20%20%20%20import%20sys%20as%20_sys%0A%20%20%20%20if%20%22pyodide%22%20in%20_sys.modules%3A%0A%20%20%20%20%20%20%20%20import%20micropip%0A%20%20%20%20%20%20%20%20_%20%3D%20await%20micropip.install(%22plotly%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20matplotlib.pyplot%20as%20plt%0A%20%20%20%20from%20pathlib%20import%20Path%0A%20%20%20%20import%20scipy.constants%20as%20const%0A%20%20%20%20import%20sys%0A%0A%20%20%20%20q%20%3D%201.6e-19%20%20%23%20C%0A%20%20%20%20%23%20WASM-compatible%20ASSET_DIR%0A%20%20%20%20if%20%22pyodide%22%20in%20sys.modules%3A%0A%20%20%20%20%20%20%20%20ASSET_DIR%20%3D%20Path(%22.%22)%20%20%23%20WASM%3A%20images%20in%20same%20directory%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20ASSET_DIR%20%3D%20Path(__file__).parent%20%20%23%20Local%3A%20images%20in%20script%20directory%0A%0A%20%20%20%20mo.md(%0A%20%20%20%20%20%20%20%20r%22%22%22%0A%20%20%20%20%20%20%20%20%23%20Carrier%20Transport%3A%20Continuity%20Equation%20%0A%0A%20%20%20%20%20%20%20%20This%20interactive%20notebook%20covers%3A%0A%0A%20%20%20%20%20%20%20%201.%20Continuity%20equation%20%0A%20%20%20%20%20%20%20%202.%20Diffusion%20equation%20and%20diffusion%20length%0A%0A%20%20%20%20%20%20%20%20Reference%3A%20Hu%2C%20Ch.%204.7%0A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20)%0A%20%20%20%20return%20ASSET_DIR%2C%20mo%2C%20np%2C%20plt%0A%0A%0A%40app.cell%0Adef%20_(ASSET_DIR%2C%20mo)%3A%0A%20%20%20%20_md1%20%3D%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Continuity%20of%20Carriers%0A%20%20%20%20%22%22%22)%0A%0A%20%20%20%20_img%20%3D%20mo.hstack(%5Bmo.image(src%3Dstr(ASSET_DIR%20%2F%20%22continuity.png%22)%2C%20width%3D%2280%25%22)%5D%2C%20justify%3D%22center%22)%0A%0A%20%20%20%20_md2%20%3D%20mo.md(r%22%22%22%0A%20%20%20%20Consider%20a%20volume%20of%20semiconductor%20of%20length%20%24%5CDelta%20x%24%20and%20cross-sectional%20area%20%24A%24.%20Let%20the%20total%20number%20of%20holes%20in%20the%20volume%20be%20%24P%20%3D%20pA%5CDelta%20x%24.%20%0A%0A%20%20%20%20The%20time%20rate%20of%20change%20of%20%24P%24%20is%0A%0A%20%20%20%20%24%24%0A%20%20%20%20%5Cfrac%7B%5Cpartial%20P%7D%7B%5Cpartial%20t%7D%20%3D%20%5Cfrac%7B1%7D%7Bq%7D%20J_p(x)A%20-%20%5Cfrac%7B1%7D%7Bq%7D%20J_p(x%20%2B%20%5CDelta%20x)A%20%2B%20(G_p%20-%20R_p)A%20%5CDelta%20x%0A%20%20%20%20%24%24%0A%0A%20%20%20%20%24%24%5Ctherefore%20%5Cboxed%7B%5Cfrac%7B%5Cpartial%20p%7D%7B%5Cpartial%20t%7D%20%3D%20-%5Cfrac%7B1%7D%7Bq%7D%20%5Cfrac%7B%5Cpartial%20J_p%7D%7B%5Cpartial%20x%7D%20%2B%20(G_p%20-%20R_p)%7D%24%24%0A%0A%20%20%20%20Similarly%2C%20for%20electrons%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cfrac%7B%5Cpartial%20n%7D%7B%5Cpartial%20t%7D%20%3D%20%5Cfrac%7B1%7D%7Bq%7D%5Cfrac%7B%5Cpartial%20J_n%7D%7B%5Cpartial%20x%7D%20%2B%20(G_n%20-%20R_n)%7D%24%24%0A%0A%20%20%20%20Since%20%24J_n%20%3D%20q%20n%20%5Cmu_n%20%5Cmathcal%7BE%7D%20%2B%20q%20D_n%20%5Cfrac%7B%5Cpartial%20n%7D%7B%5Cpartial%20x%7D%24%20and%20%24J_p%20%3D%20q%20p%20%5Cmu_p%20%5Cmathcal%7BE%7D%20-%20q%20D_p%20%5Cfrac%7B%5Cpartial%20p%7D%7B%5Cpartial%20x%7D%24%2C%20we%20can%20substitute%20these%20into%20the%20continuity%20equations%20to%20get%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cfrac%7B%5Cpartial%20n%7D%7B%5Cpartial%20t%7D%20%3D%20n%20%5Cmu_n%20%5Cfrac%7B%5Cpartial%20%5Cmathcal%7BE%7D%7D%7B%5Cpartial%20x%7D%20%2B%20%5Cmu_n%20%5Cmathcal%7BE%7D%20%5Cfrac%7B%5Cpartial%20n%7D%7B%5Cpartial%20x%7D%20%2B%20D_n%20%5Cfrac%7B%5Cpartial%5E2%20n%7D%7B%5Cpartial%20x%5E2%7D%20%2B%20G_n%20-%20R_n%7D%24%24%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cfrac%7B%5Cpartial%20p%7D%7B%5Cpartial%20t%7D%20%3D%20-p%20%5Cmu_p%20%5Cfrac%7B%5Cpartial%20%5Cmathcal%7BE%7D%7D%7B%5Cpartial%20x%7D%20-%20%5Cmu_p%20%5Cmathcal%7BE%7D%20%5Cfrac%7B%5Cpartial%20p%7D%7B%5Cpartial%20x%7D%20%2B%20D_p%20%5Cfrac%7B%5Cpartial%5E2%20p%7D%7B%5Cpartial%20x%5E2%7D%20%2B%20G_p%20-%20R_p%7D%24%24%0A%0A%20%20%20%20In%20addition%2C%20we%20have%20Poisson's%20equation%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cfrac%7B%5Cpartial%20%5Cmathcal%7BE%7D%7D%7B%5Cpartial%20x%7D%20%3D%20%20%5Cfrac%7B%5Crho%7D%7B%5Cepsilon_s%7D%7D%24%24%0A%0A%0A%0A%20%20%20%20%22%22%22)%0A%0A%20%20%20%20mo.vstack(%5B_md1%2C%20_img%2C%20_md2%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%23%20Diffusion%20Length%0A%0A%20%20%20%20Consider%20the%20steady-state%20solution%20of%20the%20continuity%20equation%20with%20%24%5Cmathcal%7BE%7D%20%3D%200%24%20aand%20the%20recombination%20rate%20of%20%24R_n%20%3D%20n%2F%20%5Ctau_n%24%3A%0A%0A%20%20%20%20%24%24%5Cfrac%7B%5Cpartial%20n%7D%7B%5Cpartial%20t%7D%20%3D%200%20%3D%20D_n%20%5Cfrac%7B%5Cpartial%5E2%20n%7D%7B%5Cpartial%20x%5E2%7D%20-%20%5Cfrac%7Bn%7D%7B%5Ctau_n%7D%24%24%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cfrac%7B%5Cpartial%5E2%20n%7D%7B%5Cpartial%20x%5E2%7D%20%3D%20%5Cfrac%7Bn%7D%7BL_n%5E2%7D%20%5Cquad%20%5Ctext%7Bwhere%7D%20%5Cquad%20L_n%20%3D%20%5Csqrt%7BD_n%20%5Ctau_n%7D%7D%24%24%0A%0A%20%20%20%20Similarly%2C%20for%20holes%3A%0A%0A%20%20%20%20%24%24%5Cfrac%7B%5Cpartial%20p%7D%7B%5Cpartial%20t%7D%20%3D%200%20%3D%20D_p%20%5Cfrac%7B%5Cpartial%5E2%20p%7D%7B%5Cpartial%20x%5E2%7D%20-%20%5Cfrac%7Bp%7D%7B%5Ctau_p%7D%24%24%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cfrac%7B%5Cpartial%5E2%20p%7D%7B%5Cpartial%20x%5E2%7D%20%3D%20%5Cfrac%7Bp%7D%7BL_p%5E2%7D%20%5Cquad%20%5Ctext%7Bwhere%7D%20%5Cquad%20L_p%20%3D%20%5Csqrt%7BD_p%20%5Ctau_p%7D%7D%24%24%0A%0A%20%20%20%20%24L_n%24%2C%20%24L_p%24%20are%20the%20**diffusion%20lengths**%20of%20the%20electrons%20and%20holes.%0A%0A%20%20%20%20Intuitively%2C%20%24L_n%24%2C%20%24L_p%24%20are%20the%20average%20distances%20a%20minority%20carrier%20diffuses%20before%20recombining.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20%23%20Sliders%20for%20diffusion%20length%20calculation%0A%20%20%20%20D_param_slider%20%3D%20mo.ui.slider(5%2C%2050%2C%20value%3D12%2C%20step%3D1%2C%20label%3D%22Diffusion%20coefficient%20D_p%20(cm%C2%B2%2Fs)%22)%0A%20%20%20%20tau_p_slider%20%3D%20mo.ui.slider(0.1%2C%20100%2C%20value%3D10%2C%20step%3D0.5%2C%20label%3D%22Lifetime%20%CF%84%E2%82%9A%20(%CE%BCs)%22)%0A%20%20%20%20return%20D_param_slider%2C%20tau_p_slider%0A%0A%0A%40app.cell%0Adef%20_(D_param_slider%2C%20mo%2C%20np%2C%20tau_p_slider)%3A%0A%20%20%20%20D_param%20%3D%20D_param_slider.value%0A%20%20%20%20tau_p_us%20%3D%20tau_p_slider.value%0A%0A%20%20%20%20L_p_cm%20%3D%20np.sqrt(D_param%20*%20tau_p_us%20*%201e-6)%0A%20%20%20%20L_p_um%20%3D%20L_p_cm%20*%201e4%0A%0A%20%20%20%20_result%20%3D%20mo.md(%0A%20%20%20%20%20%20%20%20f%22%22%22%0A%20%20%20%20%20%20%20%20**Example%20Calculation%3A**%0A%0A%20%20%20%20%20%20%20%20With%20D_p%20%3D%20%7BD_param%3A.1f%7D%20cm%C2%B2%2Fs%20and%20%CF%84_p%20%3D%20%7Btau_p_us%3A.1f%7D%20%CE%BCs%3A%0A%0A%20%20%20%20%20%20%20%20%24%24L_p%20%3D%20%5C%5Csqrt%7B%7BD_p%20%5C%5Ctau_p%7D%7D%20%3D%20%5C%5Csqrt%7B%7B%7BD_param%3A.1f%7D%20%5C%5Ctimes%20%7Btau_p_us*1e-6%3A.1e%7D%7D%7D%20%5C%5Ctext%7B%7Bcm%7D%7D%20%3D%20%7BL_p_um%3A.1f%7D%20%5C%5Ctext%7B%7B%20%CE%BCm%7D%7D%24%24%0A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20)%0A%0A%20%20%20%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.hstack(%5BD_param_slider%2C%20tau_p_slider%5D%2C%20justify%3D%22start%22)%2C%0A%20%20%20%20%20%20%20%20_result%0A%20%20%20%20%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Steady-State%20Carrier%20Diffusion%0A%0A%20%20%20%20We%20can%20break%20down%20the%20total%20carrier%20density%20into%20the%20equilibrium%20carrier%20density%20and%20the%20excess%20carrier%20density%3A%0A%0A%20%20%20%20%24%24p%20%3D%20p_0%20%2B%20p'%24%24%0A%0A%20%20%20%20%24%24n%20%3D%20n_0%20%2B%20n'%24%24%0A%0A%20%20%20%20where%3A%0A%20%20%20%20-%20%24p_0%24%20%3D%20equilibrium%20hole%20concentration%0A%20%20%20%20-%20%24n_0%24%20%3D%20equilibrium%20electron%20concentration%0A%20%20%20%20-%20%24p'%24%20%3D%20excess%20hole%20concentration%20(perturbation)%0A%20%20%20%20-%20%24n'%24%20%3D%20excess%20electron%20concentration%20(perturbation)%0A%0A%20%20%20%20Consider%20the%20case%20of%20steady-state%20carrier%20diffusion%20in%20a%20homogeneous%20semiconductor%20with%20no%20generation%20(%24G%20%3D%200%24)%3A%0A%0A%20%20%20%20%24%24%5Cfrac%7Bd%5E2%20(p_0%20%2B%20p')%7D%7Bdx%5E2%7D%20-%20%5Cfrac%7B(p_0%20%2B%20p')%7D%7BL_p%5E2%7D%20%3D%200%24%24%0A%0A%20%20%20%20%24%24%5Cimplies%20%5Cfrac%7Bd%5E2%20p'%7D%7Bdx%5E2%7D%20%3D%20%5Cfrac%7Bp_0%20%2B%20p'%7D%7BL_p%5E2%7D%24%24%0A%0A%20%20%20%20**General%20solution%3A**%20%24p'(x)%20%3D%20A%20e%5E%7B-x%2FL_p%7D%20%2B%20B%20e%5E%7Bx%2FL_p%7D%24%0A%0A%20%20%20%20The%20excess%20carrier%20densities%20%24p'(x)%24%20and%20%24n'(x)%24%20are%20usually%20more%20important%20for%20the%20minority%20carriers%2C%20because%20their%20equilibrium%20concentrations%20are%20very%20low%20to%20begin%20with.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(ASSET_DIR%2C%20mo)%3A%0A%20%20%20%20%23%20Build%20markdown%20block%20and%20image%20separately%0A%20%20%20%20_md1%20%3D%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Example%3A%20Steady-State%20Carrier%20Diffusion%20in%20a%20Homogeneous%20Semiconductor%0A%0A%20%20%20%20Consider%20**boundary%20conditions%3A**%0A%20%20%20%20-%20%24p'(x%20%3D%200)%20%3D%20%5CDelta%20p_0%24%20(constant%20excess%20hole%20injection)%0A%20%20%20%20-%20%24p'(x%20%3D%20W)%20%3D%200%24%20(all%20excess%20holes%20extracted)%0A%20%20%20%20%22%22%22)%0A%0A%20%20%20%20_img%20%3D%20mo.image(src%3Dstr(ASSET_DIR%20%2F%20%22shortbase.png%22)%2C%20width%3D%2280%25%22)%0A%0A%20%20%20%20_md2%20%3D%20mo.md(r%22%22%22%0A%20%20%20%20Assume%20**solution**%3A%20%24p'(x)%20%3D%20A%20%5Csinh(x%2FL_p)%20%2B%20B%20%5Ccosh(x%2FL_p)%24%0A%0A%20%20%20%20At%20%24x%20%3D%200%24%3A%20%24p'(0)%20%3D%20B%20%3D%20%5CDelta%20p_0%24%0A%0A%20%20%20%20At%20%24x%20%3D%20W%24%3A%20%24p'(W)%20%3D%20A%20%5Csinh(W%2FL_p)%20%2B%20%5CDelta%20p_0%20%5Ccosh(W%2FL_p)%20%3D%200%24%0A%0A%20%20%20%20%24%24%5Cimplies%20A%20%3D%20-%5CDelta%20p_0%20%5Cfrac%7B%5Ccosh(W%2FL_p)%7D%7B%5Csinh(W%2FL_p)%7D%20%3D%20-%5CDelta%20p_0%20%5Ccoth(W%2FL_p)%24%24%0A%0A%20%20%20%20**Solution%3A**%0A%0A%20%20%20%20%24%24p'(x)%20%3D%20%5CDelta%20p_0%20%5Cleft%5B%20-%5Ccoth(W%2FL_p)%20%5Csinh(x%2FL_p)%20%2B%20%5Ccosh(x%2FL_p)%20%5Cright%5D%24%24%0A%0A%20%20%20%20Using%20the%20identity%20%24%5Ccosh(A)%5Csinh(B)%20-%20%5Csinh(A)%5Ccosh(B)%20%3D%20-%5Csinh(A-B)%24%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7Bp'(x)%20%3D%20%5CDelta%20p_0%20%5Cfrac%7B%5Csinh((W-x)%2FL_p)%7D%7B%5Csinh(W%2FL_p)%7D%7D%24%24%0A%0A%20%20%20%20**Current%20density%3A**%0A%0A%20%20%20%20%24%24J_p%20%3D%20-q%20D_p%20%5Cfrac%7Bdp'%7D%7Bdx%7D%20%3D%20-q%20D_p%20%5Ccdot%20%5CDelta%20p_0%20%5Ccdot%20%5Cfrac%7B-1%7D%7BL_p%7D%20%5Ccdot%20%5Cfrac%7B%5Ccosh((W-x)%2FL_p)%7D%7B%5Csinh(W%2FL_p)%7D%24%24%0A%0A%20%20%20%20%24%24%5Cboxed%7BJ_p(x)%20%3D%20%5Cfrac%7Bq%20D_p%20%5CDelta%20p_0%7D%7BL_p%7D%20%5Ccdot%20%5Cfrac%7B%5Ccosh((W-x)%2FL_p)%7D%7B%5Csinh(W%2FL_p)%7D%7D%24%24%0A%0A%20%20%20%20At%20%24x%20%3D%200%24%3A%20%24J_p(0)%20%3D%20%5Cfrac%7Bq%20D_p%20%5CDelta%20p_0%7D%7BL_p%7D%20%5Ccoth(W%2FL_p)%24%0A%20%20%20%20%22%22%22)%0A%0A%20%20%20%20%23%20Display%20as%20vertical%20stack%0A%20%20%20%20mo.vstack(%5B_md1%2C%20_img%2C%20_md2%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20%23%20Sliders%20for%20W%2FLp%20ratio%20visualization%0A%20%20%20%20W_Lp_slider%20%3D%20mo.ui.slider(0.5%2C%205.0%2C%20value%3D2.0%2C%20step%3D0.1%2C%20label%3D%22W%2FL%E2%82%9A%20ratio%22)%0A%20%20%20%20return%20(W_Lp_slider%2C)%0A%0A%0A%40app.cell%0Adef%20_(W_Lp_slider%2C%20mo%2C%20np%2C%20plt)%3A%0A%20%20%20%20W_Lp%20%3D%20W_Lp_slider.value%0A%0A%20%20%20%20%23%20Normalized%20coordinates%0A%20%20%20%20x_norm%20%3D%20np.linspace(0%2C%201%2C%20200)%20%20%23%20x%2FW%20from%200%20to%201%0A%0A%20%20%20%20%23%20p'(x)%2F%CE%94p%E2%82%80%20%3D%20sinh((W-x)%2FLp)%20%2F%20sinh(W%2FLp)%20%3D%20sinh(W%2FLp%20*%20(1%20-%20x%2FW))%20%2F%20sinh(W%2FLp)%0A%20%20%20%20p_norm%20%3D%20np.sinh(W_Lp%20*%20(1%20-%20x_norm))%20%2F%20np.sinh(W_Lp)%0A%0A%20%20%20%20%23%20J%20normalized%3A%20proportional%20to%20cosh((W-x)%2FLp)%20%2F%20sinh(W%2FLp)%0A%20%20%20%20J_norm%20%3D%20np.cosh(W_Lp%20*%20(1%20-%20x_norm))%20%2F%20np.sinh(W_Lp)%0A%0A%20%20%20%20%23%20Create%20figure%0A%20%20%20%20_fig_sol%2C%20(_ax_p%2C%20_ax_j)%20%3D%20plt.subplots(1%2C%202%2C%20figsize%3D(14%2C%208))%0A%0A%20%20%20%20%23%20Plot%20carrier%20concentration%0A%20%20%20%20_ax_p.fill_between(x_norm%2C%200%2C%20p_norm%2C%20alpha%3D0.3%2C%20color%3D'blue')%0A%20%20%20%20_ax_p.plot(x_norm%2C%20p_norm%2C%20'b-'%2C%20linewidth%3D2.5)%0A%20%20%20%20_ax_p.axhline(0%2C%20color%3D'gray'%2C%20linestyle%3D'--'%2C%20alpha%3D0.5)%0A%20%20%20%20_ax_p.set_xlabel('Position%20x%2FW'%2C%20fontsize%3D18)%0A%20%20%20%20_ax_p.set_ylabel(r%22%24p'(x)%20%2F%20%5CDelta%20p_0%24%22%2C%20fontsize%3D18)%0A%20%20%20%20_ax_p.set_title(f%22Excess%20Carrier%20Profile%20(W%2FL%E2%82%9A%20%3D%20%7BW_Lp%3A.1f%7D)%22%2C%20fontsize%3D18%2C%20fontweight%3D'bold')%0A%20%20%20%20_ax_p.set_xlim(%5B0%2C%201%5D)%0A%20%20%20%20_ax_p.set_ylim(%5B0%2C%201.1%5D)%0A%20%20%20%20_ax_p.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20_ax_p.tick_params(axis%3D'both'%2C%20labelsize%3D18)%0A%0A%20%20%20%20%23%20Mark%20boundary%20conditions%0A%20%20%20%20_ax_p.plot(0%2C%201%2C%20'ro'%2C%20markersize%3D10%2C%20label%3Dr%22%24p'(0)%20%3D%20%5CDelta%20p_0%24%22)%0A%20%20%20%20_ax_p.plot(1%2C%200%2C%20'go'%2C%20markersize%3D10%2C%20label%3Dr%22%24p'(W)%20%3D%200%24%22)%0A%20%20%20%20_ax_p.legend(fontsize%3D18%2C%20loc%3D'upper%20right')%0A%0A%20%20%20%20%23%20Plot%20current%20density%0A%20%20%20%20_ax_j.plot(x_norm%2C%20J_norm%2C%20'r-'%2C%20linewidth%3D2.5)%0A%20%20%20%20_ax_j.fill_between(x_norm%2C%200%2C%20J_norm%2C%20alpha%3D0.3%2C%20color%3D'red')%0A%20%20%20%20_ax_j.set_xlabel('Position%20x%2FW'%2C%20fontsize%3D18)%0A%20%20%20%20_ax_j.set_ylabel(r%22%24J_p(x)%20%5Ccdot%20L_p%20%2F%20(q%20D_p%20%5CDelta%20p_0)%24%22%2C%20fontsize%3D18)%0A%20%20%20%20_ax_j.set_title(f%22Current%20Density%20Profile%20(W%2FL%E2%82%9A%20%3D%20%7BW_Lp%3A.1f%7D)%22%2C%20fontsize%3D18%2C%20fontweight%3D'bold')%0A%20%20%20%20_ax_j.set_xlim(%5B0%2C%201%5D)%0A%20%20%20%20_ax_j.set_ylim(bottom%3D0)%20%20%23%20Set%20the%20minimum%20y%20limit%20to%20zero%0A%20%20%20%20_ax_j.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20_ax_j.tick_params(axis%3D'both'%2C%20labelsize%3D18)%0A%0A%0A%20%20%20%20plt.tight_layout()%0A%0A%20%20%20%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.md(f%22%23%23%23%20Interactive%3A%20Carrier%20Profile%20with%20Injection%20at%20%24x%20%3D%200%24%22)%2C%0A%20%20%20%20%20%20%20%20W_Lp_slider%2C%0A%20%20%20%20%20%20%20%20plt.gca()%2C%0A%20%20%20%20%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%20%20%20%20**Observations%3A**%0A%0A%20%20%20%20%20%20%20%201.%20As%20%24W%2FL_p%20%5Cto%20%5Cinfty%24%2C%20the%20p'(x)%20approaches%20a%20decaying%20exponential%20and%20the%20current%20density%20approaches%20zero%20at%20%24W%24%20(infinitely%20long%20device)%0A%20%20%20%20%20%20%20%202.%20As%20%24W%2FL_p%20%5Cto%200%24%2C%20the%20p'(x)%20approaches%20a%20straight%20line%20and%20the%20current%20is%20nearly%20constant%20and%20is%20high%20(short%20device)%0A%20%20%20%20%20%20%20%203.%20Side%20note%3A%20We%20will%20see%20this%20again%20in%20the%20bipolar%20junction%20transistor%20(BJT).%20This%20carrier%20profile%20is%20in%20the%20base%20region%20of%20the%20BJT.%0A%20%20%20%20%20%20%20%20%22%22%22)%0A%20%20%20%20%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20%23%20Sliders%20for%20animation%20parameters%20(no%20time%20slider%20-%20we%20animate%20from%200%20to%2010%20ns)%0A%20%20%20%20mu_anim_slider%20%3D%20mo.ui.slider(800%2C%202000%2C%20value%3D1400%2C%20step%3D100%2C%20label%3D%22Mobility%20%CE%BC%20(cm%C2%B2%2FV%C2%B7s)%22)%0A%20%20%20%20T_anim_slider%20%3D%20mo.ui.slider(200%2C%20500%2C%20value%3D300%2C%20step%3D10%2C%20label%3D%22Temperature%20T%20(K)%22)%0A%20%20%20%20E_anim_slider%20%3D%20mo.ui.slider(-30%2C%2030%2C%20value%3D10%2C%20step%3D2%2C%20label%3D%22Electric%20field%20%E2%84%B0%20(V%2Fcm)%22)%0A%20%20%20%20tau_anim_slider%20%3D%20mo.ui.slider(1%2C%20100%2C%20value%3D20%2C%20step%3D5%2C%20label%3D%22Recombination%20lifetime%20%CF%84%20(ns)%22)%0A%20%20%20%20return%20E_anim_slider%2C%20T_anim_slider%2C%20mu_anim_slider%2C%20tau_anim_slider%0A%0A%0A%40app.cell%0Adef%20_(E_anim_slider%2C%20T_anim_slider%2C%20mo%2C%20mu_anim_slider%2C%20np%2C%20tau_anim_slider)%3A%0A%20%20%20%20from%20scipy.integrate%20import%20solve_ivp%0A%20%20%20%20import%20plotly.graph_objects%20as%20go%0A%0A%20%20%20%20%23%20Physical%20parameters%20from%20sliders%0A%20%20%20%20mu_anim%20%3D%20mu_anim_slider.value%20%20%23%20cm%C2%B2%2FV%C2%B7s%0A%20%20%20%20T_anim%20%3D%20T_anim_slider.value%20%20%23%20K%0A%20%20%20%20E_field_anim%20%3D%20E_anim_slider.value%20%20%23%20V%2Fcm%0A%20%20%20%20tau_ns%20%3D%20tau_anim_slider.value%20%20%23%20ns%0A%20%20%20%20tau_s%20%3D%20tau_ns%20*%201e-9%20%20%23%20s%0A%0A%20%20%20%20%23%20Animation%20time%20range%3A%200%20to%2010%20ns%0A%20%20%20%20t_max_ns%20%3D%2010.0%0A%20%20%20%20n_frames%20%3D%20101%20%20%23%20More%20frames%20for%20smoother%20animation%0A%20%20%20%20time_points_ns%20%3D%20np.linspace(0%2C%20t_max_ns%2C%20n_frames)%0A%0A%20%20%20%20%23%20Constants%0A%20%20%20%20k_B_anim%20%3D%201.38e-23%20%20%23%20J%2FK%0A%20%20%20%20q_anim%20%3D%201.6e-19%20%20%23%20C%0A%0A%20%20%20%20%23%20Einstein%20relation%3A%20D%20%3D%20(kT%2Fq)%20*%20%CE%BC%0A%20%20%20%20kT_q_anim%20%3D%20k_B_anim%20*%20T_anim%20%2F%20q_anim%20%20%23%20V%0A%20%20%20%20D_anim%20%3D%20kT_q_anim%20*%20mu_anim%20%20%23%20cm%C2%B2%2Fs%0A%0A%20%20%20%20%23%20Drift%20velocity%20(electrons%20move%20opposite%20to%20E-field)%0A%20%20%20%20v_drift_anim%20%3D%20-mu_anim%20*%20E_field_anim%20%20%23%20cm%2Fs%0A%0A%20%20%20%20%23%20Diffusion%20length%0A%20%20%20%20L_diff%20%3D%20np.sqrt(D_anim%20*%20tau_s)%20*%201e4%20%20%23%20%CE%BCm%0A%0A%20%20%20%20%23%20Spatial%20grid%20(in%20%CE%BCm%20for%20display%2C%20cm%20for%20calculation)%0A%20%20%20%20N_points%20%3D%20600%20%20%23%20More%20points%20for%20smoother%20pulse%0A%20%20%20%20x_min_um%2C%20x_max_um%20%3D%20-20%2C%2020%0A%20%20%20%20x_um%20%3D%20np.linspace(x_min_um%2C%20x_max_um%2C%20N_points)%0A%20%20%20%20dx_um%20%3D%20x_um%5B1%5D%20-%20x_um%5B0%5D%0A%20%20%20%20dx_cm%20%3D%20dx_um%20*%201e-4%20%20%23%20cm%0A%0A%20%20%20%20%23%20Initial%20condition%3A%20Gaussian%20pulse%20centered%20at%20x%3D0%0A%20%20%20%20sigma_0_um%20%3D%200.5%20%20%23%20%CE%BCm%20initial%20width%0A%20%20%20%20sigma_0_cm%20%3D%20sigma_0_um%20*%201e-4%20%20%23%20cm%0A%20%20%20%20n_0%20%3D%201e10%20%20%23%20cm%E2%81%BB%C2%B3%20peak%20concentration%20(excess%20minority%20carriers)%0A%20%20%20%20x_cm%20%3D%20x_um%20*%201e-4%0A%0A%20%20%20%20n_initial%20%3D%20n_0%20*%20np.exp(-x_cm**2%20%2F%20(2%20*%20sigma_0_cm**2))%0A%0A%20%20%20%20%23%20Define%20the%20RHS%20of%20the%20continuity%20equation%20using%20finite%20differences%0A%20%20%20%20%23%20%E2%88%82n%2F%E2%88%82t%20%3D%20D%20%E2%88%82%C2%B2n%2F%E2%88%82x%C2%B2%20-%20v_d%20%E2%88%82n%2F%E2%88%82x%20-%20n%2F%CF%84%0A%20%20%20%20def%20continuity_rhs(t%2C%20n)%3A%0A%20%20%20%20%20%20%20%20dndt%20%3D%20np.zeros_like(n)%0A%0A%20%20%20%20%20%20%20%20%23%20Interior%20points%20(vectorized%20for%20speed)%0A%20%20%20%20%20%20%20%20diffusion%20%3D%20D_anim%20*%20(n%5B2%3A%5D%20-%202*n%5B1%3A-1%5D%20%2B%20n%5B%3A-2%5D)%20%2F%20dx_cm**2%0A%0A%20%20%20%20%20%20%20%20if%20v_drift_anim%20%3E%3D%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20drift%20%3D%20v_drift_anim%20*%20(n%5B1%3A-1%5D%20-%20n%5B%3A-2%5D)%20%2F%20dx_cm%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20drift%20%3D%20v_drift_anim%20*%20(n%5B2%3A%5D%20-%20n%5B1%3A-1%5D)%20%2F%20dx_cm%0A%0A%20%20%20%20%20%20%20%20recombination%20%3D%20n%5B1%3A-1%5D%20%2F%20tau_s%0A%0A%20%20%20%20%20%20%20%20dndt%5B1%3A-1%5D%20%3D%20diffusion%20-%20drift%20-%20recombination%0A%0A%20%20%20%20%20%20%20%20%23%20Outflow%20boundary%20conditions%20(zero-gradient%20for%20smooth%20exit)%0A%20%20%20%20%20%20%20%20%23%20Use%20one-sided%20differences%20at%20boundaries%0A%20%20%20%20%20%20%20%20%23%20Left%20boundary%20(i%3D0)%3A%20forward%20difference%20for%20second%20derivative%0A%20%20%20%20%20%20%20%20diff_left%20%3D%20D_anim%20*%20(n%5B2%5D%20-%202*n%5B1%5D%20%2B%20n%5B0%5D)%20%2F%20dx_cm**2%0A%20%20%20%20%20%20%20%20drift_left%20%3D%20v_drift_anim%20*%20(n%5B1%5D%20-%20n%5B0%5D)%20%2F%20dx_cm%20if%20v_drift_anim%20%3E%3D%200%20else%20v_drift_anim%20*%20(n%5B1%5D%20-%20n%5B0%5D)%20%2F%20dx_cm%0A%20%20%20%20%20%20%20%20dndt%5B0%5D%20%3D%20diff_left%20-%20drift_left%20-%20n%5B0%5D%20%2F%20tau_s%0A%0A%20%20%20%20%20%20%20%20%23%20Right%20boundary%20(i%3D-1)%3A%20backward%20difference%20for%20second%20derivative%0A%20%20%20%20%20%20%20%20diff_right%20%3D%20D_anim%20*%20(n%5B-1%5D%20-%202*n%5B-2%5D%20%2B%20n%5B-3%5D)%20%2F%20dx_cm**2%0A%20%20%20%20%20%20%20%20drift_right%20%3D%20v_drift_anim%20*%20(n%5B-1%5D%20-%20n%5B-2%5D)%20%2F%20dx_cm%20if%20v_drift_anim%20%3E%3D%200%20else%20v_drift_anim%20*%20(n%5B-1%5D%20-%20n%5B-2%5D)%20%2F%20dx_cm%0A%20%20%20%20%20%20%20%20dndt%5B-1%5D%20%3D%20diff_right%20-%20drift_right%20-%20n%5B-1%5D%20%2F%20tau_s%0A%0A%20%20%20%20%20%20%20%20return%20dndt%0A%0A%20%20%20%20%23%20Solve%20the%20PDE%20for%20all%20time%20points%0A%20%20%20%20t_final_s%20%3D%20t_max_ns%20*%201e-9%0A%20%20%20%20t_eval_s%20%3D%20time_points_ns%20*%201e-9%0A%20%20%20%20sol%20%3D%20solve_ivp(continuity_rhs%2C%20%5B0%2C%20t_final_s%5D%2C%20n_initial%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20method%3D'RK45'%2C%20t_eval%3Dt_eval_s%2C%20max_step%3Dt_final_s%2F400)%0A%0A%20%20%20%20%23%20Store%20all%20solutions%0A%20%20%20%20all_solutions%20%3D%20sol.y%20%20%23%20Shape%3A%20(N_points%2C%20n_frames)%0A%0A%20%20%20%20%23%20Calculate%20statistics%20for%20each%20time%20point%0A%20%20%20%20total_initial%20%3D%20np.trapz(n_initial%2C%20x_cm)%0A%0A%20%20%20%20def%20calc_stats(n_profile)%3A%0A%20%20%20%20%20%20%20%20total%20%3D%20np.trapz(n_profile%2C%20x_cm)%0A%20%20%20%20%20%20%20%20if%20total%20%3E%201e-10%20*%20total_initial%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20x_center%20%3D%20np.trapz(x_cm%20*%20n_profile%2C%20x_cm)%20%2F%20total%0A%20%20%20%20%20%20%20%20%20%20%20%20variance%20%3D%20np.trapz((x_cm%20-%20x_center)**2%20*%20n_profile%2C%20x_cm)%20%2F%20total%0A%20%20%20%20%20%20%20%20%20%20%20%20sigma%20%3D%20np.sqrt(max(variance%2C%200))%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20x_center%20*%201e4%2C%20sigma%20*%201e4%20%20%23%20Convert%20to%20%CE%BCm%0A%20%20%20%20%20%20%20%20return%200%2C%20sigma_0_um%0A%0A%20%20%20%20%23%20Create%20Plotly%20animation%20(WASM%20compatible)%0A%20%20%20%20%23%20Build%20frames%20for%20animation%20-%20each%20frame%20includes%20all%20traces%0A%20%20%20%20frames%20%3D%20%5B%5D%0A%20%20%20%20for%20i%20in%20range(n_frames)%3A%0A%20%20%20%20%20%20%20%20n_current%20%3D%20all_solutions%5B%3A%2C%20i%5D%0A%20%20%20%20%20%20%20%20t_ns%20%3D%20time_points_ns%5Bi%5D%0A%20%20%20%20%20%20%20%20x_center_um%2C%20sigma_um%20%3D%20calc_stats(n_current)%0A%20%20%20%20%20%20%20%20n_peak%20%3D%20np.max(n_current)%0A%0A%20%20%20%20%20%20%20%20frame%20%3D%20go.Frame(%0A%20%20%20%20%20%20%20%20%20%20%20%20data%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20Present%20pulse%20(blue%2C%20animated)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20go.Scatter(x%3Dx_um%2C%20y%3Dn_current%2C%20mode%3D'lines'%2C%20fill%3D'tozeroy'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fillcolor%3D'rgba(0%2C%200%2C%20255%2C%200.3)'%2C%20line%3Ddict(color%3D'blue'%2C%20width%3D2)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20showlegend%3DFalse)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20Vertical%20line%20at%20centroid%20position%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20go.Scatter(x%3D%5Bx_center_um%2C%20x_center_um%5D%2C%20y%3D%5B0%2C%20n_0%20*%201.1%5D%2C%20mode%3D'lines'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'darkblue'%2C%20width%3D2%2C%20dash%3D'dot')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20showlegend%3DFalse)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3Dstr(i)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20layout%3Dgo.Layout(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20annotations%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dict(x%3D0.98%2C%20y%3D0.98%2C%20xref%3D'paper'%2C%20yref%3D'paper'%2C%20showarrow%3DFalse%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20text%3Df%22t%20%3D%20%7Bt_ns%3A.1f%7D%20ns%3Cbr%3EPeak%3A%20%7Bn_peak%3A.2e%7D%20cm%E2%81%BB%C2%B3%3Cbr%3ECenter%3A%20%7Bx_center_um%3A.2f%7D%20%CE%BCm%3Cbr%3EWidth%20%CF%83%3A%20%7Bsigma_um%3A.2f%7D%20%CE%BCm%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%3Ddict(size%3D14)%2C%20align%3D'right'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bgcolor%3D'rgba(224%2C%20255%2C%20255%2C%200.9)'%2C%20bordercolor%3D'gray'%2C%20borderwidth%3D1)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dict(x%3D0.02%2C%20y%3D0.98%2C%20xref%3D'paper'%2C%20yref%3D'paper'%2C%20showarrow%3DFalse%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20text%3Df%22D%3Csub%3En%3C%2Fsub%3E%20%3D%20%7BD_anim%3A.1f%7D%20cm%C2%B2%2Fs%3Cbr%3Ev%3Csub%3Ed%3C%2Fsub%3E%20%3D%20%7Bv_drift_anim%3A.1e%7D%20cm%2Fs%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%3Ddict(size%3D14)%2C%20align%3D'left'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bgcolor%3D'rgba(255%2C%20255%2C%20255%2C%200.9)'%2C%20bordercolor%3D'gray'%2C%20borderwidth%3D1)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20frames.append(frame)%0A%0A%20%20%20%20%23%20Initial%20data%0A%20%20%20%20x_center_0%2C%20sigma_0%20%3D%20calc_stats(n_initial)%0A%0A%20%20%20%20fig%20%3D%20go.Figure(%0A%20%20%20%20%20%20%20%20data%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Present%20pulse%20(blue%2C%20animated)%0A%20%20%20%20%20%20%20%20%20%20%20%20go.Scatter(x%3Dx_um%2C%20y%3Dn_initial%2C%20mode%3D'lines'%2C%20fill%3D'tozeroy'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fillcolor%3D'rgba(0%2C%200%2C%20255%2C%200.3)'%2C%20line%3Ddict(color%3D'blue'%2C%20width%3D2)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20showlegend%3DFalse)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Vertical%20line%20at%20centroid%20position%0A%20%20%20%20%20%20%20%20%20%20%20%20go.Scatter(x%3D%5Bx_center_0%2C%20x_center_0%5D%2C%20y%3D%5B0%2C%20n_0%20*%201.1%5D%2C%20mode%3D'lines'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'darkblue'%2C%20width%3D2%2C%20dash%3D'dot')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20showlegend%3DFalse)%2C%0A%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%20%20layout%3Dgo.Layout(%0A%20%20%20%20%20%20%20%20%20%20%20%20title%3Ddict(text%3D'Continuity%20Equation%3A%20Drift%20%2B%20Diffusion%20%2B%20Recombination'%2C%20font%3Ddict(size%3D18))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20xaxis%3Ddict(title%3D'Position%20x%20(%CE%BCm)'%2C%20range%3D%5B-5%2C%205%5D%2C%20tickfont%3Ddict(size%3D14))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20yaxis%3Ddict(title%3D%22Excess%20Electron%20Concentration%20n'%20(cm%E2%81%BB%C2%B3)%22%2C%20range%3D%5B0%2C%20n_0%20*%201.1%5D%2C%20tickfont%3Ddict(size%3D14)%2C%20exponentformat%3D'e')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20showlegend%3DFalse%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20annotations%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dict(x%3D0.98%2C%20y%3D0.98%2C%20xref%3D'paper'%2C%20yref%3D'paper'%2C%20showarrow%3DFalse%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20text%3Df%22t%20%3D%200.0%20ns%3Cbr%3EPeak%3A%20%7Bn_0%3A.2e%7D%20cm%E2%81%BB%C2%B3%3Cbr%3ECenter%3A%20%7Bx_center_0%3A.2f%7D%20%CE%BCm%3Cbr%3EWidth%20%CF%83%3A%20%7Bsigma_0%3A.2f%7D%20%CE%BCm%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%3Ddict(size%3D14)%2C%20align%3D'right'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bgcolor%3D'rgba(224%2C%20255%2C%20255%2C%200.9)'%2C%20bordercolor%3D'gray'%2C%20borderwidth%3D1)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dict(x%3D0.02%2C%20y%3D0.98%2C%20xref%3D'paper'%2C%20yref%3D'paper'%2C%20showarrow%3DFalse%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20text%3Df%22D%3Csub%3En%3C%2Fsub%3E%20%3D%20%7BD_anim%3A.1f%7D%20cm%C2%B2%2Fs%3Cbr%3Ev%3Csub%3Ed%3C%2Fsub%3E%20%3D%20%7Bv_drift_anim%3A.1e%7D%20cm%2Fs%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%3Ddict(size%3D14)%2C%20align%3D'left'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bgcolor%3D'rgba(255%2C%20255%2C%20255%2C%200.9)'%2C%20bordercolor%3D'gray'%2C%20borderwidth%3D1)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20updatemenus%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dict(type%3D'buttons'%2C%20showactive%3DFalse%2C%20x%3D0.1%2C%20y%3D-0.18%2C%20xanchor%3D'right'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20buttons%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dict(label%3D'%E2%96%B6%20Play'%2C%20method%3D'animate'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20args%3D%5BNone%2C%20dict(frame%3Ddict(duration%3D50%2C%20redraw%3DTrue)%2C%20fromcurrent%3DTrue%2C%20mode%3D'immediate')%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dict(label%3D'%E2%8F%B8%20Pause'%2C%20method%3D'animate'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20args%3D%5B%5BNone%5D%2C%20dict(frame%3Ddict(duration%3D0%2C%20redraw%3DFalse)%2C%20mode%3D'immediate')%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20sliders%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dict(active%3D0%2C%20yanchor%3D'top'%2C%20xanchor%3D'left'%2C%20x%3D0.1%2C%20y%3D-0.08%2C%20len%3D0.85%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20currentvalue%3Ddict(prefix%3D'Time%3A%20'%2C%20suffix%3D'%20ns'%2C%20font%3Ddict(size%3D14)%2C%20visible%3DTrue%2C%20xanchor%3D'center')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20steps%3D%5Bdict(args%3D%5B%5Bstr(i)%5D%2C%20dict(frame%3Ddict(duration%3D0%2C%20redraw%3DTrue)%2C%20mode%3D'immediate')%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20label%3Df'%7Btime_points_ns%5Bi%5D%3A.1f%7D'%2C%20method%3D'animate')%20for%20i%20in%20range(0%2C%20n_frames%2C%205)%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20height%3D600%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20margin%3Ddict(b%3D140)%0A%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20frames%3Dframes%0A%20%20%20%20)%0A%0A%20%20%20%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.md(%22%23%23%23%20Animation%3A%20Spatio-temporal%20evolution%20of%20excess%20carriers%22)%2C%0A%20%20%20%20%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%20%20%20%20This%20animation%20shows%20the%20numerical%20solution%20to%20the%20continuity%20equation%20for%20excess%20electrons%20in%20a%20constant%20electric%20field%20(low-injection%20regime)%0A%0A%20%20%20%20%20%20%20%20%24%24%5Cfrac%7B%5Cpartial%20n'%7D%7B%5Cpartial%20t%7D%20%3D%20D_n%20%5Cfrac%7B%5Cpartial%5E2%20n'%7D%7B%5Cpartial%20x%5E2%7D%20%2B%20%5Cmu_n%20%5Cmathcal%7BE%7D%20%5Cfrac%7B%5Cpartial%20n'%7D%7B%5Cpartial%20x%7D%20-%20%5Cfrac%7Bn'%7D%7B%5Ctau%7D%24%24%0A%0A%20%20%20%20%20%20%20%20Adjust%20the%20parameters%20and%20press%20**Play**%20or%20drag%20the%20slider.%0A%20%20%20%20%20%20%20%20%22%22%22)%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5Bmu_anim_slider%2C%20T_anim_slider%5D%2C%20justify%3D%22start%22)%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5BE_anim_slider%2C%20tau_anim_slider%5D%2C%20justify%3D%22start%22)%2C%0A%20%20%20%20%20%20%20%20fig%0A%20%20%20%20%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20**Observations%3A**%0A%0A%20%20%20%201.%20**Drift**%3A%20Pulse%20center%20moves%20at%20%24v_d%20%3D%20-%5Cmu%20%5Cmathcal%7BE%7D%24%0A%0A%20%20%20%202.%20**Diffusion**%20(%24D_n%20%5Cfrac%7B%5Cpartial%5E2%20n%7D%7B%5Cpartial%20x%5E2%7D%24)%3A%20Pulse%20spreads%20over%20time%0A%20%20%20%20%20%20%20-%20Width%20grows%20as%20%24%5Csigma(t)%20%5Capprox%20%5Csqrt%7B%5Csigma_0%5E2%20%2B%202Dt%7D%24%0A%0A%20%20%20%203.%20**Recombination**%20(%24-n%2F%5Ctau%24)%3A%20Pulse%20amplitude%20decays%20exponentially%0A%20%20%20%20%20%20%20-%20Total%20charge%20decays%20as%20%24%5Csim%20e%5E%7B-t%2F%5Ctau%7D%24%0A%0A%20%20%20%20**Experiments%20to%20try%3A**%0A%20%20%20%20-%20Vary%20the%20recombination%20rate%20to%20see%20decay%0A%20%20%20%20-%20Vary%20the%20electric%20field%20and%20mobility%20to%20observe%20the%20velocity%20of%20the%20pulse%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "mode": "read",
+            "version": "0.19.7",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": false, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  </body>
+</html>

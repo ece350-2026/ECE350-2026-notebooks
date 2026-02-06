@@ -11,7 +11,7 @@
 import marimo
 
 __generated_with = "0.19.8"
-app = marimo.App(width="medium", layout_file="layouts/continuity.slides.json")
+app = marimo.App(width="medium")
 
 
 @app.cell

@@ -10,8 +10,8 @@
 
 import marimo
 
-__generated_with = "0.19.7"
-app = marimo.App(width="medium")
+__generated_with = "0.19.8"
+app = marimo.App(width="medium", layout_file="layouts/continuity.slides.json")
 
 
 @app.cell
@@ -102,19 +102,22 @@ def _(mo):
     mo.md(r"""
     ### Diffusion Length
 
-    Consider the steady-state solution of the continuity equation with $\mathcal{E} = 0$ aand the recombination rate of $R_n = n/ \tau_n$:
+    Consider the steady-state solution of the continuity equation in a uniformly doped semiconductor with $\mathcal{E} = 0$ and the recombination rate of $R_n = (n-n_0)/ \tau_n$:
 
-    $$\frac{\partial n}{\partial t} = 0 = D_n \frac{\partial^2 n}{\partial x^2} - \frac{n}{\tau_n}$$
+    $$\frac{\partial n}{\partial t} = 0 = D_n \frac{\partial^2 n}{\partial x^2} - \frac{n-n_0}{\tau_n}$$
 
-    $$\boxed{\frac{\partial^2 n}{\partial x^2} = \frac{n}{L_n^2} \quad \text{where} \quad L_n = \sqrt{D_n \tau_n}}$$
+    $$\boxed{\frac{\partial^2 n}{\partial x^2} = \frac{n-n_0}{L_n^2} \quad \text{where} \quad L_n = \sqrt{D_n \tau_n}}$$
 
     Similarly, for holes:
 
-    $$\frac{\partial p}{\partial t} = 0 = D_p \frac{\partial^2 p}{\partial x^2} - \frac{p}{\tau_p}$$
+    $$\frac{\partial p}{\partial t} = 0 = D_p \frac{\partial^2 p}{\partial x^2} - \frac{p-p_0}{\tau_p}$$
 
-    $$\boxed{\frac{\partial^2 p}{\partial x^2} = \frac{p}{L_p^2} \quad \text{where} \quad L_p = \sqrt{D_p \tau_p}}$$
+    $$\boxed{\frac{\partial^2 p}{\partial x^2} = \frac{p-p_0}{L_p^2} \quad \text{where} \quad L_p = \sqrt{D_p \tau_p}}$$
 
     $L_n$, $L_p$ are the **diffusion lengths** of the electrons and holes.
+
+
+    We use $n-n_0$ and $p - p_0$ in the numerator of the recombination term, because the carrier concentration should return to equilibrim values.
 
     Intuitively, $L_n$, $L_p$ are the average distances a minority carrier diffuses before recombining.
     """)
@@ -125,7 +128,7 @@ def _(mo):
 def _(mo):
     # Sliders for diffusion length calculation
     D_param_slider = mo.ui.slider(5, 50, value=12, step=1, label="Diffusion coefficient D_p (cm²/s)")
-    tau_p_slider = mo.ui.slider(0.1, 100, value=10, step=0.5, label="Lifetime τₚ (μs)")
+    tau_p_slider = mo.ui.slider(0.01, 10, value=1, step=0.05, label="Lifetime τₚ (μs)")
     return D_param_slider, tau_p_slider
 
 
@@ -174,9 +177,9 @@ def _(mo):
 
     Consider the case of steady-state carrier diffusion in a homogeneous semiconductor with no generation ($G = 0$):
 
-    $$\frac{d^2 (p_0 + p')}{dx^2} - \frac{(p_0 + p')}{L_p^2} = 0$$
+    $$\frac{d^2 (p_0 + p')}{dx^2} - \frac{p_0 + p' - p_0}{L_p^2} = 0$$
 
-    $$\implies \frac{d^2 p'}{dx^2} = \frac{p_0 + p'}{L_p^2}$$
+    $$\implies \frac{d^2 p'}{dx^2} = \frac{ p'}{L_p^2}$$
 
     **General solution:** $p'(x) = A e^{-x/L_p} + B e^{x/L_p}$
 
@@ -484,7 +487,7 @@ def _(E_anim_slider, T_anim_slider, mo, mu_anim_slider, np, tau_anim_slider):
                 dict(active=0, yanchor='top', xanchor='left', x=0.1, y=-0.08, len=0.85,
                      currentvalue=dict(prefix='Time: ', suffix=' ns', font=dict(size=14), visible=True, xanchor='center'),
                      steps=[dict(args=[[str(i)], dict(frame=dict(duration=0, redraw=True), mode='immediate')],
-                                 label=f'{time_points_ns[i]:.1f}', method='animate') for i in range(0, n_frames, 5)])
+                                 label=f'{time_points_ns[i]:.1f}', method='animate') for i in range(0, n_frames, 2)])
             ],
             height=600,
             margin=dict(b=140)

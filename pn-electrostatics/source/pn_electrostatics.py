@@ -30,7 +30,7 @@ def _():
     except Exception:
         ASSET_DIR = None
 
-    _IMAGE_BASE = "https://joyce-poon.github.io/ECE350/pn-electrostatics/images" if ASSET_DIR is None else str(ASSET_DIR / "images")
+    IMAGE_BASE = "https://joyce-poon.github.io/ECE350/pn-electrostatics/images" if ASSET_DIR is None else str(ASSET_DIR / "images")
 
     # Physical constants
     q = 1.6e-19  # C
@@ -59,11 +59,11 @@ def _():
         ---
         """
     )
-    return ASSET_DIR, Eg_Si, _IMAGE_BASE, eps_s, kT, mo, ni_Si, np, plt, q
+    return ASSET_DIR, Eg_Si, IMAGE_BASE, eps_s, kT, mo, ni_Si, np, plt, q
 
 
 @app.cell
-def _(_IMAGE_BASE, mo):
+def _(IMAGE_BASE, mo):
     mo.vstack([
         mo.md(r"""
     ## 1. The Abrupt Junction & Depletion Approximation
@@ -76,7 +76,7 @@ def _(_IMAGE_BASE, mo):
     - **Complete ionization** -- $N_D^+ = N_D$ and $N_A^- = N_A$.
     - **Negligible free carriers in the depletion region** -- $n, p \ll N_A, N_D$ within the depletion region.
         """),
-        mo.hstack([mo.image(src=f"{_IMAGE_BASE}/lec13-09.png", width="50%")], justify="center"),
+        mo.hstack([mo.image(src=f"{IMAGE_BASE}/lec13-09.png", width="50%")], justify="center"),
         mo.md(r"""
     Under these assumptions, the **charge density** is:
 
@@ -95,13 +95,13 @@ def _(_IMAGE_BASE, mo):
 
 
 @app.cell
-def _(_IMAGE_BASE, mo):
+def _(IMAGE_BASE, mo):
     mo.vstack([
         mo.md(r"""
         ## 2. Built-in Potential Derivation
         """),
         mo.hstack([mo.image(
-            src=f"{_IMAGE_BASE}/lec14-04.png",
+            src=f"{IMAGE_BASE}/lec14-04.png",
             width="50%"
         )], justify="center"),
         mo.md(r"""
@@ -139,7 +139,7 @@ def _(mo):
 
 
 @app.cell
-def _(_IMAGE_BASE, mo):
+def _(IMAGE_BASE, mo):
     mo.hstack([
         mo.md(r"""
     ## 3. Charge $\rightarrow$ Electric Field $\rightarrow$ Electrostatic Potential
@@ -168,13 +168,13 @@ def _(_IMAGE_BASE, mo):
     - The depletion region extends further into the lightly doped side.
     - One side junctions: P$^+$N and N$^+$P have a heavily doped P or N side, respectively.
         """),
-        mo.image(src=f"{_IMAGE_BASE}/lec14-09.png", width="100%", caption="Derivation of electric field from charge density"),
+        mo.image(src=f"{IMAGE_BASE}/lec14-09.png", width="100%", caption="Derivation of electric field from charge density"),
     ], widths=[0.6, 0.4], align="center")
     return
 
 
 @app.cell
-def _(_IMAGE_BASE, mo):
+def _(IMAGE_BASE, mo):
     mo.hstack([
         mo.md(r"""
     ### Electrostatic Potential
@@ -210,7 +210,7 @@ def _(_IMAGE_BASE, mo):
     \end{cases}
     $$
         """),
-        mo.image(src=f"{_IMAGE_BASE}/PN-potential.png", width="100%"),
+        mo.image(src=f"{IMAGE_BASE}/PN-potential.png", width="100%"),
     ], widths=[0.6, 0.4], align="center")
     return
 

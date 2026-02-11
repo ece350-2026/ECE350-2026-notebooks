@@ -344,10 +344,7 @@ def _(Eg_Si, Na_slider, Nd_slider, eps_s, kT, mo, ni_Si, np, plt, q):
     # (a) Charge density -- plot rho/q in units of cm^-3
     _axes[0].plot(_x_um, _rho / q * 1e-15, "b-", linewidth=2)
     _axes[0].set_ylabel(r"$\rho\,/\,q$ ($\times 10^{15}$ cm$^{-3}$)", fontsize=16)
-    _fig.suptitle(
-        r"Interactive Calculator of $\rho$, $\mathcal{E}$, $V$, and Energy Bands from $N_A$ and $N_D$",
-        fontsize=15, fontweight="bold", y=1.01,
-    )
+
     _axes[0].set_title(
         r"$N_A$ = " + f"{_Na:.1e}" + r" cm$^{-3}$, $N_D$ = " + f"{_Nd:.1e}" + r" cm$^{-3}$",
         fontsize=13,
@@ -442,9 +439,10 @@ def _(Eg_Si, Na_slider, Nd_slider, eps_s, kT, mo, ni_Si, np, plt, q):
         """
     )
 
+    _title = mo.md(r"""### Interactive Calculator of $\rho$, $\mathcal{E}$, $V$, and Energy Bands from $N_A$ and $N_D$""")
     _controls = mo.hstack([Na_slider, Nd_slider], justify="center")
 
-    mo.vstack([_controls, plt.gca(), _info])
+    mo.vstack([_title, _controls, plt.gca(), _info], align="center")
     return
 
 

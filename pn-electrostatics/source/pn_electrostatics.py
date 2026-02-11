@@ -439,7 +439,7 @@ def _(Eg_Si, Na_slider, Nd_slider, eps_s, kT, mo, ni_Si, np, plt, q):
         """
     )
 
-    _title = mo.md(r"""### Interactive Calculator of $\rho$, $\mathcal{E}$, $V$, and Energy Bands from $N_A$ and $N_D$""")
+    _title = mo.md(r"""## Interactive Calculator of $\rho$, $\mathcal{E}$, $V$, and Energy Bands from $N_A$ and $N_D$""")
     _controls = mo.hstack([Na_slider, Nd_slider], justify="center")
 
     mo.vstack([_title, _controls, plt.gca(), _info], align="center")

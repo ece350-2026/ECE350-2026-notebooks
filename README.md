@@ -13,6 +13,8 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 - **Band Bending** - Electrostatics and energy diagrams (Lecture 13)
 - **Diffusion** - Diffusion, built-in field, Einstein's relation (Lecture 13)
 - **Generation and Recombination** - G-R, excess carriers, quasi-Fermi level (Lectures 13-14)
+- **Continuity Equqation** - Spatio-temporal evolution of carrier densities (Lectures 15)
+- **PN junctions** - Overview, electrostatics (Lecture 16 - )
 - To be updated as the course progresses
 
 ## Viewing the Documentation

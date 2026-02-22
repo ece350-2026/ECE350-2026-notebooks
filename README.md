@@ -21,23 +21,6 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 
 Open `index.html` in a web browser to access all notebooks.
 
-## Separate Repository
-
-This docs folder can be maintained as a separate repository to facilitate sharing and collaboration while staying synced with the main ECE350 repository.
-
-### Repository Structure
-
-- **Main Repository**: `joyce-poon/ECE350` - Contains all course materials including docs (Private)
-- **Docs Repository**: A separate repository containing only this docs folder (for sharing)
-
-### Syncing Changes
-
-See [DOCS_REPO_SETUP.md](../DOCS_REPO_SETUP.md) in the root of the main repository for detailed instructions on:
-- Creating the separate docs repository
-- Pushing changes from main repo to docs repo
-- Pulling changes from docs repo back to main repo
-- Automated syncing with GitHub Actions
-
 ## License
 
 Joyce Poon, University of Toronto - Department of Electrical & Computer Engineering

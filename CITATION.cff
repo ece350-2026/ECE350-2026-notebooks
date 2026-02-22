@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use these materials, please cite them."
+title: "ECE350 Interactive Notebooks (2026)"
+type: software and educational material
+authors:
+  - family-names: Poon
+    given-names: Joyce
+affiliation: "University of Toronto"
+year: 2026
+url: "https://github.com/ece350-2026/ECE350-2026-notebooks"
+license: MIT, CC BY 4.0
+preferred-citation:
+  type: generic
+  title: "ECE350 Interactive Notebooks (2026)"
+  authors:
+    - family-names: Poon
+      given-names: Joyce
+  institution: "University of Toronto"
+  year: 2026
+  url: "https://github.com/ece350-2026/ECE350-2026-notebooks"

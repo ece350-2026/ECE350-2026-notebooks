@@ -14,7 +14,7 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 - **Diffusion** - Diffusion, built-in field, Einstein's relation (Lecture 13)
 - **Generation and Recombination** - G-R, excess carriers, quasi-Fermi level (Lectures 13-14)
 - **Continuity Equqation** - Spatio-temporal evolution of carrier densities (Lectures 15)
-- **PN junctions** - Overview, electrostatics (Lecture 16 - )
+- **PN junctions** - Overview, electrostatics, reverse bias (Lecture 16 - )
 - To be updated as the course progresses
 
 

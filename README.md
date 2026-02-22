@@ -28,6 +28,6 @@ This repository contains both software code and educational content.
 ### Attribution request
 If you reuse these materials, please acknowledge:
 
-**Joyce Poon**, *ECE350 course materials / notebooks*, University of Toronto, 2026.
+**Joyce Poon**, *ECE350 Interactive Notebooks*, University of Toronto, 2026.
 
 If you made changes, please indicate that your version is modified.

@@ -25,8 +25,8 @@ This repository contains both software code and educational content.
 - **Code** (e.g., `.py`, `.ipynb` code cells, scripts, utilities) is licensed under the **MIT License** — see `LICENSE`.
 - **Educational content** (e.g., explanatory text, figures, diagrams, and written material) is licensed under **Creative Commons Attribution 4.0 (CC BY 4.0)** — see `LICENSE-CC-BY`.
 
-### Attribution request (how to credit)
-If you reuse these materials, please credit:
+### Attribution request
+If you reuse these materials, please acknowledge:
 
 **Joyce Poon**, *ECE350 course materials / notebooks*, University of Toronto, 2026.
 

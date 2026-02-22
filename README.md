@@ -17,10 +17,17 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 - **PN junctions** - Overview, electrostatics (Lecture 16 - )
 - To be updated as the course progresses
 
-## Viewing the Documentation
-
-Open `index.html` in a web browser to access all notebooks.
 
 ## License
 
-Joyce Poon, University of Toronto - Department of Electrical & Computer Engineering
+This repository contains both software code and educational content.
+
+- **Code** (e.g., `.py`, `.ipynb` code cells, scripts, utilities) is licensed under the **MIT License** — see `LICENSE`.
+- **Educational content** (e.g., explanatory text, figures, diagrams, and written material) is licensed under **Creative Commons Attribution 4.0 (CC BY 4.0)** — see `LICENSE-CC-BY`.
+
+### Attribution request (how to credit)
+If you reuse these materials, please credit:
+
+**Joyce Poon**, *ECE350 course materials / notebooks*, University of Toronto, 2026.
+
+If you made changes, please indicate that your version is modified.

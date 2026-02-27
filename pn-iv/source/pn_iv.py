@@ -9,8 +9,8 @@
 
 import marimo
 
-__generated_with = "0.20.1"
-app = marimo.App(width="medium")
+__generated_with = "0.20.2"
+app = marimo.App(width="medium", layout_file="layouts/pn_iv.slides.json")
 
 
 @app.cell
@@ -65,7 +65,6 @@ def _():
         """
     )
     return (
-        ASSET_DIR,
         D_n,
         D_p,
         Eg_Si,
@@ -265,34 +264,34 @@ def _(
         mo.md(r"- **N-side:** holes are minority carriers:"),
         mo.md(_eq_pN0),
     ])
-    _n_eq = f"$$n(-x_P) = n_{{P0}}\\, e^{{qV/k_B T}} = n_{{P0}}\\, e^{{V/V_T}} = {_x10(_n_P0)} \\times e^{{{_V:.2f}/{kT_q:.3f}}} = {_x10(_n_at_neg_xP)}\\ \\mathrm{{cm}}^{{-3}}$$"
-    _p_eq = f"$$p(x_N) = p_{{N0}}\\, e^{{qV/k_B T}} = p_{{N0}}\\, e^{{V/V_T}} = {_x10(_p_N0)} \\times e^{{{_V:.2f}/{kT_q:.3f}}} = {_x10(_p_at_xN)}\\ \\mathrm{{cm}}^{{-3}}$$"
+    _n_eq = f"$$n(-x_p) = n_{{P0}}\\, e^{{qV/k_B T}} = n_{{P0}}\\, e^{{V/V_T}} = {_x10(_n_P0)} \\times e^{{{_V:.2f}/{kT_q:.3f}}} = {_x10(_n_at_neg_xP)}\\ \\mathrm{{cm}}^{{-3}}$$"
+    _p_eq = f"$$p(x_n) = p_{{N0}}\\, e^{{qV/k_B T}} = p_{{N0}}\\, e^{{V/V_T}} = {_x10(_p_N0)} \\times e^{{{_V:.2f}/{kT_q:.3f}}} = {_x10(_p_at_xN)}\\ \\mathrm{{cm}}^{{-3}}$$"
     _part_i = mo.md(
         f"""
         **Part (i) — Minority carrier concentrations at depletion layer edges**
 
-        - Electron concentration at $x=-x_P$ (p-side edge): $n(-x_P) = n_{{P0}}\\, e^{{qV/k_B T}}$, where $k_B T/q \\approx 0.026\\ \\mathrm{{V}}$ at 300K
+        - Electron concentration at $x=-x_p$ (p-side edge): $n(-x_p) = n_{{P0}}\\, e^{{qV/k_B T}}$, where $k_B T/q \\approx 0.026\\ \\mathrm{{V}}$ at 300K
         {_n_eq}
 
-        - Hole concentration at $x=x_N$ (n-side edge): $p(x_N) = p_{{N0}}\\, e^{{qV/k_B T}}$, where $k_B T/q \\approx 0.026\\ \\mathrm{{V}}$ at 300K
+        - Hole concentration at $x=x_n$ (n-side edge): $p(x_n) = p_{{N0}}\\, e^{{qV/k_B T}}$, where $k_B T/q \\approx 0.026\\ \\mathrm{{V}}$ at 300K
         {_p_eq}
         """
     )
-    _excess_n_eq = f"$$n_P'(-x_P) \\equiv n(-x_P) - n_{{P0}} = {_x10(_n_at_neg_xP)} - {_x10(_n_P0)} = {_x10(_excess_n_P)}\\ \\mathrm{{cm}}^{{-3}}$$"
-    _excess_p_eq = f"$$p_N'(x_N) \\equiv p(x_N) - p_{{N0}} = {_x10(_p_at_xN)} - {_x10(_p_N0)} = {_x10(_excess_p_N)}\\ \\mathrm{{cm}}^{{-3}}$$"
+    _excess_n_eq = f"$$n_P'(-x_p) \\equiv n(-x_p) - n_{{P0}} = {_x10(_n_at_neg_xP)} - {_x10(_n_P0)} = {_x10(_excess_n_P)}\\ \\mathrm{{cm}}^{{-3}}$$"
+    _excess_p_eq = f"$$p_N'(x_n) \\equiv p(x_n) - p_{{N0}} = {_x10(_p_at_xN)} - {_x10(_p_N0)} = {_x10(_excess_p_N)}\\ \\mathrm{{cm}}^{{-3}}$$"
 
     _takeaway = (
         f"**Takeaway:**\n"
         f"Compare the equilibrium values $n_{{P0}} = {_x10(_n_P0)}\\, \\mathrm{{cm}}^{{-3}}$ and $p_{{N0}} = {_x10(_p_N0)}\\, \\mathrm{{cm}}^{{-3}}$ to the concentrations at the depletion edges under forward bias: "
-        f"$n(-x_P) = {_x10(_n_at_neg_xP)}\\, \\mathrm{{cm}}^{{-3}}$ and $p(x_N) = {_x10(_p_at_xN)}\\, \\mathrm{{cm}}^{{-3}}$.\n"
+        f"$n(-x_p) = {_x10(_n_at_neg_xP)}\\, \\mathrm{{cm}}^{{-3}}$ and $p(x_n) = {_x10(_p_at_xN)}\\, \\mathrm{{cm}}^{{-3}}$.\n"
         "The minority carrier concentrations at the depletion edges are **completely dominated by the excess carriers** in forward bias "
-        r"($n(-x_P) \approx n_P'(-x_P)$, $p(x_N) \approx p_N'(x_N)$ when $e^{qV/k_B T} \gg 1$)."
+        r"($n(-x_p) \approx n_P'(-x_p)$, $p(x_n) \approx p_N'(x_n)$ when $e^{qV/k_B T} \gg 1$)."
     )
     _part_ii = mo.vstack([
         mo.md(r"**Part (ii) — Excess minority carrier concentrations**"),
-        mo.md(r"- Excess electron concentration at $x=-x_P$:"),
+        mo.md(r"- Excess electron concentration at $x=-x_p$:"),
         mo.md(_excess_n_eq),
-        mo.md(r"- Excess hole concentration at $x=x_N$:"),
+        mo.md(r"- Excess hole concentration at $x=x_n$:"),
         mo.md(_excess_p_eq),
         mo.md(_takeaway),
     ])
@@ -302,7 +301,7 @@ def _(
 
 @app.cell
 def _(IMAGE_BASE, mo):
-    _coord_caption = mo.md(r"*Schematic: depletion edges at $-x_P$ and $x_N$.*")
+    _coord_caption = mo.md(r"*Schematic: depletion edges at $-x_p$ and $x_n$.*")
     headerfig = mo.vstack([
         mo.md(r"## Minority Carrier Diffusion Equation"),
         mo.hstack([mo.image(src=f"{IMAGE_BASE}/depletion-region.png", width="60%")], justify="center"),
@@ -316,19 +315,19 @@ def _(headerfig, mo):
     _text = mo.md(r"""
     ### Step 1 (continued): Solve for $p_N'(x)$ (excess holes in the N-region)
 
-    **Domain:** $x_N < x < \infty$ (quasi-neutral N-side)
+    **Domain:** $x_n < x < \infty$ (quasi-neutral N-side)
 
     **Differential equation:**
     $$\frac{d^2 p_N'}{dx^2} = \frac{p_N'}{L_p^2}$$
     where $L_p = \sqrt{D_p \tau_p}$ is the **hole diffusion length** and $\tau_p$ is the hole minority carrier lifetime.
 
     **Boundary conditions (infinitely long diode):**
-    1. At the edge of the depletion region on the N-side: $p_N'(x_N) = p_{N0}\left(e^{qV/k_B T} - 1\right)$ (with $p_{N0} = n_i^2/N_d$).
+    1. At the edge of the depletion region on the N-side: $p_N'(x_n) = p_{N0}\left(e^{qV/k_B T} - 1\right)$ (with $p_{N0} = n_i^2/N_d$).
     2. Far into the N-region: $p_N'(\infty) = 0$ (infinite diode approx.).
 
-    **Solution:** General form is $p_N'(x) = A\, e^{(x-x_N)/L_p} + B\, e^{-(x-x_N)/L_p}$. The condition $p_N'(\infty) = 0$ gives $A = 0$. Applying the boundary condition at $x = x_N$:
+    **Solution:** General form is $p_N'(x) = A\, e^{(x-x_n)/L_p} + B\, e^{-(x-x_n)/L_p}$. The condition $p_N'(\infty) = 0$ gives $A = 0$. Applying the boundary condition at $x = x_n$:
 
-    $$\boxed{p_N'(x) = p_{N0}\left(e^{qV/k_B T} - 1\right) e^{-(x-x_N)/L_p}, \qquad x \geq x_N}$$
+    $$\boxed{p_N'(x) = p_{N0}\left(e^{qV/k_B T} - 1\right) e^{-(x-x_n)/L_p}, \qquad x \geq x_n}$$
 
     Excess holes decay **exponentially** away from the depletion edge with characteristic length $L_p$.
     """)
@@ -341,19 +340,19 @@ def _(mo):
     mo.md(r"""
     ### Step 1 (continued): Solve for $n_P'(x)$ (excess electrons in the P-region)
 
-    **Domain:** $-\infty < x < -x_P$ (quasi-neutral P-side)
+    **Domain:** $-\infty < x < -x_p$ (quasi-neutral P-side)
 
     **Differential equation:**
     $$\frac{d^2 n_P'}{dx^2} = \frac{n_P'}{L_n^2}$$
     where $L_n = \sqrt{D_n \tau_n}$ is the **electron diffusion length**.
 
     **Boundary conditions (infinitely long diode):**
-    1. At the edge of the depletion region on the P-side: $n_P'(-x_P) = n_{P0}\left(e^{qV/k_B T} - 1\right)$ (with $n_{P0} = n_i^2/N_a$).
+    1. At the edge of the depletion region on the P-side: $n_P'(-x_p) = n_{P0}\left(e^{qV/k_B T} - 1\right)$ (with $n_{P0} = n_i^2/N_a$).
     2. Far into the P-region: $n_P'(-\infty) = 0$ (infinite diode approx.).
 
-    **Solution:** General form is $n_P'(x) = A\, e^{(x+x_P)/L_n} + B\, e^{-(x+x_P)/L_n}$. The condition $n_P'(-\infty) = 0$ gives $B = 0$. Applying the boundary condition at $x = -x_P$:
+    **Solution:** General form is $n_P'(x) = A\, e^{(x+x_p)/L_n} + B\, e^{-(x+x_p)/L_n}$. The condition $n_P'(-\infty) = 0$ gives $B = 0$. Applying the boundary condition at $x = -x_p$:
 
-    $$\boxed{n_P'(x) = n_{P0}\left(e^{qV/k_B T} - 1\right) e^{(x+x_P)/L_n}, \qquad x \leq -x_P}$$
+    $$\boxed{n_P'(x) = n_{P0}\left(e^{qV/k_B T} - 1\right) e^{(x+x_p)/L_n}, \qquad x \leq -x_p}$$
 
     Excess electrons decay **exponentially** away from the depletion edge with characteristic length $L_n$.
     """)
@@ -578,8 +577,8 @@ def _(
         f"| $x_p$ | {_xp*1e4:.2f} μm |\n"
         f"| $p_{{n0}}$ | {_x10_fmt(_pn0)} cm$^{{-3}}$ |\n"
         f"| $n_{{p0}}$ | {_x10_fmt(_np0)} cm$^{{-3}}$ |\n"
-        f"| $p'_N(x_N)$ | {_x10_fmt(_delta_pn_edge)} cm$^{{-3}}$ |\n"
-        f"| $n'_P(-x_P)$ | {_x10_fmt(_delta_np_edge)} cm$^{{-3}}$ |\n"
+        f"| $p'_N(x_n)$ | {_x10_fmt(_delta_pn_edge)} cm$^{{-3}}$ |\n"
+        f"| $n'_P(-x_p)$ | {_x10_fmt(_delta_np_edge)} cm$^{{-3}}$ |\n"
     )
 
     _header = mo.md("### Step 1 — Interactive: Minority Carrier Distributions")
@@ -616,9 +615,9 @@ def _(mo):
     **$J_{P,\text{diff}}(x = x_n)$**
 
     $$J_{p,\text{diff}} = -q D_p \frac{dp'_N(x)}{dx}
-    = q \frac{D_p}{L_p}\, p_{N0}\left(e^{qV/k_B T} - 1\right) e^{-(x-x_N)/L_p}$$
+    = q \frac{D_p}{L_p}\, p_{N0}\left(e^{qV/k_B T} - 1\right) e^{-(x-x_n)/L_p}$$
 
-    At the N-side edge of the depletion region ($x = x_n$, so $e^{-(x-x_N)/L_p} = 1$):
+    At the N-side edge of the depletion region ($x = x_n$, so $e^{-(x-x_n)/L_p} = 1$):
 
     $$\boxed{J_{p,\text{diff}}(x = x_n) = q \frac{D_p}{L_p}\, p_{N0}\left(e^{qV/k_B T} - 1\right)}$$
 

@@ -10,10 +10,7 @@
 import marimo
 
 __generated_with = "0.20.2"
-app = marimo.App(
-    width="medium",
-    layout_file="layouts/pn_small_signal.slides.json",
-)
+app = marimo.App(width="medium")
 
 
 @app.cell
@@ -181,7 +178,7 @@ def _(mo):
         stop=-8,
         step=0.5,
         value=-10,
-        label=r"log₁₀($I_0$) [A]",
+        label=r"log($I_0$) [A]",
         show_value=True,
     )
     tau_s_slider = mo.ui.slider(
@@ -252,9 +249,9 @@ def _(
     # Create the figure
     fig, ax1 = plt.subplots(figsize=(10, 6))
 
-    ax1.semilogy(_V_arr, _CJ_arr * 1e9, "b-", linewidth=2, label=r"$C_J$ (junction)")
-    ax1.semilogy(_V_arr, _Cd_arr2 * 1e9, "r-", linewidth=2, label=r"$C_d$ (diffusion)")
-    ax1.semilogy(_V_arr, _Ctotal_arr * 1e9, "k--", linewidth=2, label=r"$C_{total} = C_J + C_d$")
+    ax1.semilogy(_V_arr, _CJ_arr * 1e9, "b-", linewidth=2, label=r"$C_{dep}$ (depletion)")
+    ax1.semilogy(_V_arr, _Cd_arr2 * 1e9, "r-", linewidth=2, label=r"$C_{diff}$ (diffusion)")
+    ax1.semilogy(_V_arr, _Ctotal_arr * 1e9, "k--", linewidth=2, label=r"$C_{total} = C_{dep} + C_{diff}$")
 
     # Mark the operating point
     if -1 <= _V_DC <= min(0.95 * _phi_bi, 0.7):
@@ -283,8 +280,8 @@ def _(
         f"""
         **At $V_{{DC}} = {_V_DC:.2f}$ V:**
         $\\phi_{{bi}}$ = {_phi_bi:.3f} V,
-        $C_J$ = {_CJ_op*1e9:.3f} nF/cm$^2$,
-        $C_d$ = {_Cd_op*1e9:.3e} nF/cm$^2$
+        $C_{{dep}}$ = {_CJ_op*1e9:.3f} nF/cm$^2$,
+        $C_{{diff}}$ = {_Cd_op*1e9:.3e} nF/cm$^2$
         """
         if -1 <= _V_DC <= min(0.95 * _phi_bi, 0.7)
         else f"**$V_{{DC}} = {_V_DC:.2f}$ V is outside valid range.**"

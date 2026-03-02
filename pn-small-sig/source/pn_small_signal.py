@@ -53,7 +53,7 @@ def _():
         4. Interactive: capacitance and impedance vs. voltage
         """
     )
-    return ASSET_DIR, eps_s, kT, mo, ni_Si, np, plt, q
+    return IMAGE_BASE, eps_s, kT, mo, ni_Si, np, plt, q
 
 
 @app.cell
@@ -92,7 +92,7 @@ def _(mo):
 
 
 @app.cell
-def _(ASSET_DIR, mo):
+def _(IMAGE_BASE, mo):
     _header = mo.md(r"""## Reverse Bias Small-Signal Model""")
     _text = mo.md(r"""
     Under reverse bias, the small-signal model simplifies considerably:
@@ -112,7 +112,7 @@ def _(ASSET_DIR, mo):
 
 
     """)
-    _img = mo.image(src=str(ASSET_DIR / "images/smallsig_revbias.png"), width="100%")
+    _img = mo.image(src=f"{IMAGE_BASE}/smallsig_revbias.png", width="100%")
     mo.vstack([
         _header,
         mo.hstack([_text, _img], widths=[0.7, 0.3], align="start"),
@@ -121,7 +121,7 @@ def _(ASSET_DIR, mo):
 
 
 @app.cell
-def _(ASSET_DIR, mo):
+def _(IMAGE_BASE, mo):
     _header = mo.md(r"""## Forward Bias Small-Signal Model""")
     _text = mo.md(r"""
     In addition to depletion capacitance, we must account for **diffusion capacitance** due to minority carriers injected into the N and P regions.
@@ -268,7 +268,7 @@ def _(
     ax1.set_xlabel(r"Applied Voltage $V_A$ (V)", fontsize=14)
     ax1.set_ylabel(r"Capacitance per unit area (nF/cm$^2$)", fontsize=14)
     ax1.set_title(
-        f"Junction and Diffusion Capacitance vs. Voltage\n"
+        f"Depletion (Junction) and Diffusion Capacitance vs. Voltage\n"
         f"($N_A = {_Na:.1e}$, $N_D = {_Nd:.1e}$, "
         rf"$\phi_{{bi}} = {_phi_bi:.3f}$ V, "
         rf"$\tau_s = {_tau_s*1e9:.0f}$ ns)",
@@ -283,8 +283,8 @@ def _(
         f"""
         **At $V_{{DC}} = {_V_DC:.2f}$ V:**
         $\\phi_{{bi}}$ = {_phi_bi:.3f} V,
-        $C_J$ = {_CJ_op*1e9:.3f} nF/cm$^2$,
-        $C_d$ = {_Cd_op*1e9:.3e} nF/cm$^2$
+        $C_{dep}$ = {_CJ_op*1e9:.3f} nF/cm$^2$,
+        $C_{diff}$ = {_Cd_op*1e9:.3e} nF/cm$^2$
         """
         if -1 <= _V_DC <= min(0.95 * _phi_bi, 0.7)
         else f"**$V_{{DC}} = {_V_DC:.2f}$ V is outside valid range.**"

@@ -283,8 +283,8 @@ def _(
         f"""
         **At $V_{{DC}} = {_V_DC:.2f}$ V:**
         $\\phi_{{bi}}$ = {_phi_bi:.3f} V,
-        $C_{dep}$ = {_CJ_op*1e9:.3f} nF/cm$^2$,
-        $C_{diff}$ = {_Cd_op*1e9:.3e} nF/cm$^2$
+        $C_J$ = {_CJ_op*1e9:.3f} nF/cm$^2$,
+        $C_d$ = {_Cd_op*1e9:.3e} nF/cm$^2$
         """
         if -1 <= _V_DC <= min(0.95 * _phi_bi, 0.7)
         else f"**$V_{{DC}} = {_V_DC:.2f}$ V is outside valid range.**"
@@ -295,11 +295,12 @@ def _(
         f" → J₀ = I₀ / A = {_Js_eff:.2e} A/cm²"
     )
 
+    plt.close(fig)
     mo.vstack([
         mo.md("## Interactive: Capacitance vs. Voltage"),
         controls,
         _conversion_note,
-        plt.gca(),
+        mo.as_html(fig),
         _info,
     ])
     return

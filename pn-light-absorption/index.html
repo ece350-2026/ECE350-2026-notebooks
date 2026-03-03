@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>pn applications</title>
+    <script type="module" crossorigin src="./assets/index-xckvhXGM.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-reX6CfMN.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-nlQpVU_5.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-BfqzeB_k.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-Bj1aDYRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-B3qBwwSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-BttUhiRM.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-Duqg7hNv.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-B3HCnU20.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-DOOm_ggu.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-CSu739Rf.js">
+    <link rel="modulepreload" crossorigin href="./assets/Combination-CdkqT4eF.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-BrytomlJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-HoBrI5Oq.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-C5NDK5NL.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-CAiA4SIb.js">
+    <link rel="modulepreload" crossorigin href="./assets/x-CvUjX6Qu.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-BvXsf3Xf.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-D13BIptq.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-CAzHts2e.js">
+    <link rel="modulepreload" crossorigin href="./assets/_Uint8Array-BGESiCQL.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseIsEqual-B9N9Mw_N.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-BhXAndur.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-CAG_dYON.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFor-Duhs3RiJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-BBX6ug-N.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-H_cgTO0M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-Cul5vKXJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-C3YDyEAR.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-BW_8PQB5.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-ODyALcIJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-B6Cb__3x.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-BH_ggR75.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-BHy9GZrJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-DqPjMMrg.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BGkTcW3U.js">
+    <link rel="modulepreload" crossorigin href="./assets/toString-DlRqgfqz.js">
+    <link rel="modulepreload" crossorigin href="./assets/_hasUnicode-CWqKLxBC.js">
+    <link rel="modulepreload" crossorigin href="./assets/assertNever-eF2N5g4Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/_arrayReduce-TT0iOGKY.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-CKk7uG4E.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-CGCAoh-I.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-BHn95Ieq.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-BF7GI0Uf.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-DTeDSdGM.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-DhUZtGnB.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-gUC_uwid.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-m6mzfYjs.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DvlYinQM.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-D9xGHqiw.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Dw5p3QBM.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-ChjglRRU.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DAxpo7DH.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Sapk1n6W.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Dq6dViu8.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Bsp55hDJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-iJ-Q_35P.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-D_5B1mPf.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-BFk44HyO.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseProperty-NKyJO2oh.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-6sUe0ZdD.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-B3mjKxHe.js">
+    <link rel="modulepreload" crossorigin href="./assets/toInteger-CDcO32Gx.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-DjyjptVG.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-Drs5hZkn.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-BvQJ_wGv.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-BBkRPIE-.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-Cez-Jqdk.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-BjqFXaqX.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-CxD_4JZI.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-DpJiiIXp.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-CfaU7is9.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-Djvdl92y.js">
+    <link rel="modulepreload" crossorigin href="./assets/card-Cl7Rwjou.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-Btfo5nE7.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-BY1JTkTv.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Cka1pjxF.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-DjfzNSto.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-WGQaRdB8.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-DIGVRG-E.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-C8M1-yNT.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-CkFAAHXw.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-DoXuYYBM.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-DBQ_eVX1.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-a6K9HmSS.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-lGnR5jA2.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-BJkZcoxM.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-Ds94yD5w.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-C3e8vdXY.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-CP7epTk0.js">
+    <link rel="modulepreload" crossorigin href="./assets/mode-COhtYT4e.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-BwpzRwt1.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-CZb6hI2x.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-ClreFLcv.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-fZotD7fi.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-BCOZVFBt.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-6uJrSKbw.js">
+    <link rel="modulepreload" crossorigin href="./assets/capitalize-O1rWkjI6.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-CmJTXGCp.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-lLt9OnHP.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-g2lXkmkk.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-xM9f8S8N.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-CEPiiwZT.js">
+    <link rel="modulepreload" crossorigin href="./assets/ai-model-dropdown-BC0cdhi9.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-YxeC1tYk.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-CC3g-1mL.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-BgG6rTtO.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-BR6dmQ_3.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-DuBjDOOi.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-CL8ByR73.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-BPxx1pVW.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-BcWA2M3r.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-HggHOhac.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-ow4Y3Yl7.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-D0hcaf71.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-DDh0mN6J.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-DQ4_WQe7.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-DvPYLUI8.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-CPRFg4kn.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-Bd0XX4es.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-BuHQ2zZJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/katex-bTFStUqL.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-Dyy86-0S.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-D2UvWA5R.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-FoG6dAm7.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-DCLlGGDx.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-CPiHmTAE.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-BtyszmRY.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-C-JfwMug.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-DekCK0sB.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-DyCX-qVi.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-B3O42hgP.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-CeHtKOEz.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-BNf8B88H.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-C9xCLRj9.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-C4tLsq6-.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-D2wb2n1M.js">
+    <link rel="modulepreload" crossorigin href="./assets/range-D2UKkEg-.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-CqXVb6os.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-Cf8A51yY.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeleteCell-87_Oh8sv.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-iU3GgPzu.js">
+    <link rel="modulepreload" crossorigin href="./assets/process-output-WvCcApgB.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-CTort_or.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-B0M-wzEz.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-CP9RsJ4O.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-BH6mbfdw.js">
+    <link rel="modulepreload" crossorigin href="./assets/play-BqVslMWT.js">
+    <link rel="modulepreload" crossorigin href="./assets/add-cell-with-ai-BCTdiv0p.js">
+    <link rel="modulepreload" crossorigin href="./assets/isEmpty-CgX_-6Mt.js">
+    <link rel="modulepreload" crossorigin href="./assets/bot-message-square-BNUYewXt.js">
+    <link rel="modulepreload" crossorigin href="./assets/chat-display-Bvu3qbng.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-BXq2PuKd.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-anVqGjs0.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-D4b3DLJL.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-CJ3a0IPi.js">
+    <link rel="modulepreload" crossorigin href="./assets/toggle-CUhRontP.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-g_NWGBtF.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-ZGgmy4Y2.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-5Rdwpmr3.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-DzNEmH2W.js">
+    <link rel="modulepreload" crossorigin href="./assets/utilities.esm-C57m8aJQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-D3kzMiv3.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-DWpYLvcR.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-D6Gma1GF.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-ZwGAfelJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-video-camera-o8CZtjRQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-B0GfsfZC.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-ClD7bKJN.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-DISpbGyw.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-0rGb7K7u.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-YzhJ5RKx.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-BharaTWq.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-B02j-0zo.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-dQH5VuL1.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-BAwLP160.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-CycJImp8.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFlatten-CUZNxU8H.js">
+    <link rel="modulepreload" crossorigin href="./assets/flatten-D-7VEN0q.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-B_6Qi5aM.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-CAMyACkU.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-Jiq5cuc9.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-H4PcQmi-.js">
+    <link rel="modulepreload" crossorigin href="./assets/settings-CfA0GMiv.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-CvMga-X6.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DHVzmQ5n.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">%23%20%2F%2F%2F%20script%0A%23%20requires-python%20%3D%20%22%3E%3D3.11%22%0A%23%20dependencies%20%3D%20%5B%0A%23%20%20%20%20%20%22marimo%22%2C%0A%23%20%20%20%20%20%22numpy%3D%3D2.4.1%22%2C%0A%23%20%20%20%20%20%22matplotlib%3D%3D3.10.8%22%2C%0A%23%20%5D%0A%23%20%2F%2F%2F%0A%0Aimport%20marimo%0A%0A__generated_with%20%3D%20%220.20.2%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20matplotlib.pyplot%20as%20plt%0A%20%20%20%20from%20pathlib%20import%20Path%0A%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20_test%20%3D%20Path(__file__).parent%20%2F%20%22images%22%0A%20%20%20%20%20%20%20%20if%20_test.exists()%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20ASSET_DIR%20%3D%20Path(__file__).parent%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20raise%20FileNotFoundError%0A%20%20%20%20except%20Exception%3A%0A%20%20%20%20%20%20%20%20ASSET_DIR%20%3D%20None%0A%0A%20%20%20%20IMAGE_BASE%20%3D%20%22https%3A%2F%2Fjoyce-poon.github.io%2FECE350%2Fpn-light-absorption%2Fimages%22%20if%20ASSET_DIR%20is%20None%20else%20str(ASSET_DIR%20%2F%20%22images%22)%0A%0A%20%20%20%20%23%20Physical%20constants%0A%20%20%20%20q%20%3D%201.6e-19%20%20%20%20%20%20%20%23%20C%0A%20%20%20%20k%20%3D%201.381e-23%20%20%20%20%20%23%20J%2FK%0A%20%20%20%20h%20%3D%206.626e-34%20%20%20%20%20%23%20J%C2%B7s%0A%20%20%20%20c%20%3D%203.0e8%20%20%20%20%20%20%20%20%20%23%20m%2Fs%0A%20%20%20%20kT_300%20%3D%200.02585%20%20%23%20eV%20at%20300K%0A%0A%20%20%20%20mo.md(%0A%20%20%20%20%20%20%20%20r%22%22%22%0A%20%20%20%20%20%20%20%20%23%20PN%20Junction%3A%20Light%20absorption%0A%0A%20%20%20%20%20%20%20%20**ECE350%2C%20Lecture%2023**%0A%0A%20%20%20%20%20%20%20%20This%20interactive%20notebook%20explores%20how%20optical%20absorption%20changes%20the%20IV%20relation%20of%20the%20PN%20junction.%20This%20has%20applications%20in%20photodetectors%20and%20solar%20cells.%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20)%0A%20%20%20%20return%20IMAGE_BASE%2C%20k%2C%20mo%2C%20np%2C%20plt%2C%20q%0A%0A%0A%40app.cell%0Adef%20_(IMAGE_BASE%2C%20mo)%3A%0A%20%20%20%20_header%20%3D%20mo.md(r%22%22%22%23%23%23%20Light%20Absorption%20in%20a%20PN%20Junction%22%22%22)%0A%20%20%20%20_text%20%3D%20mo.md(r%22%22%22%0A%20%20%20%20-%20Absorbed%20photons%20with%20%24E_%7Bph%7D%20%3D%20hc%2F%5Clambda%20%3E%20E_g%24%20create%20electron-hole%20pairs%0A%0A%20%20%20%20-%20If%20the%20electrons%20and%20holes%20are%20created%20in%20and%20near%20the%20depletion%20layer%2C%20the%20built-in%20%24%5Cmathcal%7BE%7D%24-field%20sweeps%20out%20the%20generated%20carriers%0A%0A%20%20%20%20-%20This%20creates%20a%20current%2C%20called%20**short%20circuit%20current**%2C%20%24I_%7BSC%7D%24%0A%20%20%20%20%20%20%20%20-%20%24I_%7BSC%7D%24%20is%20when%20load%20has%20zero%20impedance%0A%0A%20%20%20%20%24%24I%20%3D%20I_0(e%5E%7BqV%2FkT%7D%20-%201)%20-%20I_%7BSC%7D%24%24%0A%20%20%20%20%22%22%22)%0A%20%20%20%20_img%20%3D%20mo.image(src%3Df%22%7BIMAGE_BASE%7D%2Flight-abs-PN.png%22%2C%20width%3D%22100%25%22)%0A%20%20%20%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20_header%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5B_text%2C%20_img%5D%2C%20widths%3D%5B0.5%2C%200.5%5D%2C%20align%3D%22start%22)%2C%0A%20%20%20%20%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%23%20Derivation%3A%20I-V%20with%20Optical%20Generation%0A%0A%20%20%20%20We%20modify%20the%20continuity%20equation%20by%20adding%20a%20uniform%20generation%20rate%20%24G%24%20%5Bs%24%5E%7B-1%7D%24cm%24%5E%7B-3%7D%24%5D%20for%20both%20electrons%20and%20holes%3A%0A%0A%20%20%20%20%24%24%5Cfrac%7BdJ_p%7D%7Bdx%7D%20%3D%20-q%5Cfrac%7Bp'%7D%7B%5Ctau_p%7D%20%2B%20qG%24%24%0A%0A%20%20%20%20For%20diffusion%20current%20%24J_p%20%3D%20-qD_p%20%5Cdfrac%7Bdp%7D%7Bdx%7D%24%2C%20the%20minority%20carrier%20(holes%20on%20the%20N-side)%20continuity%20equation%20becomes%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cfrac%7Bd%5E2%20p'_N%7D%7Bdx%5E2%7D%20%3D%20%5Cfrac%7Bp'_N%7D%7BL_p%5E2%7D%20-%20%5Cfrac%7BG%7D%7BD_p%7D%7D%24%24%0A%0A%20%20%20%20Similarly%20for%20electrons%20on%20the%20P-side%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7B%5Cfrac%7Bd%5E2%20n'_P%7D%7Bdx%5E2%7D%20%3D%20%5Cfrac%7Bn'_P%7D%7BL_n%5E2%7D%20-%20%5Cfrac%7BG%7D%7BD_n%7D%7D%24%24%0A%0A%20%20%20%20---%0A%0A%20%20%20%20**Finding%20%24I_%7BSC%7D%24**%20(set%20%24V%20%3D%200%24%20across%20the%20diode)%3A%0A%0A%20%20%20%20%24I_%7BSC%7D%24%20is%20the%20short%20circuit%20current.%0A%0A%20%20%20%20Solve%20for%20holes%20on%20the%20N-side%20(%24x_n%20%3C%20x%20%3C%20%5Cinfty%24)%20with%20boundary%20conditions%3A%0A%0A%20%20%20%20%24%24p'_N(x_n)%20%3D%20p_%7BN0%7D(e%5E%7BqV%2FkT%7D%20-%201)%20%3D%200%20%5Cquad%20%5Ctext%7B(at%20%7D%20V%20%3D%200%5Ctext%7B)%7D%24%24%0A%0A%20%20%20%20%24%24p'_N(%5Cinfty)%20%3D%20%5Cfrac%7BG%7D%7BD_p%7DL_p%5E2%20%3D%20%5Ctau_p%20G%20%5Cquad%20%5Cleft(%5Ctext%7Bset%20%7D%20%5Cfrac%7Bd%5E2%20p'%7D%7Bdx%5E2%7D%20%3D%200%5Cright)%24%24%0A%0A%20%20%20%20The%20solution%20is%3A%0A%0A%20%20%20%20%24%24p'_N(x)%20%3D%20%5Ctau_p%20G%5C!%5Cleft(1%20-%20e%5E%7B-(x%20-%20x_n)%2FL_p%7D%5Cright)%24%24%0A%0A%20%20%20%20The%20hole%20diffusion%20current%20at%20%24x%20%3D%20x_n%24%3A%0A%0A%20%20%20%20%24%24J_%7Bp%2C%5Ctext%7Bdiff%7D%7D(x_n)%20%3D%20-qD_p%20%5Cfrac%7Bdp'_N%7D%7Bdx%7D%5Cbigg%7C_%7Bx_n%7D%20%3D%20q%5Cfrac%7BD_p%7D%7BL_p%7D%5Ctau_p%20G%20%3D%20qL_p%20G%24%24%0A%0A%20%20%20%20Therefore%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7BI_%7Bp%2CSC%7D%20%3D%20AqL_p%20G%7D%24%24%0A%0A%20%20%20%20Similarly%20for%20electrons%3A%20%24I_%7Bn%2CSC%7D%20%3D%20AqL_n%20G%24.%20The%20total%20short-circuit%20current%20is%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7BI_%7BSC%7D%20%3D%20Aq(L_p%20%2B%20L_n)G%7D%24%24%0A%0A%20%20%20%20---%0A%0A%20%20%20%20**Full%20I-V%20relation%20under%20illumination%3A**%0A%0A%20%20%20%20By%20superposition%20of%20the%20dark%20diode%20current%20and%20the%20photocurrent%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7BI%20%3D%20I_0%5C!%5Cleft(e%5E%7BqV%2FkT%7D%20-%201%5Cright)%20-%20Aq(L_p%20%2B%20L_n)G%7D%24%24%0A%0A%20%20%20%20where%20the%20second%20term%20is%20%24I_%7BSC%7D%24.%0A%0A%20%20%20%20**Open-circuit%20voltage**%20(set%20%24I%20%3D%200%24)%3A%0A%0A%20%20%20%20%24%24%5Cboxed%7BV_%7BOC%7D%20%5Capprox%20%5Cfrac%7BkT%7D%7Bq%7D%5Cln%5C!%5Cleft%5B%5Cfrac%7BAqG%7D%7BI_0%7D(L_p%20%2B%20L_n)%5Cright%5D%7D%24%24%0A%0A%20%20%20%20where%20%24I_0%20%3D%20qA%5C!%5Cleft(%5Cdfrac%7BD_n%20n_i%5E2%7D%7BL_n%20N_a%7D%20%2B%20%5Cdfrac%7BD_p%20n_i%5E2%7D%7BL_p%20N_d%7D%5Cright)%24.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20intensity_slider%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20start%3D0.1%2C%20stop%3D5.0%2C%20step%3D0.1%2C%20value%3D1.0%2C%0A%20%20%20%20%20%20%20%20label%3Dr%22Intensity%20(mW%2Fmm%C2%B2)%22%2C%20show_value%3DTrue%2C%0A%20%20%20%20)%0A%20%20%20%20wavelength_slider%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20start%3D400%2C%20stop%3D1100%2C%20step%3D10%2C%20value%3D800%2C%0A%20%20%20%20%20%20%20%20label%3Dr%22%24%5Clambda%24%20(nm)%22%2C%20show_value%3DTrue%2C%0A%20%20%20%20)%0A%20%20%20%20absorption_slider%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20start%3D5%2C%20stop%3D100%2C%20step%3D5%2C%20value%3D80%2C%0A%20%20%20%20%20%20%20%20label%3Dr%22Absorption%20(%25)%22%2C%20show_value%3DTrue%2C%0A%20%20%20%20)%0A%20%20%20%20Ldiff_slider%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20start%3D10%2C%20stop%3D500%2C%20step%3D10%2C%20value%3D200%2C%0A%20%20%20%20%20%20%20%20label%3Dr%22%24L_p%20%3D%20L_n%24%20(%CE%BCm)%22%2C%20show_value%3DTrue%2C%0A%20%20%20%20)%0A%20%20%20%20I0_slider%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20start%3D-12%2C%20stop%3D-8%2C%20step%3D0.5%2C%20value%3D-10%2C%0A%20%20%20%20%20%20%20%20label%3Dr%22log%E2%82%81%E2%82%80(%24I_0%24)%20%5BA%5D%22%2C%20show_value%3DTrue%2C%0A%20%20%20%20)%0A%20%20%20%20T_slider%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20start%3D250%2C%20stop%3D400%2C%20value%3D300%2C%20step%3D5%2C%0A%20%20%20%20%20%20%20%20label%3Dr%22%24T%24%20(K)%22%2C%20show_value%3DTrue%2C%0A%20%20%20%20)%0A%20%20%20%20solar_controls%20%3D%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.md(%22%23%23%23%20Interactive%20Controls%22)%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5Bintensity_slider%2C%20wavelength_slider%2C%20absorption_slider%5D)%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5BLdiff_slider%2C%20I0_slider%2C%20T_slider%5D)%2C%0A%20%20%20%20%5D)%0A%20%20%20%20return%20(%0A%20%20%20%20%20%20%20%20I0_slider%2C%0A%20%20%20%20%20%20%20%20Ldiff_slider%2C%0A%20%20%20%20%20%20%20%20T_slider%2C%0A%20%20%20%20%20%20%20%20absorption_slider%2C%0A%20%20%20%20%20%20%20%20intensity_slider%2C%0A%20%20%20%20%20%20%20%20solar_controls%2C%0A%20%20%20%20%20%20%20%20wavelength_slider%2C%0A%20%20%20%20)%0A%0A%0A%40app.cell%0Adef%20_(%0A%20%20%20%20I0_slider%2C%0A%20%20%20%20Ldiff_slider%2C%0A%20%20%20%20T_slider%2C%0A%20%20%20%20absorption_slider%2C%0A%20%20%20%20intensity_slider%2C%0A%20%20%20%20k%2C%0A%20%20%20%20mo%2C%0A%20%20%20%20np%2C%0A%20%20%20%20plt%2C%0A%20%20%20%20q%2C%0A%20%20%20%20solar_controls%2C%0A%20%20%20%20wavelength_slider%2C%0A)%3A%0A%20%20%20%20_lam_nm%20%3D%20wavelength_slider.value%0A%20%20%20%20_lam_m%20%3D%20_lam_nm%20*%201e-9%0A%20%20%20%20_intensity_mW_mm2%20%3D%20intensity_slider.value%0A%20%20%20%20_f_abs%20%3D%20absorption_slider.value%20%2F%20100.0%0A%20%20%20%20_L_diff_cm%20%3D%20Ldiff_slider.value%20*%201e-4%0A%20%20%20%20_I0%20%3D%2010%20**%20I0_slider.value%0A%20%20%20%20_T%20%3D%20T_slider.value%0A%20%20%20%20_Vt%20%3D%20k%20*%20_T%20%2F%20q%0A%0A%20%20%20%20_h%20%3D%206.626e-34%0A%20%20%20%20_c%20%3D%203.0e8%0A%20%20%20%20_E_ph_J%20%3D%20_h%20*%20_c%20%2F%20_lam_m%0A%20%20%20%20_E_ph_eV%20%3D%201240.0%20%2F%20_lam_nm%0A%0A%20%20%20%20%23%20Si%20absorption%20coefficient%3A%20lookup%20table%20with%20interpolation%0A%20%20%20%20_alpha_lam%20%3D%20np.array(%5B350%2C%20400%2C%20450%2C%20500%2C%20550%2C%20600%2C%20650%2C%20700%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20750%2C%20800%2C%20850%2C%20900%2C%20950%2C%201000%2C%201050%2C%201100%5D)%0A%20%20%20%20_alpha_val%20%3D%20np.array(%5B1e6%2C%201e5%2C%203e4%2C%201e4%2C%206e3%2C%204e3%2C%203e3%2C%202e3%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%201e3%2C%20800%2C%20400%2C%20150%2C%2050%2C%2020%2C%205%2C%201%5D)%0A%20%20%20%20_log_alpha%20%3D%20np.interp(_lam_nm%2C%20_alpha_lam%2C%20np.log10(_alpha_val))%0A%20%20%20%20_alpha%20%3D%2010%20**%20_log_alpha%20%20%23%20cm%E2%81%BB%C2%B9%0A%20%20%20%20_L_abs_cm%20%3D%201.0%20%2F%20_alpha%0A%0A%20%20%20%20%23%20Intensity%3A%201%20mW%2Fmm%C2%B2%20%3D%200.1%20W%2Fcm%C2%B2%0A%20%20%20%20_P_opt_W_cm2%20%3D%20_intensity_mW_mm2%20*%200.1%0A%0A%20%20%20%20%23%20Photon%20flux%3A%20%CE%A6%20%3D%20P_opt%20%2F%20E_ph%0A%20%20%20%20_Phi%20%3D%20_P_opt_W_cm2%20%2F%20_E_ph_J%20%20%23%20photons%2Fcm%C2%B2%2Fs%0A%0A%20%20%20%20%23%20Average%20generation%20rate%3A%20G%20%3D%20(f_abs%20%C3%97%20%CE%A6%20%2F%20L)(1%20-%20e%5E%7B-%CE%B1L%7D)%2C%20L%20%3D%201%2F%CE%B1%0A%20%20%20%20_L%20%3D%20_L_abs_cm%20%20%23%20absorption%20length%20%3D%201%2F%CE%B1%0A%20%20%20%20_G%20%3D%20(_f_abs%20*%20_Phi%20%2F%20_L)%20*%20(1%20-%20np.exp(-_alpha%20*%20_L))%20%20%23%20cm%E2%81%BB%C2%B3%20s%E2%81%BB%C2%B9%0A%0A%20%20%20%20%23%20Device%20area%20%3D%201%20mm%C2%B2%20%3D%201e-2%20cm%C2%B2%0A%20%20%20%20_A%20%3D%201e-2%20%20%23%20cm%C2%B2%0A%0A%20%20%20%20%23%20I_SC%20%3D%20A%20q%20(L_p%20%2B%20L_n)%20G%2C%20with%20L_p%20%3D%20L_n%20%3D%20L_diff%0A%20%20%20%20_Isc%20%3D%20_A%20*%20q%20*%20(2%20*%20_L_diff_cm)%20*%20_G%0A%0A%20%20%20%20_Voc%20%3D%20_Vt%20*%20np.log(_Isc%20%2F%20_I0%20%2B%201)%20if%20_Isc%20%3E%200%20else%200%0A%0A%20%20%20%20%23%20---%20I-V%20curve%20---%0A%20%20%20%20_V%20%3D%20np.linspace(-0.5%2C%200.8%2C%201000)%0A%20%20%20%20_exp_term%20%3D%20np.exp(np.clip(_V%20%2F%20_Vt%2C%20-40%2C%2040))%20-%201%0A%20%20%20%20_I_dark%20%3D%20_I0%20*%20_exp_term%0A%20%20%20%20_I_illum%20%3D%20_I0%20*%20_exp_term%20-%20_Isc%0A%0A%20%20%20%20_V_pos%20%3D%20np.linspace(0%2C%200.8%2C%201000)%0A%20%20%20%20_exp_pos%20%3D%20np.exp(np.clip(_V_pos%20%2F%20_Vt%2C%200%2C%2040))%20-%201%0A%20%20%20%20_I_illum_pos%20%3D%20_I0%20*%20_exp_pos%20-%20_Isc%0A%20%20%20%20_P_curve%20%3D%20-_I_illum_pos%20*%20_V_pos%0A%20%20%20%20_idx_mpp%20%3D%20np.argmax(_P_curve)%0A%20%20%20%20_V_mpp%20%3D%20_V_pos%5B_idx_mpp%5D%0A%20%20%20%20_I_mpp%20%3D%20_I_illum_pos%5B_idx_mpp%5D%0A%20%20%20%20_P_max%20%3D%20_P_curve%5B_idx_mpp%5D%0A%20%20%20%20_FF%20%3D%20_P_max%20%2F%20(_Voc%20*%20_Isc)%20if%20(_Voc%20*%20_Isc)%20%3E%200%20else%200%0A%0A%20%20%20%20_y_upper%20%3D%20max(_Isc%20*%201e3%20*%200.3%2C%205)%0A%20%20%20%20_fig%2C%20_ax%20%3D%20plt.subplots(figsize%3D(10%2C%206))%0A%0A%20%20%20%20_I_dark_display%20%3D%20np.clip(_I_dark%20*%201e3%2C%20-100%2C%20_y_upper%20*%202)%0A%20%20%20%20_ax.plot(_V%20*%201e3%2C%20_I_dark_display%2C%20%22b--%22%2C%20linewidth%3D1.5%2C%20alpha%3D0.6%2C%20label%3D%22Dark%20I%E2%80%93V%22)%0A%20%20%20%20_ax.plot(_V%20*%201e3%2C%20_I_illum%20*%201e3%2C%20%22b-%22%2C%20linewidth%3D2.5%2C%20label%3D%22Illuminated%20I%E2%80%93V%22)%0A%0A%20%20%20%20_ax.plot(_Voc%20*%201e3%2C%200%2C%20%22ro%22%2C%20markersize%3D10%2C%20zorder%3D5)%0A%20%20%20%20_ax.plot(0%2C%20-_Isc%20*%201e3%2C%20%22go%22%2C%20markersize%3D10%2C%20zorder%3D5)%0A%0A%20%20%20%20if%20_P_max%20%3E%200%3A%0A%20%20%20%20%20%20%20%20_ax.plot(_V_mpp%20*%201e3%2C%20_I_mpp%20*%201e3%2C%20%22m*%22%2C%20markersize%3D15%2C%20zorder%3D5%2C%20label%3D%22Maximum%20power%22)%0A%20%20%20%20%20%20%20%20_rect%20%3D%20plt.Rectangle(%0A%20%20%20%20%20%20%20%20%20%20%20%20(0%2C%20_I_mpp%20*%201e3)%2C%20_V_mpp%20*%201e3%2C%20-_I_mpp%20*%201e3%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20alpha%3D0.15%2C%20color%3D%22orange%22%2C%20label%3Df%22%24P_%7B%7Bmax%7D%7D%24%20%3D%20%7B_P_max%20*%201e3%3A.2e%7D%20mW%22%2C%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20_ax.add_patch(_rect)%0A%0A%20%20%20%20_ax.axhline(0%2C%20color%3D%22gray%22%2C%20linewidth%3D0.5)%0A%20%20%20%20_ax.axvline(0%2C%20color%3D%22gray%22%2C%20linewidth%3D0.5)%0A%0A%20%20%20%20_y_min%20%3D%20min(min(_I_illum%20*%201e3)%20*%201.15%2C%20-1)%0A%20%20%20%20_ax.set_xlim(-500%2C%20800)%0A%20%20%20%20_ax.set_ylim(_y_min%2C%20_y_upper)%0A%0A%20%20%20%20_ax.fill_between(%5B0%2C%20800%5D%2C%20_y_min%2C%200%2C%20alpha%3D0.06%2C%20color%3D%22green%22%2C%20zorder%3D0)%0A%20%20%20%20_ax.text(%0A%20%20%20%20%20%20%20%20_Voc%20*%201e3%20*%200.45%20if%20_Voc%20%3E%200%20else%20200%2C%20_y_min%20*%200.55%2C%0A%20%20%20%20%20%20%20%20%22Photovoltaic%5Cn(power%20generation)%22%2C%0A%20%20%20%20%20%20%20%20fontsize%3D13%2C%20fontweight%3D%22bold%22%2C%20color%3D%22green%22%2C%0A%20%20%20%20%20%20%20%20ha%3D%22center%22%2C%20va%3D%22center%22%2C%20alpha%3D0.7%2C%0A%20%20%20%20)%0A%20%20%20%20_ax.fill_between(%5B-500%2C%200%5D%2C%20_y_min%2C%200%2C%20alpha%3D0.06%2C%20color%3D%22purple%22%2C%20zorder%3D0)%0A%20%20%20%20_ax.text(%0A%20%20%20%20%20%20%20%20-250%2C%20_y_min%20*%200.55%2C%0A%20%20%20%20%20%20%20%20%22Photodetector%5Cn(reverse%20bias)%22%2C%0A%20%20%20%20%20%20%20%20fontsize%3D13%2C%20fontweight%3D%22bold%22%2C%20color%3D%22purple%22%2C%0A%20%20%20%20%20%20%20%20ha%3D%22center%22%2C%20va%3D%22center%22%2C%20alpha%3D0.7%2C%0A%20%20%20%20)%0A%0A%20%20%20%20_ax.set_xlabel(%22Voltage%20(mV)%22%2C%20fontsize%3D16)%0A%20%20%20%20_ax.set_ylabel(%22Current%20(mA)%22%2C%20fontsize%3D16)%0A%20%20%20%20_ax.set_title(%0A%20%20%20%20%20%20%20%20r%22Illuminated%20Si%20Diode%3A%20%24I%20%3D%20I_0(e%5E%7BqV%2FkT%7D%20-%201)%20-%20I_%7BSC%7D%24%22%2C%0A%20%20%20%20%20%20%20%20fontsize%3D14%2C%20fontweight%3D%22bold%22%2C%0A%20%20%20%20)%0A%20%20%20%20_ax.text(%0A%20%20%20%20%20%20%20%200.98%2C%200.12%2C%0A%20%20%20%20%20%20%20%20f%22%E2%97%8F%20%24V_%7B%7BOC%7D%7D%24%20%3D%20%7B_Voc%20*%201e3%3A.1f%7D%20mV%22%2C%0A%20%20%20%20%20%20%20%20transform%3D_ax.transAxes%2C%20fontsize%3D12%2C%20fontweight%3D%22bold%22%2C%0A%20%20%20%20%20%20%20%20ha%3D%22right%22%2C%20va%3D%22bottom%22%2C%20color%3D%22red%22%2C%0A%20%20%20%20)%0A%20%20%20%20_ax.text(%0A%20%20%20%20%20%20%20%200.98%2C%200.05%2C%0A%20%20%20%20%20%20%20%20f%22%E2%97%8F%20%24I_%7B%7BSC%7D%7D%24%20%3D%20%7B_Isc%20*%201e3%3A.2f%7D%20mA%22%2C%0A%20%20%20%20%20%20%20%20transform%3D_ax.transAxes%2C%20fontsize%3D12%2C%20fontweight%3D%22bold%22%2C%0A%20%20%20%20%20%20%20%20ha%3D%22right%22%2C%20va%3D%22bottom%22%2C%20color%3D%22green%22%2C%0A%20%20%20%20)%0A%20%20%20%20_ax.legend(fontsize%3D11%2C%20loc%3D%22lower%20left%22)%0A%20%20%20%20_ax.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20plt.tight_layout()%0A%0A%20%20%20%20_below_gap%20%3D%20%22%20**(below%20Si%20bandgap!)**%22%20if%20_E_ph_eV%20%3C%201.12%20else%20%22%22%0A%20%20%20%20_beer_lambert_factor%20%3D%201%20-%20np.exp(-_alpha%20*%20_L)%0A%0A%20%20%20%20_info%20%3D%20mo.md(%0A%20%20%20%20%20%20%20%20f%22%22%22%0A%20%20%20%20%20%20%20%20**Assumed%20parameters%3A**%20Device%20area%20%24A%24%20%3D%201%20mm%C2%B2%20%3D%2010%E2%81%BB%C2%B2%20cm%C2%B2%2C%20%24L_p%20%3D%20L_n%24%20%3D%20%7BLdiff_slider.value%7D%20%CE%BCm%0A%0A%20%20%20%20%20%20%20%20**Equations%20used%3A**%0A%0A%20%20%20%20%20%20%20%20%24%24%5C%5CPhi%20%3D%20%5C%5Cfrac%7B%7BP_%7B%7Bopt%7D%7D%7D%7D%7B%7BE_%7B%7Bph%7D%7D%7D%7D%20%3D%20%5C%5Cfrac%7B%7BP_%7B%7Bopt%7D%7D%7D%7D%7B%7Bhc%2F%5C%5Clambda%7D%7D%24%24%0A%0A%20%20%20%20%20%20%20%20%24%24G_%7B%7Bavg%7D%7D%20%3D%20%5C%5Cfrac%7B%7Bf_%7B%7Babs%7D%7D%20%5C%5Ccdot%20%5C%5CPhi%7D%7D%7B%7BL%7D%7D%5C%5Cleft(1%20-%20e%5E%7B%7B-%5C%5Calpha%20L%7D%7D%5C%5Cright)%2C%20%5C%5Cquad%20L%20%3D%201%2F%5C%5Calpha%24%24%0A%0A%20%20%20%20%20%20%20%20%24%24I_%7B%7BSC%7D%7D%20%3D%20Aq(L_p%20%2B%20L_n)%5C%5C%2CG_%7B%7Bavg%7D%7D%2C%20%5C%5Cquad%20V_%7B%7BOC%7D%7D%20%3D%20%5C%5Cfrac%7B%7BkT%7D%7D%7B%7Bq%7D%7D%5C%5Cln%5C%5C!%5C%5Cleft(%5C%5Cfrac%7B%7BI_%7B%7BSC%7D%7D%7D%7D%7B%7BI_0%7D%7D%20%2B%201%5C%5Cright)%24%24%0A%0A%20%20%20%20%20%20%20%20%7C%20Quantity%20%7C%20Expression%20%7C%20Value%20%7C%0A%20%20%20%20%20%20%20%20%7C%3A---------%7C%3A-----------%7C------%3A%7C%0A%20%20%20%20%20%20%20%20%7C%20Photon%20energy%20%24E_%7B%7Bph%7D%7D%24%20%7C%20%24hc%2F%5C%5Clambda%24%20%7C%20%7B_E_ph_eV%3A.3f%7D%20eV%7B_below_gap%7D%20%7C%0A%20%20%20%20%20%20%20%20%7C%20Si%20absorption%20coeff.%20%24%5C%5Calpha%24%20%7C%20lookup%20at%20%24%5C%5Clambda%24%20%3D%20%7B_lam_nm%7D%20nm%20%7C%20%7B_alpha%3A.2e%7D%20cm%E2%81%BB%C2%B9%20%7C%0A%20%20%20%20%20%20%20%20%7C%20Absorption%20length%20%24L%20%3D%201%2F%5C%5Calpha%24%20%7C%20%7C%20%7B_L_abs_cm*1e4%3A.1f%7D%20%CE%BCm%20%7C%0A%20%20%20%20%20%20%20%20%7C%20Photon%20flux%20%24%5C%5CPhi%24%20%7C%20%24P_%7B%7Bopt%7D%7D%20%2F%20E_%7B%7Bph%7D%7D%24%20%7C%20%7B_Phi%3A.2e%7D%20cm%E2%81%BB%C2%B2%20s%E2%81%BB%C2%B9%20%7C%0A%20%20%20%20%20%20%20%20%7C%20Beer%E2%80%93Lambert%20factor%20%7C%20%241%20-%20e%5E%7B%7B-%5C%5Calpha%20L%7D%7D%24%20%7C%20%7B_beer_lambert_factor%3A.4f%7D%20%7C%0A%20%20%20%20%20%20%20%20%7C%20Generation%20rate%20%24G_%7B%7Bavg%7D%7D%24%20%7C%20%24(f_%7B%7Babs%7D%7D%20%5C%5Ccdot%20%5C%5CPhi%20%2F%20L)(1%20-%20e%5E%7B%7B-%5C%5Calpha%20L%7D%7D)%24%20%7C%20%7B_G%3A.2e%7D%20cm%E2%81%BB%C2%B3%20s%E2%81%BB%C2%B9%20%7C%0A%20%20%20%20%20%20%20%20%7C%20%24I_%7B%7BSC%7D%7D%24%20%7C%20%24Aq(L_p%20%2B%20L_n)G%24%20%7C%20%7B_Isc*1e3%3A.3f%7D%20mA%20%7C%0A%20%20%20%20%20%20%20%20%7C%20%24V_%7B%7BOC%7D%7D%24%20%7C%20%24(kT%2Fq)%5C%5Cln(I_%7B%7BSC%7D%7D%2FI_0%20%2B%201)%24%20%7C%20%7B_Voc*1e3%3A.1f%7D%20mV%20%7C%0A%20%20%20%20%20%20%20%20%7C%20%24P_%7B%7Bmax%7D%7D%24%20%7C%20%7C%20%7B_P_max*1e3%3A.3e%7D%20mW%20%7C%0A%20%20%20%20%20%20%20%20%7C%20Fill%20factor%20%24FF%24%20%7C%20%24P_%7B%7Bmax%7D%7D%2F(V_%7B%7BOC%7D%7D%20%5C%5Ccdot%20I_%7B%7BSC%7D%7D)%24%20%7C%20%7B_FF%3A.3f%7D%20%7C%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20)%0A%0A%20%20%20%20plt.close(_fig)%0A%20%20%20%20mo.vstack(%5Bsolar_controls%2C%20mo.as_html(_fig)%2C%20_info%5D)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "mode": "read",
+            "version": "0.20.2",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": false, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  </body>
+</html>

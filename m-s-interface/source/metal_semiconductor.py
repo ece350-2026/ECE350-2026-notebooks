@@ -66,7 +66,7 @@ def _():
     except Exception:
         ASSET_DIR = None
     IMAGE_BASE = (
-        "https://joyce-poon.github.io/ECE350/metal-semiconductor/images"
+        "https://joyce-poon.github.io/ECE350/m-s-interface/images"
         if ASSET_DIR is None
         else str(ASSET_DIR / "images")
     )

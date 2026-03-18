@@ -10,7 +10,10 @@
 import marimo
 
 __generated_with = "0.20.4"
-app = marimo.App(width="medium")
+app = marimo.App(
+    width="medium",
+    layout_file="layouts/mos_energy_bands.slides.json",
+)
 
 
 @app.cell
@@ -33,8 +36,8 @@ def _():
     Nv_Si = 1.08e19
 
     # Intrinsic level position (NOT at mid-gap)
-    # E_c - E_i = Eg/2 + (kT/2)*ln(Nc/Nv)
-    # E_i - E_v = Eg/2 + (kT/2)*ln(Nv/Nc)
+    # E_c - E_Fi = Eg/2 + (kT/2)*ln(Nc/Nv)
+    # E_Fi - E_v = Eg/2 + (kT/2)*ln(Nv/Nc)
     Ec_minus_Ei = Eg_Si / 2 + kT_300 / 2 * np.log(Nc_Si / Nv_Si)
     Ei_minus_Ev = Eg_Si / 2 + kT_300 / 2 * np.log(Nv_Si / Nc_Si)
 
@@ -99,7 +102,7 @@ def _(mo):
 
     1. **Metal gate** — a conductor (e.g., aluminum, polysilicon)
     2. **Oxide** — a thin insulating layer of SiO$_2$ (typical thickness 2–20 nm)
-    3. **Semiconductor body** — typically p-type silicon (the "substrate" or "body")
+    3. **Semiconductor body** — assume p-type silicon first (the "substrate" or "body")
 
     The MOS capacitor is the heart of the MOSFET, the most important device in modern electronics.
 
@@ -187,8 +190,8 @@ def _(
 
     _ax.text(2.1, _Ec_bulk, '$E_c$', fontsize=14, va='center', color='blue')
     _ax.text(2.1, _Ev_bulk, '$E_v$', fontsize=14, va='center', color='red')
-    _ax.text(2.1, _Ei_bulk, '$E_i$', fontsize=14, va='center', alpha=0.6)
-    _ax.text(2.1, _EF, '$E_F$', fontsize=14, va='center', color='green')
+    _ax.text(2.1, _Ei_bulk, '$E_{Fi}$', fontsize=14, va='center', alpha=0.6)
+    _ax.text(2.1, _EF, '$E_{Fs}$', fontsize=14, va='center', color='green')
     _ax.text(2.1, _Evac, '$E_{vac}$', fontsize=14, va='center')
 
     # Electron affinity annotation
@@ -236,7 +239,7 @@ def _(
     _caption = mo.md(rf"""
     **Flat-band diagram** for an ideal MOS capacitor with p-type Si body ($N_A$ = {_Na:.0e} cm$^{{-3}}$).
 
-    - $\phi_B = E_i - E_{{Fs, bulk}} = (kT/q)\ln(N_A/n_i)$ = {_phi_B:.3f} eV. 
+    - $\phi_B = E_{{Fi}} - E_{{Fs, bulk}} = (kT/q)\ln(N_A/n_i)$ = {_phi_B:.3f} eV. 
     - $\Psi_S = \chi + (E_c - E_{{Fs, bulk}})$ = {_Psi_S:.3f} eV
     - In the ideal MOS, $\Psi_M = \Psi_S$, so  bands are flat at $V_G = 0$.
     - The oxide has a large band gap ($E_g \approx 9$ eV).
@@ -403,8 +406,8 @@ def _(
         if _idx == 3:
             _ax.text(2.6, _Ec_bulk, '$E_c$', fontsize=12, va='center', color='blue')
             _ax.text(2.6, _Ev_bulk, '$E_v$', fontsize=12, va='center', color='red')
-            _ax.text(2.6, _Ei_bulk, '$E_i$', fontsize=12, va='center', alpha=0.6)
-            _ax.text(2.6, _EF, '$E_F$', fontsize=12, va='center', color='green')
+            _ax.text(2.6, _Ei_bulk, '$E_{Fi}$', fontsize=12, va='center', alpha=0.6)
+            _ax.text(2.6, _EF, '$E_{Fs}$', fontsize=12, va='center', color='green')
 
         # phi_s annotation
         if abs(_phi_s) > 0.05:
@@ -415,6 +418,15 @@ def _(
             _ax.plot([_xann - _cap, _xann + _cap], [_Ec_bulk, _Ec_bulk], color='darkgreen', lw=1.5)
             _ax.text(_xann + 0.15, (_Ec_sc[0] + _Ec_bulk) / 2, r'$q\phi_s$',
                      fontsize=12, color='darkgreen', va='center')
+
+        # phi_B annotation (between E_Fi,bulk and E_F in bulk)
+        _cap = 0.06
+        _xpB = 2.0
+        _ax.plot([_xpB, _xpB], [_EF, _Ei_bulk], color='purple', lw=1.2)
+        _ax.plot([_xpB - _cap, _xpB + _cap], [_EF, _EF], color='purple', lw=1.2)
+        _ax.plot([_xpB - _cap, _xpB + _cap], [_Ei_bulk, _Ei_bulk], color='purple', lw=1.2)
+        _ax.text(_xpB + 0.12, (_EF + _Ei_bulk) / 2, r'$q\phi_B$',
+                 fontsize=11, color='purple', va='center')
 
         # V_ox annotation at oxide-metal interface
         if abs(_V_ox_tilt) > 0.01:
@@ -480,9 +492,9 @@ def _(Ec_minus_Ei, Ei_minus_Ev, kT_300, mo, ni_Si, np):
     The **bulk potential** $\phi_B$ measures the separation between the intrinsic level
     and the Fermi level in the bulk:
 
-    $$q\phi_B \equiv E_{{i,\text{{bulk}}}} - E_{{F_s}}$$
+    $$q\phi_B \equiv E_{{Fi,\text{{bulk}}}} - E_{{F_s}}$$
 
-    From the carrier concentration $p = n_i \exp\!\bigl((E_i - E_F)/kT\bigr) = N_A$:
+    From the carrier concentration $p = n_i \exp\!\bigl((E_{{Fi}} - E_F)/kT\bigr) = N_A$:
 
     $$\boxed{{q\phi_B = kT \ln\!\left(\frac{{N_A}}{{n_i}}\right)}}$$
 
@@ -510,17 +522,17 @@ def _(Ec_minus_Ei, Ei_minus_Ev, kT_300, mo, ni_Si, np):
 
     ### Step 3: Connecting to band bending
 
-    Recall the intrinsic level satisfies $E_i - E_v = \frac{{E_g}}{{2}} + \frac{{kT}}{{2}}\ln\!\left(\frac{{N_v}}{{N_c}}\right)$, so:
+    Recall the intrinsic level satisfies $E_{{Fi}} - E_v = \frac{{E_g}}{{2}} + \frac{{kT}}{{2}}\ln\!\left(\frac{{N_v}}{{N_c}}\right)$, so:
 
-    $$E_c - E_i = \frac{{E_g}}{{2}} - \frac{{kT}}{{2}}\ln\!\left(\frac{{N_v}}{{N_c}}\right) = E_g - (E_i - E_v)$$
+    $$E_c - E_{{Fi}} = \frac{{E_g}}{{2}} - \frac{{kT}}{{2}}\ln\!\left(\frac{{N_v}}{{N_c}}\right) = E_g - (E_{{Fi}} - E_v)$$
 
-    Substituting $-kT\ln(N_v/N_c) = (E_c - E_i) - (E_i - E_v)$ into the threshold equation:
+    Substituting $-kT\ln(N_v/N_c) = (E_c - E_{{Fi}}) - (E_{{Fi}} - E_v)$ into the threshold equation:
 
-    $$(E_{{c,\text{{surf}}}} - E_{{F_s}}) - (E_{{F_s}} - E_{{v,\text{{bulk}}}}) = (E_{{c,\text{{bulk}}}} - E_{{i,\text{{bulk}}}}) - (E_{{i,\text{{bulk}}}} - E_{{v,\text{{bulk}}}})$$
+    $$(E_{{c,\text{{surf}}}} - E_{{F_s}}) - (E_{{F_s}} - E_{{v,\text{{bulk}}}}) = (E_{{c,\text{{bulk}}}} - E_{{Fi,\text{{bulk}}}}) - (E_{{Fi,\text{{bulk}}}} - E_{{v,\text{{bulk}}}})$$
 
     Since $E_{{c,\text{{bulk}}}} - E_{{v,\text{{bulk}}}} = E_g$ and $(E_{{c,\text{{surf}}}} - E_{{F_s}}) = (E_{{c,\text{{bulk}}}} - E_{{F_s}}) - q\phi_s$, this simplifies to:
 
-    $$\boxed{{q\phi_s = 2(E_{{i,\text{{bulk}}}} - E_{{F_s}}) = 2 q\phi_B}}$$
+    $$\boxed{{q\phi_s = 2(E_{{Fi,\text{{bulk}}}} - E_{{F_s}}) = 2 q\phi_B}}$$
 
     Therefore the **threshold surface potential** is:
 
@@ -530,16 +542,16 @@ def _(Ec_minus_Ei, Ei_minus_Ev, kT_300, mo, ni_Si, np):
 
     ### Physical meaning
 
-    At flat band, the surface is p-type with $p_s = N_A$ and $E_i$ is above $E_F$ by $q\phi_B$.
+    At flat band, the surface is p-type with $p_s = N_A$ and $E_{{Fi}}$ is above $E_F$ by $q\phi_B$.
 
-    - After bending the bands down by $q\phi_B$, we reach $E_i = E_F$ at the surface — the surface is **intrinsic** ($n_s = p_s = n_i$).
+    - After bending the bands down by $q\phi_B$, we reach $E_{{Fi}} = E_F$ at the surface — the surface is **intrinsic** ($n_s = p_s = n_i$).
     - After bending by another $q\phi_B$ (total $2q\phi_B$), the surface is now as **n-type** as the bulk was p-type: $n_s = N_A$.
 
     This is the **threshold condition**: the surface has been "inverted" from p-type to n-type.
 
     <!--
-    **Note:** $E_c - E_i$ = {Ec_minus_Ei:.4f} eV and $E_i - E_v$ = {Ei_minus_Ev:.4f} eV
-    ($E_i$ is {1000*(Ec_minus_Ei - Ei_minus_Ev)/2:.1f} meV below mid-gap because $N_c > N_v$).
+    **Note:** $E_c - E_{{Fi}}$ = {Ec_minus_Ei:.4f} eV and $E_{{Fi}} - E_v$ = {Ei_minus_Ev:.4f} eV
+    ($E_{{Fi}}$ is {1000*(Ec_minus_Ei - Ei_minus_Ev)/2:.1f} meV below mid-gap because $N_c > N_v$).
     The derivation above uses the exact density-of-states expressions, not the mid-gap approximation.
     -->
     """)
@@ -726,14 +738,14 @@ def _(
     # Semiconductor bands
     _ax.plot(_x_sc, _Ec_sc, 'b-', linewidth=2.5, label='$E_c$')
     _ax.plot(_x_sc, _Ev_sc, 'r-', linewidth=2.5, label='$E_v$')
-    _ax.plot(_x_sc, _Ei_sc, 'k--', linewidth=1, alpha=0.5, label='$E_i$')
-    _ax.plot([0, _x_sc_end], [_EF, _EF], 'g-', linewidth=2, label='$E_F$')
+    _ax.plot(_x_sc, _Ei_sc, 'k--', linewidth=1, alpha=0.5, label='$E_{Fi}$')
+    _ax.plot([0, _x_sc_end], [_EF, _EF], 'g-', linewidth=2, label='$E_{Fs}$')
 
     # Labels
     _ax.text(_x_sc_end + 0.1, _Ec_bulk, '$E_c$', fontsize=14, va='center', color='blue')
     _ax.text(_x_sc_end + 0.1, _Ev_bulk, '$E_v$', fontsize=14, va='center', color='red')
-    _ax.text(_x_sc_end + 0.1, _Ei_bulk, '$E_i$', fontsize=14, va='center', alpha=0.6)
-    _ax.text(_x_sc_end + 0.1, _EF, '$E_F$', fontsize=14, va='center', color='green')
+    _ax.text(_x_sc_end + 0.1, _Ei_bulk, '$E_{Fi}$', fontsize=14, va='center', alpha=0.6)
+    _ax.text(_x_sc_end + 0.1, _EF, '$E_{Fs}$', fontsize=14, va='center', color='green')
 
     # Interface lines (from Ev,ox to Ec,ox)
     _ax.plot([-1.2, -1.2], [_Ev_ox_m, _Ec_ox_m], 'k-', lw=1.5)
@@ -748,6 +760,15 @@ def _(
         _ax.plot([_xann - _cap, _xann + _cap], [_Ec_bulk, _Ec_bulk], color='darkgreen', lw=1.5)
         _ax.text(_xann + 0.15, (_Ec_sc[0] + _Ec_bulk) / 2, r'$q\phi_s$',
                  fontsize=14, color='darkgreen', va='center')
+
+    # phi_B annotation (between E_Fi,bulk and E_F in bulk)
+    _cap = 0.06
+    _xpB = _x_sc_end - 0.6
+    _ax.plot([_xpB, _xpB], [_EF, _Ei_bulk], color='purple', lw=1.5)
+    _ax.plot([_xpB - _cap, _xpB + _cap], [_EF, _EF], color='purple', lw=1.5)
+    _ax.plot([_xpB - _cap, _xpB + _cap], [_Ei_bulk, _Ei_bulk], color='purple', lw=1.5)
+    _ax.text(_xpB + 0.12, (_EF + _Ei_bulk) / 2, r'$q\phi_B$',
+             fontsize=14, color='purple', va='center')
 
     # V_ox annotation at oxide-metal interface
     if abs(_V_ox) > 0.05:
@@ -1409,7 +1430,7 @@ def _(
         _Wdep_um = 0.0
 
     _EF = 0.0
-    _Ei_bulk = -_phi_B  # E_F - E_i = phi_B for n-type, so E_i = -phi_B
+    _Ei_bulk = -_phi_B  # E_F - E_Fi = phi_B for n-type, so E_Fi = -phi_B
     _Ec_bulk = _Ei_bulk + Ec_minus_Ei
     _Ev_bulk = _Ei_bulk - Ei_minus_Ev
     _EFm = _EF - _Vg
@@ -1467,8 +1488,8 @@ def _(
 
     _ax_band.text(_x_sc_end + 0.1, _Ec_bulk, '$E_c$', fontsize=14, va='center', color='blue')
     _ax_band.text(_x_sc_end + 0.1, _Ev_bulk, '$E_v$', fontsize=14, va='center', color='red')
-    _ax_band.text(_x_sc_end + 0.1, _Ei_bulk, '$E_i$', fontsize=14, va='center', alpha=0.6)
-    _ax_band.text(_x_sc_end + 0.1, _EF, '$E_F$', fontsize=14, va='center', color='green')
+    _ax_band.text(_x_sc_end + 0.1, _Ei_bulk, '$E_{Fi}$', fontsize=14, va='center', alpha=0.6)
+    _ax_band.text(_x_sc_end + 0.1, _EF, '$E_{Fs}$', fontsize=14, va='center', color='green')
 
     # Interface lines (from Ev,ox to Ec,ox)
     _ax_band.plot([-1.2, -1.2], [_Ev_ox_m, _Ec_ox_m], 'k-', lw=1.5)
@@ -1482,6 +1503,15 @@ def _(
         _ax_band.plot([_xann - _cap, _xann + _cap], [_Ec_bulk, _Ec_bulk], color='darkgreen', lw=1.5)
         _ax_band.text(_xann + 0.15, (_Ec_sc[0] + _Ec_bulk) / 2, r'$q\phi_s$',
                       fontsize=14, color='darkgreen', va='center')
+
+    # phi_B annotation (between E_F and E_Fi,bulk — for n-type, E_F > E_Fi)
+    _cap = 0.06
+    _xpB = _x_sc_end - 0.6
+    _ax_band.plot([_xpB, _xpB], [_Ei_bulk, _EF], color='purple', lw=1.5)
+    _ax_band.plot([_xpB - _cap, _xpB + _cap], [_Ei_bulk, _Ei_bulk], color='purple', lw=1.5)
+    _ax_band.plot([_xpB - _cap, _xpB + _cap], [_EF, _EF], color='purple', lw=1.5)
+    _ax_band.text(_xpB + 0.12, (_Ei_bulk + _EF) / 2, r'$q\phi_B$',
+                  fontsize=14, color='purple', va='center')
 
     # V_ox annotation at oxide-metal interface
     if abs(_V_ox) > 0.05:

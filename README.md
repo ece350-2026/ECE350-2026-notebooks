@@ -14,7 +14,10 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 - **Diffusion** - Diffusion, built-in field, Einstein's relation (Lecture 13)
 - **Generation and Recombination** - G-R, excess carriers, quasi-Fermi level (Lectures 13-14)
 - **Continuity Equqation** - Spatio-temporal evolution of carrier densities (Lectures 15)
-- **PN junctions** - Overview, electrostatics, reverse bias (Lecture 16 - )
+- **PN Junctions** - Overview, electrostatics, reverse bias, IV, small-signal, optoelectronics (Lecture 16 - 23)
+- **Bipolar Junction Transistors** - Overview, electrostatics, energy band diagrams, heterostructures (Lecture 24-26)
+- **Metal-Semiconductor Interfaces** - Electrostatics, energy diagrams, Schottky diode, Ohmic contact (Lecture 27-28)
+- **MOS Capacitors** - Electrostatics, energy diagrams (Lecture 29- )
 - To be updated as the course progresses
 
 ## Viewing the Documentation

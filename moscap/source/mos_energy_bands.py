@@ -10,10 +10,7 @@
 import marimo
 
 __generated_with = "0.20.4"
-app = marimo.App(
-    width="medium",
-    layout_file="layouts/mos_energy_bands.slides.json",
-)
+app = marimo.App(width="medium")
 
 
 @app.cell
@@ -1722,24 +1719,35 @@ def _(mo):
     mo.md(r"""
     ## Summary
 
+    ### Sign conventions and definitions
 
-    | Quantity | Expression |
-    |:---------|:-----------|
-    | Bulk potential | $\phi_B = (kT/q)\ln(N_A/n_i)$ |
-    | Depletion width | $W_{dep} = \sqrt{2\varepsilon_s \phi_s / (qN_A)}$ |
-    | Gate voltage equation | $V_G = \phi_s + \sqrt{2q\varepsilon_s N_A \phi_s}/C_{ox}$ |
-    | Threshold voltage | $V_T = 2\phi_B + Q_{dep,max}/C_{ox}$ |
-    | Surface potential at threshold | $\phi_{s,T} = 2\phi_B$ |
-    | Max depletion width | $W_{dep,max} = \sqrt{2\varepsilon_s \cdot 2\phi_B/(qN_A)}$ |
+    | Quantity | Definition | P-body | | N-body | |
+    |:---------|:-----------|:------:|:--:|:------:|:--:|
+    | $V_G$ | $V_{ox} + \phi_s$ | > 0 | | < 0 | |
+    | $qV_G$ | $E_{Fs} - E_{Fm}$ | > 0 | | < 0 | |
+    | $q\phi_s$ | $E_{c,\text{bulk}} - E_{c,\text{surf}}$ | > 0 | | < 0 | |
+    | $q\phi_B$ | $E_{i,\text{bulk}} - E_{Fs}$ | > 0 | | < 0 | |
+    | $\phi_B$ | $\frac{kT}{q}\ln\!\left(\frac{N_A}{n_i}\right)$ | > 0 | | $-\frac{kT}{q}\ln\!\left(\frac{N_D}{n_i}\right)$ | < 0 |
+    | $\phi_{st}$ | $2\phi_B$ | > 0 | | $2\phi_B$ | < 0 |
+
+    ### Key equations
+
+    | Quantity | P-body | | N-body | |
+    |:---------|:------:|:--:|:------:|:--:|
+    | $\phi_s$ | $\dfrac{qN_A W_{dep}^2}{2\varepsilon_s}$ | > 0 | $-\dfrac{qN_D W_{dep}^2}{2\varepsilon_s}$ | < 0 |
+    | $V_{ox}$ | $\dfrac{qN_A W_{dep}}{C_{ox}}$ | > 0 | $-\dfrac{qN_D W_{dep}}{C_{ox}}$ | < 0 |
+    | $W_{dep}$ | $\sqrt{\dfrac{2\varepsilon_s \phi_s}{qN_A}}$ | > 0 | $\sqrt{\dfrac{2\varepsilon_s \lvert\phi_s\rvert}{qN_D}}$ | > 0 |
+    | $V_T$ | $\phi_{st} + \dfrac{\sqrt{qN_A 2\varepsilon_s \phi_{st}}}{C_{ox}}$ | > 0 | $\phi_{st} - \dfrac{\sqrt{qN_D 2\varepsilon_s \lvert\phi_{st}\rvert}}{C_{ox}}$ | < 0 |
 
     ### Main concepts
 
-    - $V_G$ is dropped across oxide and semiconductor.
+    - $V_G$ is dropped across oxide and semiconductor: $V_G = V_{ox} + \phi_s$.
     - The **surface potential** $\phi_s$ is the amount of band bending at the oxide-semiconductor interface. It is the voltage dropped in the semiconductor.
-    - At **threshold**, the surface is as n-type as the bulk is p-type: $n_s = N_A$, which requires $\phi_s = 2\phi_B$.
+    - At **threshold**, the surface is as strongly inverted as the bulk is doped: $\phi_s = 2\phi_B$.
     - Beyond threshold, $\phi_s$ is approximately pinned at $2\phi_B$ because the increasing inversion charge screens additional gate voltage.
     - The **depletion width** reaches its maximum $W_{dep,max}$ at threshold and does not grow further in inversion.
     - Regimes of operation: accumulation, depletion, threshold, and inversion.
+    - P-body MOS: positive $V_G$ drives toward inversion; N-body MOS: negative $V_G$ drives toward inversion. All equations are related by swapping $N_A \leftrightarrow N_D$ and reversing signs.
     """)
     return
 

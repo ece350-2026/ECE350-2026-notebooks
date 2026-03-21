@@ -4,21 +4,28 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 
 ## Contents
 
-- **Crystal Structures** - Introduction to crystal structures, lattices, and Miller indices (Lectures 2-3)
-- **Energy Bands** - Bloch's theorem, Kronig-Penney model, and E-k diagrams (Lectures 6-7)
-- **Crystal Potential Visualizations** - Interactive 2D/3D visualizations of periodic potentials
-- **Effective Mass** - Effective mass concept and band diagrams (Lectures 8-9)
-- **Carriers at Thermal Equilibrium** - Density of states and Fermi-Dirac distribution (Lectures 9-11)
-- **Carrier Drift** - Drift velocity, mobility, and scattering mechanisms (Lecture 12)
-- **Band Bending** - Electrostatics and energy diagrams (Lecture 13)
-- **Diffusion** - Diffusion, built-in field, Einstein's relation (Lecture 13)
-- **Generation and Recombination** - G-R, excess carriers, quasi-Fermi level (Lectures 13-14)
-- **Continuity Equqation** - Spatio-temporal evolution of carrier densities (Lectures 15)
-- **PN Junctions** - Overview, electrostatics, reverse bias, IV, small-signal, optoelectronics (Lecture 16 - 23)
-- **Bipolar Junction Transistors** - Overview, electrostatics, energy band diagrams, heterostructures (Lecture 24-26)
-- **Metal-Semiconductor Interfaces** - Electrostatics, energy diagrams, Schottky diode, Ohmic contact (Lecture 27-28)
-- **MOS Capacitors** - Electrostatics, energy diagrams (Lecture 29- )
-- To be updated as the course progresses
+| Notebook | Lectures | Folder |
+|:---------|:---------|:-------|
+| Crystal Structures | 2–3 | `crystals/` |
+| Energy Bands | 6–7 | `energybands/` |
+| Crystal Potential Visualizations | — | `crystalpotential/` |
+| Effective Mass | 8–9 | `effectivemass/` |
+| Carriers at Thermal Equilibrium | 9–11 | `equilibrium/` |
+| Carrier Drift | 12 | `drift/` |
+| Band Bending and Electrostatics | 13 | `bandbend/` |
+| Diffusion | 13 | `diffusion/` |
+| Generation, Recombination & Quasi-Fermi Levels | 14 | `gen_recomb/` |
+| Continuity Equation | 15 | `continuity/` |
+| PN Junction Electrostatics | 17 | `pn-electrostatics/` |
+| PN Junction under Reverse Bias | 18 | `pn-revbias/` |
+| PN Junction I–V Characteristics | 19–21 | `pn-iv/` |
+| PN Junction: Approximations and Non-Idealities | 21–22 | `pn-non-idealities/` |
+| PN Junction: Small-Signal Models | 22 | `pn-small-sig/` |
+| PN Junction: Light Absorption | 23 | `pn-light-absorption/` |
+| BJT Current-Voltage Relations | 25–26 | `bjt-iv/` |
+| Metal-Semiconductor Interfaces | 27–28 | `m-s-interface/` |
+| MOS Capacitor: Energy Bands & Electrostatics | 29–30 | `moscap/` |
+| MOS Capacitor: C-V Characteristics | 31 | `mos-cv/` |
 
 ## Viewing the Documentation
 

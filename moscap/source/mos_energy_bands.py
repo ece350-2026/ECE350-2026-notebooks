@@ -9,7 +9,7 @@
 
 import marimo
 
-__generated_with = "0.20.4"
+__generated_with = "0.21.1"
 app = marimo.App(width="medium")
 
 
@@ -1726,9 +1726,9 @@ def _(mo):
     | $V_G$ | $V_{ox} + \phi_s$ | > 0 | | < 0 | |
     | $qV_G$ | $E_{Fs} - E_{Fm}$ | > 0 | | < 0 | |
     | $q\phi_s$ | $E_{c,\text{bulk}} - E_{c,\text{surf}}$ | > 0 | | < 0 | |
-    | $q\phi_B$ | $E_{i,\text{bulk}} - E_{Fs}$ | > 0 | | < 0 | |
-    | $\phi_B$ | $\frac{kT}{q}\ln\!\left(\frac{N_A}{n_i}\right)$ | > 0 | | $-\frac{kT}{q}\ln\!\left(\frac{N_D}{n_i}\right)$ | < 0 |
-    | $\phi_{st}$ | $2\phi_B$ | > 0 | | $2\phi_B$ | < 0 |
+    | $q\phi_B$ | $\vert E_{i,\text{bulk}} - E_{Fs} \vert$ | > 0 | | > 0 | |
+    | $\phi_B$ | $\frac{kT}{q}\ln\!\left(\frac{N_A}{n_i}\right)$ | > 0 | | $\frac{kT}{q}\ln\!\left(\frac{N_D}{n_i}\right)$ | > 0 |
+    | $\phi_{st}$ | $2\phi_B$ | > 0 | | $-2\phi_B$ | < 0 |
 
     ### Key equations
 

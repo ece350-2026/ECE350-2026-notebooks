@@ -815,9 +815,9 @@ def _(mo):
         start=-5, stop=5, step=0.25, value=0,
         label=r"$Q_{ox}/q$ [$\times 10^{11}$ cm$^{-2}$]",
     )
-    cv_Wdp_slider = mo.ui.slider(
-        start=0, stop=5, step=0.1, value=0,
-        label=r"$W_{dep,poly}$ [nm]",
+    cv_Npoly_slider = mo.ui.slider(
+        start=18, stop=21, step=0.25, value=20,
+        label=r"log$_{10}$($N_{poly}$) [cm$^{-3}$]",
     )
     cv_Tinv_slider = mo.ui.slider(
         start=0, stop=3, step=0.1, value=0,
@@ -825,10 +825,10 @@ def _(mo):
     )
     return (
         cv_Na_slider,
+        cv_Npoly_slider,
         cv_Qox_slider,
         cv_Tinv_slider,
         cv_Vfb_slider,
-        cv_Wdp_slider,
         cv_tox_slider,
     )
 
@@ -836,10 +836,10 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(
     cv_Na_slider,
+    cv_Npoly_slider,
     cv_Qox_slider,
     cv_Tinv_slider,
     cv_Vfb_slider,
-    cv_Wdp_slider,
     cv_tox_slider,
     eps_0,
     eps_Si,
@@ -855,8 +855,8 @@ def _(
     _tox = cv_tox_slider.value * 1e-7          # cm
     _Vfb_wf = cv_Vfb_slider.value              # V
     _Qox = q * cv_Qox_slider.value * 1e11      # C/cm²
-    _Wdp = cv_Wdp_slider.value * 1e-7          # cm
     _Tinv = cv_Tinv_slider.value * 1e-7         # cm
+    _Npoly = 10 ** cv_Npoly_slider.value        # cm^-3
 
     _eps_s = eps_Si * eps_0
     _eox_es = eps_ox / eps_Si
@@ -868,17 +868,10 @@ def _(
     _dVfb_Qox = -_Qox / _Cox
     _Vfb_total = _Vfb_wf + _dVfb_Qox
 
-    # ── Effective oxide capacitances ──
-    # Accumulation: no poly-depletion (gate has majority carriers)
-    _Toxe_acc = _tox + _eox_es * _Tinv
-    _Cox_eff_acc = eps_ox * eps_0 / _Toxe_acc
-
-    # Depletion & inversion: poly-depletion + charge-layer thickness
-    _Toxe_inv = _tox + _eox_es * (_Wdp + _Tinv)
-    _Cox_eff_inv = eps_ox * eps_0 / _Toxe_inv
-
-    # Poly capacitance (for display)
-    _Cpoly = _eps_s / _Wdp if _Wdp > 1e-10 else float('inf')
+    # ── T_inv–corrected oxide capacitance (base for non-ideal curves) ──
+    _Toxe_base = _tox + _eox_es * _Tinv
+    _Cox_tinv = eps_ox * eps_0 / _Toxe_base
+    _Cox_eff_acc = _Cox_tinv
 
     # ── Semiconductor parameters ──
     _phi_B = kT_300 * np.log(_Na / ni_Si)
@@ -886,55 +879,90 @@ def _(
     _Qdep_max = np.sqrt(2 * q * _eps_s * _Na * _phi_st)
     _Cdep_min = np.sqrt(q * _eps_s * _Na / (2 * _phi_st))
 
+    # ── Poly-gate depletion (voltage-dependent) ──
+    _alpha = 1.0 + _Na / _Npoly
+    _gamma = np.sqrt(2 * q * _eps_s * _Na) / _Cox_tinv
     _gamma_ideal = np.sqrt(2 * q * _eps_s * _Na) / _Cox
-    _gamma_eff = np.sqrt(2 * q * _eps_s * _Na) / _Cox_eff_inv
+
+    # W_dep,poly at threshold (for display / annotations)
+    _Wdp_at_vt = _Qdep_max / (q * _Npoly)
+    _Cpoly_at_vt = _eps_s / _Wdp_at_vt if _Wdp_at_vt > 1e-10 else float('inf')
+    _Toxe_inv_at_vt = _tox + _eox_es * (_Wdp_at_vt + _Tinv)
 
     # ── Threshold voltages ──
     _Vt_ideal = _phi_st + _Qdep_max / _Cox
-    _Vt_nonideal = _Vfb_total + _phi_st + _Qdep_max / _Cox_eff_inv
+    _Vt_nonideal = _Vfb_total + _alpha * _phi_st + _gamma * np.sqrt(_phi_st)
 
-    # ── C-V solver ──
-    def _solve_hf(Vg_arr, Vfb, Cox_acc, Cox_inv, gamma, Cox_norm):
+    # ── C-V solver (voltage-dependent poly depletion) ──
+    def _solve_hf(Vg_arr, Vfb, alpha, gamma, Cox_base, Cox_norm, Npoly):
+        """HF C-V.  alpha = 1 + Na/Npoly (1 if metal gate).
+        Cox_base includes T_inv correction for non-ideal curves."""
         C = np.zeros_like(Vg_arr)
-        Vt = Vfb + _phi_st + _Qdep_max / Cox_inv
+        Vt = Vfb + alpha * _phi_st + gamma * np.sqrt(_phi_st)
         for i, Vg in enumerate(Vg_arr):
             Vg_eff = Vg - Vfb
-            if Vg_eff < 0:
-                C[i] = Cox_acc / Cox_norm
+            if Vg_eff <= 0:
+                C[i] = Cox_base / Cox_norm
             elif Vg < Vt:
                 ps = 0.01
                 for _ in range(80):
                     if ps <= 0:
                         ps = 0.01
-                    f = ps + gamma * np.sqrt(ps) - Vg_eff
-                    df = 1 + gamma / (2 * np.sqrt(ps))
+                    f = alpha * ps + gamma * np.sqrt(ps) - Vg_eff
+                    df = alpha + gamma / (2 * np.sqrt(ps))
                     ps -= f / df
                     if abs(f) < 1e-8:
                         break
                 ps = max(ps, 1e-10)
                 Cd = np.sqrt(q * _eps_s * _Na / (2 * ps))
-                C[i] = (1.0 / (1.0 / Cox_inv + 1.0 / Cd)) / Cox_norm
+                if Npoly is not None:
+                    Qs = np.sqrt(2 * q * _eps_s * _Na * ps)
+                    Wdp = Qs / (q * Npoly)
+                    Cp = _eps_s / Wdp if Wdp > 1e-10 else 1e20
+                    C[i] = 1.0 / (1.0/Cox_base + 1.0/Cd + 1.0/Cp) / Cox_norm
+                else:
+                    C[i] = 1.0 / (1.0/Cox_base + 1.0/Cd) / Cox_norm
             else:
-                C[i] = (1.0 / (1.0 / Cox_inv + 1.0 / _Cdep_min)) / Cox_norm
+                V_excess = Vg - Vfb - _phi_st
+                if Npoly is not None and V_excess > 0:
+                    a_c = 1.0 / (2 * q * Npoly * _eps_s)
+                    b_c = 1.0 / Cox_base
+                    Qt = (-b_c + np.sqrt(b_c**2 + 4*a_c*V_excess)) / (2*a_c)
+                    Cp = q * Npoly * _eps_s / Qt
+                    C[i] = 1.0 / (1.0/Cox_base + 1.0/_Cdep_min + 1.0/Cp) / Cox_norm
+                else:
+                    C[i] = 1.0 / (1.0/Cox_base + 1.0/_Cdep_min) / Cox_norm
         return C
 
-    def _solve_lf(Vg_arr, Vfb, Cox_acc, Cox_inv, gamma, Cox_norm):
-        hf = _solve_hf(Vg_arr, Vfb, Cox_acc, Cox_inv, gamma, Cox_norm)
+    def _solve_lf(Vg_arr, Vfb, alpha, gamma, Cox_base, Cox_norm, Npoly):
+        hf = _solve_hf(Vg_arr, Vfb, alpha, gamma, Cox_base, Cox_norm, Npoly)
         lf = hf.copy()
-        Vt = Vfb + _phi_st + _Qdep_max / Cox_inv
-        Cmin_r = (1.0 / (1.0 / Cox_inv + 1.0 / _Cdep_min)) / Cox_norm
-        Cox_r = Cox_inv / Cox_norm
-        inv_mask = Vg_arr > Vt
-        dv = np.maximum(Vg_arr[inv_mask] - Vt, 0)
-        lf[inv_mask] = Cmin_r + (Cox_r - Cmin_r) * (1 - np.exp(-dv / 0.08))
+        Vt = Vfb + alpha * _phi_st + gamma * np.sqrt(_phi_st)
+        for i, Vg in enumerate(Vg_arr):
+            if Vg <= Vt:
+                continue
+            V_excess = Vg - Vfb - _phi_st
+            if V_excess <= 0:
+                continue
+            dv = Vg - Vt
+            blend = 1.0 - np.exp(-dv / 0.08)
+            if Npoly is not None:
+                a_c = 1.0 / (2 * q * Npoly * _eps_s)
+                b_c = 1.0 / Cox_base
+                Qt = (-b_c + np.sqrt(b_c**2 + 4*a_c*V_excess)) / (2*a_c)
+                Cp = q * Npoly * _eps_s / Qt
+                C_lf = 1.0 / (1.0/Cox_base + 1.0/Cp) / Cox_norm
+            else:
+                C_lf = Cox_base / Cox_norm
+            lf[i] = hf[i] + blend * (C_lf - hf[i])
         return lf
 
     _Vg = np.linspace(-4.0, 5.0, 800)
 
-    _hf_ideal = _solve_hf(_Vg, 0.0, _Cox, _Cox, _gamma_ideal, _Cox)
-    _lf_ideal = _solve_lf(_Vg, 0.0, _Cox, _Cox, _gamma_ideal, _Cox)
-    _hf_real = _solve_hf(_Vg, _Vfb_total, _Cox_eff_acc, _Cox_eff_inv, _gamma_eff, _Cox)
-    _lf_real = _solve_lf(_Vg, _Vfb_total, _Cox_eff_acc, _Cox_eff_inv, _gamma_eff, _Cox)
+    _hf_ideal = _solve_hf(_Vg, 0.0, 1.0, _gamma_ideal, _Cox, _Cox, None)
+    _lf_ideal = _solve_lf(_Vg, 0.0, 1.0, _gamma_ideal, _Cox, _Cox, None)
+    _hf_real = _solve_hf(_Vg, _Vfb_total, _alpha, _gamma, _Cox_tinv, _Cox, _Npoly)
+    _lf_real = _solve_lf(_Vg, _Vfb_total, _alpha, _gamma, _Cox_tinv, _Cox, _Npoly)
 
     # ── Plot ──
     _fig, _ax = plt.subplots(figsize=(10, 6))
@@ -949,14 +977,14 @@ def _(
 
     # C_max annotations when reduced by non-idealities
     _Cmax_acc = _Cox_eff_acc / _Cox
-    _Cmax_inv_lf = _Cox_eff_inv / _Cox
+    _Cmax_inv_lf = (1.0 / (1.0/_Cox_tinv + 1.0/_Cpoly_at_vt)) / _Cox
     if _Cmax_acc < 0.995:
         _ax.axhline(y=_Cmax_acc, color='darkorange', ls=':', lw=1.5, alpha=0.6)
         _ax.text(4.2, _Cmax_acc + 0.02, f'$C_{{max,acc}}$', fontsize=13,
                  color='darkorange', va='bottom')
     if _Cmax_inv_lf < _Cmax_acc - 0.005:
         _ax.axhline(y=_Cmax_inv_lf, color='purple', ls=':', lw=1.5, alpha=0.6)
-        _ax.text(4.2, _Cmax_inv_lf - 0.02, f'$C_{{max,inv}}$', fontsize=13,
+        _ax.text(4.2, _Cmax_inv_lf - 0.02, f'$C_{{max,inv}}$ (at $V_T$)', fontsize=13,
                  color='purple', va='top')
 
     # V_fb markers
@@ -1000,8 +1028,7 @@ def _(
     plt.close(_fig)
 
     # ── Computed parameters table ──
-    _Cpoly_str = f"{_Cpoly:.3e}" if np.isfinite(_Cpoly) else r"$\infty$ (no poly-depl.)"
-    _Cox_eff_ratio = _Cox_eff_inv / _Cox
+    _Cpoly_str = f"{_Cpoly_at_vt:.3e}" if np.isfinite(_Cpoly_at_vt) else r"$\infty$"
 
     _info = mo.md(rf"""
     | Parameter | Value | | Parameter | Value |
@@ -1010,23 +1037,23 @@ def _(
     | $T_{{ox}}$ | {cv_tox_slider.value} nm | | $C_{{ox}} = \varepsilon_{{ox}}/T_{{ox}}$ | {_Cox:.3e} F/cm² |
     | $V_{{FB}}$ (work fn.) | {_Vfb_wf:+.3f} V | | $\Delta V_{{FB}}$ ($Q_{{ox}}$) | {_dVfb_Qox:+.3f} V |
     | **$V_{{FB,total}}$** | **{_Vfb_total:+.3f} V** | | **$V_T$ (ideal)** | **{_Vt_ideal:.3f} V** |
-    | $C_{{poly}} = \varepsilon_s / W_{{dep,poly}}$ | {_Cpoly_str} | | **$V_T$ (non-ideal)** | **{_Vt_nonideal:.3f} V** |
-    | $C_{{ox,eff}}$ (inv.) | {_Cox_eff_inv:.3e} F/cm² | | $C_{{ox,eff}}/C_{{ox}}$ | {_Cox_eff_ratio:.4f} |
-    | $T_{{oxe}}$ (acc.) | {_Toxe_acc*1e7:.2f} nm | | $T_{{oxe}}$ (inv.) | {_Toxe_inv*1e7:.2f} nm |
+    | $N_{{poly}}$ | {_Npoly:.1e} cm$^{{-3}}$ | | **$V_T$ (non-ideal)** | **{_Vt_nonideal:.3f} V** |
+    | $W_{{dep,poly}}$ at $V_T$ | {_Wdp_at_vt*1e7:.2f} nm | | $C_{{poly}}$ at $V_T$ | {_Cpoly_str} F/cm² |
+    | $T_{{oxe}}$ (acc.) | {_Toxe_base*1e7:.2f} nm | | $T_{{oxe}}$ at $V_T$ | {_Toxe_inv_at_vt*1e7:.2f} nm |
     """)
 
     _guide = mo.md(r"""
     **How each slider affects the C-V:**
 
     - **$V_{FB}$** and **$Q_{ox}$** shift the curve **horizontally** → $V_{fb}$ and $V_T$ move together
-    - **$W_{dep,poly}$** reduces $C_{max}$ in **inversion** (poly-gate adds series capacitance $C_{poly}$)
+    - **$N_{poly}$**: lower doping → larger $W_{dep,poly}(V_G)$ → $C_{max,inv}$ drops below $C_{max,acc}$; at $10^{21}$ cm$^{-3}$ the poly depletion is negligible (≈ metal gate)
     - **$T_{inv}$** reduces $C_{max}$ in **both accumulation and inversion** (charge layer adds to $T_{oxe}$)
     - **$T_{ox}$** sets the baseline $C_{ox}$; thinner oxides make poly-depletion and $T_{inv}$ effects more significant
     """)
 
     _controls = mo.vstack([
         mo.hstack([cv_Vfb_slider, cv_tox_slider, cv_Na_slider], justify="center"),
-        mo.hstack([cv_Qox_slider, cv_Wdp_slider, cv_Tinv_slider], justify="center"),
+        mo.hstack([cv_Qox_slider, cv_Npoly_slider, cv_Tinv_slider], justify="center"),
     ])
 
     _header = mo.md(r"### Interactive C-V Relation with Non-Idealities")

@@ -26,6 +26,7 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 | Metal-Semiconductor Interfaces | 27–28 | `m-s-interface/` |
 | MOS Capacitor: Energy Bands & Electrostatics | 29–30 | `moscap/` |
 | MOS Capacitor: C-V Characteristics | 31 | `mos-cv/` |
+| MOS Capacitor: Non-Idealities | 32 | `mos-nonidealities/` |
 
 ## Viewing the Documentation
 

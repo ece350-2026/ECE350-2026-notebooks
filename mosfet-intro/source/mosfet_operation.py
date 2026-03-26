@@ -10,10 +10,7 @@
 import marimo
 
 __generated_with = "0.21.1"
-app = marimo.App(
-    width="medium",
-    layout_file="layouts/mosfet_operation.slides.json",
-)
+app = marimo.App(width="medium", layout_file=None)
 
 
 @app.cell
@@ -40,7 +37,7 @@ def _():
             raise FileNotFoundError
     except Exception:
         ASSET_DIR = None
-    IMAGE_BASE = "https://joyce-poon.github.io/ECE350/mosfet-operation/images" if ASSET_DIR is None else str(ASSET_DIR / "images")
+    IMAGE_BASE = "https://joyce-poon.github.io/ECE350/mosfet-intro/images" if ASSET_DIR is None else str(ASSET_DIR / "images")
 
     mo.md(r"""
     # MOSFET: Qualitative Overview of Operation

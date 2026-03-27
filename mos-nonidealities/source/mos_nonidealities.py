@@ -801,7 +801,7 @@ def _(mo):
 def _(mo):
     cv_Vfb_slider = mo.ui.slider(
         start=-2.0, stop=2.0, step=0.05, value=0.0,
-        label=r"$V_{FB}$ (work fn.) [V]",
+        label=r"$\Psi_M - \Psi_S$ [V]",
     )
     cv_tox_slider = mo.ui.slider(
         start=1, stop=20, step=0.5, value=5,
@@ -1035,7 +1035,7 @@ def _(
     |:---|:---|---|:---|:---|
     | $N_A$ | {_Na:.2e} cm$^{{-3}}$ | | $\phi_B$ | {_phi_B:.4f} V |
     | $T_{{ox}}$ | {cv_tox_slider.value} nm | | $C_{{ox}} = \varepsilon_{{ox}}/T_{{ox}}$ | {_Cox:.3e} F/cm² |
-    | $V_{{FB}}$ (work fn.) | {_Vfb_wf:+.3f} V | | $\Delta V_{{FB}}$ ($Q_{{ox}}$) | {_dVfb_Qox:+.3f} V |
+    | $\Psi_M - \Psi_S$ | {_Vfb_wf:+.3f} V | | $\Delta V_{{FB}}$ ($Q_{{ox}}$) | {_dVfb_Qox:+.3f} V |
     | **$V_{{FB,total}}$** | **{_Vfb_total:+.3f} V** | | **$V_T$ (ideal)** | **{_Vt_ideal:.3f} V** |
     | $N_{{poly}}$ | {_Npoly:.1e} cm$^{{-3}}$ | | **$V_T$ (non-ideal)** | **{_Vt_nonideal:.3f} V** |
     | $W_{{dep,poly}}$ at $V_T$ | {_Wdp_at_vt*1e7:.2f} nm | | $C_{{poly}}$ at $V_T$ | {_Cpoly_str} F/cm² |

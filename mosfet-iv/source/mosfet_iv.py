@@ -10,7 +10,7 @@
 import marimo
 
 __generated_with = "0.21.1"
-app = marimo.App(width="medium", layout_file="layouts/mosfet_iv.slides.json")
+app = marimo.App(width="medium")
 
 
 @app.cell
@@ -42,7 +42,7 @@ def _():
     # MOSFET $I_{DS}$–$V_{DS}$: Derivation and Modifications
     **ECE350 Lecture 34**
 
-    Hu, Chapter 6
+    Hu, Chapters 6, 7
 
     This notebook derives the MOSFET current-voltage relationship from first principles, introduces four important modifications to the ideal model, and covers key short-channel effects.
 
@@ -51,10 +51,10 @@ def _():
     1. Surface Mobility
     2. Derivation of the Square-Law IV Relation
     3. Transconductance
-    4. Modification 1: Effective Oxide Capacitance
-    5. Modification 2: Body Effect
-    6. Modification 3: Velocity Saturation
-    7. Modification 4: Parasitic Source-Drain Resistance
+    4. Effective Oxide Capacitance
+    5. Body Effect
+    6. Velocity Saturation
+    7. Parasitic Source-Drain Resistance
     8. Channel Length Modulation
     9. Interactive IV Comparison (all effects)
     10. Subthreshold Conduction
@@ -239,7 +239,7 @@ def _(eps_0, eps_Si, kT_300, mo, ni_Si, np, plt, q):
     """)
 
     _caption = mo.md(rf"""
-    **Device parameters:** $N_A$ = 10$^{{17}}$ cm$^{{-3}}$, $t_{{ox}}$ = 5 nm, $\mu_{{ns}}$ = 300 cm$^2$/V·s, $W/L$ = 10, $V_t$ = {_Vt:.3f} V. **Left:** $I_{{DS}}$-$V_{{DS}}$ for several $V_{{GS}}$. Dots mark the onset of saturation. **Right:** $I_{{Dsat}}$ vs. $V_{{DS}} - V_{{Dsat}}$, the quadratic (square-law) dependence.
+    **Device parameters:** $N_A$ = 10$^{{17}}$ cm$^{{-3}}$, $t_{{ox}}$ = 5 nm, $\mu_{{ns}}$ = 300 cm$^2$/V·s, $W/L$ = 10, $V_t$ = {_Vt:.3f} V. **Left:** $I_{{DS}}$-$V_{{DS}}$ for several $V_{{GS}}$. Dots mark the onset of saturation. **Right:** $I_{{Dsat}}$ vs. $V_{{GS}} - V_t$, the quadratic (square-law) dependence.
     """)
 
     mo.vstack([_text, mo.as_html(_fig), _caption])
@@ -268,7 +268,7 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## 4. Modification 1: Effective Oxide Capacitance
+    ## 4. Effective Oxide Capacitance
 
     In real devices, the oxide thickness is effectively wider than the physical $t_{ox}$ due to:
     - **Poly-gate depletion** — the gate electrode itself has a small depletion region
@@ -291,7 +291,7 @@ def _(IMAGE_BASE, mo):
 
 
     mo.md(rf"""
-    ## 5. Modification 2: Body Effect
+    ## 5. Body Effect
 
     **Body bias** (or back bias): apply a voltage $V_b$ to the body to adjust the threshold voltage. $V_{{SB}}$ is the voltage at the source relative to the body.
 
@@ -336,7 +336,7 @@ def _(mo):
     $$Q_{inv} = -C_{oxe}(V_{GS} - V_{t0}) + C_{dep} V_{SB}$$
 
     Including $V_{CS}(x)$:
-    $$Q_{inv}(x) = -C_{oxe}(V_{GS} - V_{t0} - V_{CS}) + C_{dep}(V_{SB} - V_{CS})$$
+    $$Q_{inv}(x) = -C_{oxe}(V_{GS} - V_{t0} - V_{CS}) + C_{dep}(V_{SB} + V_{CS})$$
     $$= -C_{oxe}(V_{GS} - m\, V_{CS} - V_t)$$
 
     where $m \equiv 1 + \alpha$ is the **bulk-charge factor** (ideal MOSFET: $m = 1$).
@@ -353,7 +353,7 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## 6. Modification 3: Velocity Saturation
+    ## 6. Velocity Saturation
 
     So far, the surface mobility is assumed constant. In reality, the carrier velocity saturates at high electric fields:
 
@@ -369,7 +369,7 @@ def _(mo):
 
     $$I_{DS} = \frac{\mu_{ns} C_{oxe} \frac{W}{L}\left[(V_{GS} - V_t)V_{DS} - \frac{m}{2}V_{DS}^2\right]}{1 + \frac{V_{DS}}{\mathcal{E}_{sat} L}}$$
 
-    The correction factor $1/(1 + V_{DS}/\mathcal{E}_{sat}L)$ is small when $L$ is long or $V_{DS}$ is small.
+    The denominator is close to unity when $L$ is long or $V_{DS}$ is small, so the correction is negligible.
 
     **When does velocity saturation matter?**
     For $V_{DS} \sim 1$ V and $\mathcal{E}_{sat} \sim 10^5$ V/cm: significant when $L \lesssim 1\,\mu$m since $V_{DS}/(\mathcal{E}_{sat}L) \sim 0.1$.
@@ -387,7 +387,7 @@ def _(IMAGE_BASE, mo):
     _rsd_img = mo.image(f"{IMAGE_BASE}/source-drain-resistance.png", width=500)
 
     mo.md(rf"""
-    ## 7. Modification 4: Parasitic Source-Drain Resistance
+    ## 7. Parasitic Source-Drain Resistance
 
     Real MOSFETs have ohmic resistance $R_S$ and $R_D$ in series with the source and drain. These resistances arise from the contact resistance and the sheet resistance of the n⁺ (or p⁺) regions.
 
@@ -422,19 +422,9 @@ def _(mo):
     return
 
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## 9. Interactive Comparison: All Modifications
-
-    Use the sliders below to see how each modification affects the MOSFET IV characteristics simultaneously.
-    """)
-    return
-
-
 @app.cell
 def _(mo):
-    L_comp_slider = mo.ui.slider(start=0.05, stop=2.0, value=0.5, step=0.05,
+    L_comp_slider = mo.ui.slider(start=0.05, stop=10.0, value=0.5, step=0.05,
                                   label=r"$L$ (µm)")
     m_comp_slider = mo.ui.slider(start=1.0, stop=1.5, value=1.0, step=0.05,
                                   label=r"$m$ (bulk-charge factor)")
@@ -513,7 +503,8 @@ def _(
                 if _vov_int <= 0:
                     _id_new = 0
                     break
-                _vdsat = _vov_int / (_m * (1 + _vov_int / (_Esat * _L * _m)))
+                _E = _Esat * _L
+                _vdsat = _E * (-1 + np.sqrt(1 + 2 * _vov_int / (_m * _E)))
                 if _vds_int < _vdsat:
                     _id_new = _mu_ns * _Cox * _W / _L * (_vov_int * _vds_int - _m / 2 * _vds_int**2) / (1 + _vds_int / (_Esat * _L))
                 else:
@@ -550,6 +541,12 @@ def _(
         mo.hstack([Rsd_comp_slider, lambda_comp_slider], justify="start"),
     ])
 
+
+    _header = mo.md(rf"""
+    ## 9. Interactive Comparison: $I_{{DS}}$ vs. $V_{{DS}}$ with Modifications
+
+    """)
+
     _info = mo.md(rf"""
     Each modification affects $I_{{DS}}$:
     - **Body effect** ($m > 1$): increases effective $V_t$, reduces $V_{{Dsat}}$
@@ -558,51 +555,55 @@ def _(
     - **Channel length modulation** ($\lambda > 0$): finite slope in saturation, increases $I_{{DS}}$ above $V_{{Dsat}}$
     """)
 
-    mo.vstack([_slider_row, mo.as_html(_fig), _info])
+    mo.vstack([_header, _slider_row, mo.as_html(_fig), _info])
     return
 
 
 @app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
+def _(IMAGE_BASE, mo):
+    _img = mo.image(f"{IMAGE_BASE}/subthreshold-swing.png", width=400)
+
+    mo.md(rf"""
     ## 10. Subthreshold Conduction
 
-    When $V_{GS} < V_t$, the MOSFET is not truly "off". A small **subthreshold current** flows due to diffusion of minority carriers over the source-channel barrier:
+    When $V_{{GS}} < V_t$, the MOSFET is not truly "off". A small **subthreshold current** flows due to diffusion of minority carriers over the source-channel barrier:
 
-    $$I_{DS,sub} \propto \exp\left(\frac{V_{GS}}{m \cdot kT/q}\right)$$
+    $$I_{{DS,sub}} \propto \exp\left(\frac{{V_{{GS}}}}{{m \cdot kT/q}}\right)$$
 
-    The **subthreshold swing** $S$ measures how many millivolts of $V_{GS}$ are needed to change $I_{DS}$ by one decade:
+    The **subthreshold swing** $S$ measures how many millivolts of $V_{{GS}}$ are needed to change $I_{{DS}}$ by one decade:
 
-    $$S = m \cdot \frac{kT}{q} \cdot \ln(10) \approx 2.3 \cdot m \cdot \frac{kT}{q}$$
+    $$S = m \cdot \frac{{kT}}{{q}} \cdot \ln(10) \approx 2.3 \cdot m \cdot \frac{{kT}}{{q}}$$
 
-    At room temperature with $m = 1$: $S_{min} = 60$ mV/decade (the **Boltzmann limit**).
+    At room temperature with $m = 1$: $S_{{min}} = 60$ mV/decade (the **Boltzmann limit**).
 
     Typical values: $S \sim 80$–$100$ mV/decade (since $m > 1$).
 
-    ### Off-State Current $I_{off}$
+    {mo.as_html(mo.hstack([_img], justify="center"))}
 
-    $I_{off}$ is the drain current when $V_{GS} = 0$ V. Using the threshold definition $I_{DS}(V_t) = 100$ nA $\times W/L$:
+    ### Off-State Current $I_{{off}}$
 
-    $$I_{off} = \frac{100\,\text{nA} \cdot W}{L} \cdot 10^{-V_t / S}$$
+    $I_{{off}}$ is the drain current when $V_{{GS}} = 0$ V. Using the threshold definition $I_{{DS}}(V_t) = 100$ nA $\times W/L$:
 
-    $I_{off}$ is reduced when $V_t$ is higher or $S$ is lower. Shorter channels tend to have higher $I_{off}$.
+    $$I_{{off}} = \frac{{100\,\text{{nA}} \cdot W}}{{L}} \cdot 10^{{-V_t / S}}$$
+
+    $I_{{off}}$ is reduced when $V_t$ is higher or $S$ is lower. Shorter channels tend to have higher $I_{{off}}$.
     """)
     return
 
 
 @app.cell(hide_code=True)
 def _(IMAGE_BASE, mo):
-    _img = mo.image(f"{IMAGE_BASE}/subthreshold-swing.png", width=600)
-    mo.hstack([_img], justify="center")
-    return
+    _rolloff_img = mo.image(f"{IMAGE_BASE}/Vt-roll-off.png", width=400)
+    _dibl_img = mo.image(f"{IMAGE_BASE}/DIBL.png", width=600)
 
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
+    mo.md(rf"""
     ## 11. $V_t$ Roll-Off and Drain-Induced Barrier Lowering (DIBL)
 
-    As the channel length $L$ decreases, the threshold voltage drops — this is **$V_t$ roll-off**.
+    As the channel length $L$ decreases, the threshold voltage drops. This is known as **$V_t$ roll-off**. 
+
+    Reduction of $V_t$ means higher $I_{{off}}$.
+
+    {mo.as_html(mo.hstack([_rolloff_img], justify="center"))}
 
     **Physical origin: Drain-Induced Barrier Lowering (DIBL)**
 
@@ -610,46 +611,20 @@ def _(mo):
 
     In a short-channel device, the drain electric field encroaches on the source-channel barrier. The barrier cannot reach its full height → $V_t$ is **reduced**.
 
-    $$V_t(\text{short}) = V_t(\text{long}) - \eta \cdot V_{DS}$$
+    $$V_t(\text{{short}}) = V_t(\text{{long}}) - \eta \cdot V_{{DS}}$$
 
     where $\eta$ is the DIBL coefficient (typically 20–100 mV/V).
 
     **Consequences:**
-    - Short-channel MOSFETs have **higher $I_{off}$** (lower $V_t$ means more subthreshold leakage)
+    - Short-channel MOSFETs have **higher $I_{{off}}$** (lower $V_t$ means more subthreshold leakage)
     - There is a **minimum channel length** below which the transistor cannot be adequately turned off
-    - DIBL makes $V_t$ depend on $V_{DS}$, which is undesirable for circuit design
+    - DIBL makes $V_t$ depend on $V_{{DS}}$, which is undesirable for circuit design
+
+
+    {mo.as_html(mo.hstack([_dibl_img], justify="center"))}
+
+
     """)
-    return
-
-
-@app.cell(hide_code=True)
-def _(IMAGE_BASE, mo):
-    _img = mo.image(f"{IMAGE_BASE}/Vt-roll-off.png", width=600)
-    mo.hstack([_img], justify="center")
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ### Source-Channel Barrier: Long vs. Short Channels
-
-    The key physics of DIBL is that in a short-channel device, the drain electric field penetrates to the source-channel barrier region, preventing it from reaching its full height.
-    """)
-    return
-
-
-@app.cell(hide_code=True)
-def _(IMAGE_BASE, mo):
-    _img = mo.image(f"{IMAGE_BASE}/DIBL.png", width=600)
-    mo.vstack([
-        mo.hstack([_img], justify="center"),
-        mo.md(r"""
-        **Left:** In a long channel, the barrier between source and drain reaches its full height, controlled entirely by the gate. $V_t$ has its designed value.
-
-        **Right:** In a short channel, the drain field penetrates the barrier region, preventing it from reaching its maximum. This **lowers $V_t$** and increases $I_{off}$.
-        """)
-    ])
     return
 
 
@@ -659,7 +634,7 @@ def _(mo):
     ## Summary
 
     | Modification | Effect on IV | Key Parameter |
-    |-------------|-------------|---------------|
+    |:-------------|:-------------|:---------------:|
     | **Effective $C_{oxe}$** | Reduces $I_{DS}$ and $g_m$ | $t_{oxe} > t_{ox}$ |
     | **Body effect** | Increases $V_t$, reduces $I_{DS}$; $V_{Dsat} = (V_{GS}-V_t)/m$ | $m = 1 + C_{dep}/C_{oxe}$ |
     | **Velocity saturation** | Reduces $I_{DS}$; $I_{Dsat}$ becomes linear in $V_{GS}-V_t$ | $\mathcal{E}_{sat} L$ vs. $V_{DS}$ |
@@ -674,7 +649,7 @@ def _(mo):
 
     with $V_{DS}$ replaced by $V_{DS} - I_{DS}(R_S + R_D)$ to account for parasitic resistance.
 
-    **The central trade-off in MOSFET scaling:** Shrinking $L$ increases speed and density, but worsens short-channel effects (DIBL, $V_t$ roll-off, higher $I_{off}$). Advanced device architectures (FinFET, nanosheets) are designed to maintain gate control as $L$ scales below 20 nm.
+    **The key trade-off in MOSFET scaling:** Shrinking $L$ increases speed and density, but worsens short-channel effects (DIBL, $V_t$ roll-off, higher $I_{off}$). Advanced device architectures (FinFET, nanosheets) are designed to maintain gate control as $L$ scales below 20 nm.
     """)
     return
 

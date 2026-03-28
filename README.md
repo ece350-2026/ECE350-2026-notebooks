@@ -27,6 +27,8 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 | MOS Capacitor: Energy Bands & Electrostatics | 29–30 | `moscap/` |
 | MOS Capacitor: C-V Characteristics | 31 | `mos-cv/` |
 | MOS Capacitor: Non-Idealities | 32 | `mos-nonidealities/` |
+| MOSFET: Introduction & Operation | 33 | `mosfet-intro/` |
+| MOSFET I_DS–V_DS: Derivation and Modifications | 34 | `mosfet-iv/` |
 
 ## Viewing the Documentation
 

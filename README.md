@@ -29,6 +29,7 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 | MOS Capacitor: Non-Idealities | 32 | `mos-nonidealities/` |
 | MOSFET: Introduction & Operation | 33 | `mosfet-intro/` |
 | MOSFET I_DS–V_DS: Derivation and Modifications | 34 | `mosfet-iv/` |
+| MOSFET Dynamics & Small-Signal Model | 35 | `mosfet-ac/` |
 
 ## Viewing the Documentation
 

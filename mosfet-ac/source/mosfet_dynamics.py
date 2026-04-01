@@ -10,7 +10,10 @@
 import marimo
 
 __generated_with = "0.21.1"
-app = marimo.App(width="medium")
+app = marimo.App(
+    width="medium",
+    layout_file="layouts/mosfet_dynamics.slides.json",
+)
 
 
 @app.cell
@@ -55,29 +58,29 @@ def _(IMAGE_BASE, mo):
     _text_intro = mo.md(r"""
     ## 1. Digital Switching Speed and $I_{Dsat}$ ($I_{on}$)
 
-    Consider a **chain of CMOS inverters** below. Each inverter consists of a PFET (pull-up) and NFET (pull-down). The gate capacitance $C_{gate}$ of the next stage must be charged or discharged through the on-transistor when the input switches. Here, $C_{gate}$ is the total capacitance of the gate, not the per unit area capacitance.
+    Consider a **chain of CMOS inverters** below. Each inverter consists of a PFET (pull-up) and NFET (pull-down). The capacitance $C$ of the next stage must be charged or discharged through the on-transistor when the input switches. Here, $C$ is the total capacitance at the gate of the next stage (including the interconnect), not the per unit area capacitance.
     """)
 
     _text_deriv = mo.md(r"""
     When $V_1$ turns on (goes high), the NFET at stage ① conducts and discharges node ②. The charge on the gate capacitance at ② decays exponentially:
 
-    $$Q_{gate} = C_{gate} V_{DD}\, e^{-t/\tau}$$
+    $$Q_{gate} = C V_{DD}\, e^{-t/\tau}$$
 
     Differentiating:
 
-    $$\frac{dQ_{gate}}{dt} = -\frac{C_{gate} V_{DD}}{\tau}\, e^{-t/\tau} = -\frac{Q_{gate}}{\tau}$$
+    $$\frac{dQ_{gate}}{dt} = -\frac{C V_{DD}}{\tau}\, e^{-t/\tau} = -\frac{Q_{gate}}{\tau}$$
 
     The gate current $I_{gate} \leq I_{Dsat}$ of the NFET at ①.
 
     ### Propagation Delay
 
-    The time constant for $Q_{gate}$ to reach $C_{gate} V_{DD}/2$ is roughly:
+    The time constant for $Q_{gate}$ to reach $C V_{DD}/2$ is roughly:
 
-    $$\boxed{\tau \sim \frac{C_{gate} V_{DD}}{2 I_{on}}} \qquad \text{where } I_{on} = I_{Dsat}$$
+    $$\boxed{\tau \sim \frac{C V_{DD}}{2 I_{on}}} \qquad \text{where } I_{on} = I_{Dsat}$$
 
     More accurately, as the NFET at ① conducts, the PFET also has to turn off. Accounting for both transitions:
 
-    $$\tau \sim \frac{1}{2}\left[\frac{C_{gate} V_{DD}}{2 I_{on,NFET}} + \frac{C_{gate} V_{DD}}{2 I_{on,PFET}}\right]$$
+    $$\tau \sim \frac{1}{2}\left[\frac{C V_{DD}}{2 I_{on,NFET}} + \frac{C V_{DD}}{2 I_{on,PFET}}\right]$$
 
     **Higher $I_{on}$ leads to shorter delay. Higher $I_{Dsat}$ is preferred for high-speed digital switching!**
     """)
@@ -96,7 +99,7 @@ def _(mo):
     Vdd_slider = mo.ui.slider(start=0.5, stop=1.8, value=1.0, step=0.1,
                                label=r"$V_{DD}$ (V)")
     Cgate_slider = mo.ui.slider(start=0.1, stop=5.0, value=1.0, step=0.1,
-                                 label=r"$C_{gate}$ (fF)")
+                                 label=r"$C$ (fF)")
     Ion_slider = mo.ui.slider(start=50, stop=1000, value=300, step=50, label=r"$I_{on}$ (µA)")
     return Cgate_slider, Ion_slider, Vdd_slider
 
@@ -157,11 +160,11 @@ def _(Cgate_slider, Ion_slider, Vdd_slider, mo, np, plt):
     plt.close(_fig)
 
     _info = mo.md(rf"""
-    **Delay:** $\tau = C_{{gate}} V_{{DD}} / (2\,I_{{on}})$ = {_tau_ps:.1f} ps
+    **Delay:** $\tau = C V_{{DD}} / (2\,I_{{on}})$ = {_tau_ps:.1f} ps
 
-    $C_{{gate}}$ = {Cgate_slider.value} fF, $V_{{DD}}$ = {_Vdd} V, $I_{{on}}$ = {Ion_slider.value} µA
+    $C$ = {Cgate_slider.value} fF, $V_{{DD}}$ = {_Vdd} V, $I_{{on}}$ = {Ion_slider.value} µA
 
-    Faster switching requires: higher $I_{{on}}$, lower $C_{{gate}}$, lower $V_{{DD}}$ (but $V_{{DD}}$ also affects noise margin).
+    Faster switching requires: higher $I_{{on}}$, lower $C$, lower $V_{{DD}}$ (but $V_{{DD}}$ also affects noise margin).
     """)
 
     mo.vstack([
@@ -180,16 +183,16 @@ def _(IMAGE_BASE, mo):
     _text = mo.md(r"""
     ## 2. Power Dissipation
 
-    Charge transferred to load at $V_{out}$: $Q = C_{gate} V_{DD}$
+    Charge transferred to load at $V_{out}$: $Q = C V_{DD}$
 
-    Rate of charge transfer: $I = dQ/dt = C_{gate} V_{DD} f$
+    Rate of charge transfer: $I = dQ/dt = C V_{DD} f$
 
-    Activity factor (transistor is not used all the time), $k$: $k C_{gate} V_{DD} f$, where $k < 1$
+    Activity factor (transistor is not used all the time), $k$: $k C V_{DD} f$, where $k < 1$
 
-    - **Dynamic power:** $P_{dynamic} = V_{DD} \cdot I = k C_{gate} V_{DD}^2 f$
+    - **Dynamic power:** $P_{dynamic} = V_{DD} \cdot I = k C V_{DD}^2 f$
     - **Static (leakage) power:** $P_{static} = V_{DD} \cdot I_{off}$, where $I_{off}$ = sub-threshold current
 
-    $$P_{total} = P_{dynamic} + P_{static} = k C_{gate} V_{DD}^2 f + V_{DD} I_{off}$$
+    $$P_{total} = P_{dynamic} + P_{static} = k C V_{DD}^2 f + V_{DD} I_{off}$$
 
     **Low power** $\Rightarrow$ low leakage (subthreshold) current, low $V_{DD}$, low load capacitance
     """)
@@ -292,7 +295,7 @@ def _(
     |:----------|:-----:|
     | $V_{{DD}}$ | {_Vdd} V |
     | $f$ | {_f/1e9:.1f} GHz |
-    | $C_{{gate}}$ | {_Cgate/1e-15:.2f} fF |
+    | $C$ | {_Cgate/1e-15:.2f} fF |
     | $k$ (activity factor) | {_k} |
     | $I_{{off}}$ | {_Ioff/1e-9:.1e} nA |
     | Number of transistors | {_N_gates/1e9:.0f} B |
@@ -500,7 +503,7 @@ def _(mo):
 
     | Topic |  Result |
     |:-------|:-----------:|
-    | **Switching delay** | $\tau \approx C_{gate} V_{DD} / I_{on}$; higher $I_{on}$ → faster |
+    | **Switching delay** | $\tau \approx C V_{DD} / I_{on}$; higher $I_{on}$ → faster |
     | **Dynamic power** | $P_{dyn} = k C V_{DD}^2 f$ |
     | **Static power** | $P_{stat} = V_{DD} I_{off}$ |
     | **Cut-off frequency** | $f_T = \dfrac{\mu_{ns}(V_{GS}-V_t)}{2\pi L^2}$ |

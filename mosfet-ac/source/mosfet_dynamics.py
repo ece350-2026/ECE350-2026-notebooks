@@ -70,7 +70,7 @@ def _(IMAGE_BASE, mo):
 
     $$\frac{dQ_{gate}}{dt} = -\frac{C V_{DD}}{\tau}\, e^{-t/\tau} = -\frac{Q_{gate}}{\tau}$$
 
-    The gate current $I_{gate} \leq I_{Dsat}$ of the NFET at ①.
+    The gate current at ② $\frac{dQ_{gate}}{dt} = I_{gate}  \approx I_{Dsat}$.
 
     ### Propagation Delay
 

@@ -30,6 +30,7 @@ This folder contains interactive HTML-based educational notebooks for ECE350 - S
 | MOSFET: Introduction & Operation | 33 | `mosfet-intro/` |
 | MOSFET I_DS–V_DS: Derivation and Modifications | 34 | `mosfet-iv/` |
 | MOSFET Dynamics & Small-Signal Model | 35 | `mosfet-ac/` |
+| FinFET & FD-SOI MOS Capacitor | 36 (Special topic) | `finfet-fdsoi/` |
 
 ## Viewing the Documentation
 
